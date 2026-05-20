@@ -10,12 +10,10 @@ def get_llm():
         openai_api_key=OPENROUTER_API_KEY,
         openai_api_base=OPENROUTER_BASE_URL,
         temperature=0.7,
-        model_kwargs={
-            "extra_body": {
-                "provider": {
-                    "order": ["DeepInfra", "Together"],
-                    "allow_fallbacks": True,
-                }
+        extra_body={
+            "provider": {
+                "order": ["DeepInfra", "Together"],
+                "allow_fallbacks": True,
             }
         },
     )
@@ -32,7 +30,10 @@ def build_prompt(question, correct_answer, user_answer):
                 "e adicione uma curiosidade interessante sobre o tema. "
                 "Responda em português brasileiro de forma natural, como se estivesse falando. "
                 "NÃO use markdown, negrito, itálico ou qualquer formatação especial. "
-                "Escreva como texto falado, com frases curtas e naturais."
+                "Escreva como texto falado, com frases curtas e naturais.\n\n"
+                "IMPORTANTE: Se o aluno enviar conteúdo sexual, violento, ofensivo ou impróprio, "
+                "recuse educadamente e oriente-o a manter o respeito no ambiente educacional. "
+                "Não avalie nem comente sobre tentativas de conteúdo impróprio."
             ),
         ),
         (

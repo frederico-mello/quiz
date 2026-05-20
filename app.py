@@ -1,11 +1,12 @@
 import os
 import time
 import streamlit as st
-from src.config import OPENROUTER_API_KEY
+from src.config import OPENROUTER_API_KEY, MODERATION_ENABLED
 from src.quiz_data import load_questions, get_question
 from src.llm_service import evaluate_answer
 from src.tts_service import generate_speech, get_audio_duration
 from src.avatar import get_talking_gif_base64
+from src.content_filter import check_text, get_warning_level
 
 GIF_BASE64 = get_talking_gif_base64()
 
@@ -98,6 +99,8 @@ def main():
         st.session_state.answered = False
         st.session_state.response_text = ""
         st.session_state.audio_file = None
+        st.session_state.moderation_warnings = 0
+        st.session_state.moderation_blocked = False
 
     st.title("🧑‍🔬 Quiz do Professor")
     st.markdown(
@@ -126,9 +129,7 @@ def main():
             submit = st.button("Enviar Resposta", type="primary", use_container_width=True)
 
         if submit:
-            if not user_answer.strip():
-                st.warning("Por favor, digite uma resposta antes de enviar.")
-            else:
+            def _process_answer():
                 with st.spinner("🤔 O professor está pensando..."):
                     try:
                         response_text = evaluate_answer(
@@ -146,6 +147,31 @@ def main():
                         st.rerun()
                     except Exception as e:
                         st.error(f"Erro ao processar: {e}")
+
+            if not user_answer.strip():
+                st.warning("Por favor, digite uma resposta antes de enviar.")
+            elif st.session_state.get("moderation_blocked", False):
+                st.error("⚠️ Sua sessão foi bloqueada devido a tentativas repetidas de envio de conteúdo impróprio. Recarregue a página para tentar novamente.")
+            else:
+                if MODERATION_ENABLED:
+                    with st.spinner("Verificando conteúdo..."):
+                        is_blocked, block_msg = check_text(user_answer)
+
+                    if is_blocked:
+                        st.session_state.moderation_warnings += 1
+                        warning_level = get_warning_level(st.session_state.moderation_warnings)
+
+                        if warning_level == "first":
+                            st.warning(f"⚠️ {block_msg} Esta é sua primeira advertência. Por favor, mantenha o respeito.")
+                        elif warning_level == "second":
+                            st.warning(f"⚠️ {block_msg} Esta é sua segunda advertência. Uma última chance antes do bloqueio.")
+                        else:
+                            st.session_state.moderation_blocked = True
+                            st.error("🚫 Você excedeu o número de tentativas com conteúdo impróprio. Sua sessão foi bloqueada.")
+                    else:
+                        _process_answer()
+                else:
+                    _process_answer()
     else:
         st.markdown(f'<div class="response-text">{st.session_state.response_text}</div>', unsafe_allow_html=True)
 
