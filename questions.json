@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "question": "Eu sou um instrumento ancestral. No passado, não precisava de eletricidade, apenas da força manual ou de cordas para girar. Eu funcionava com os pés do dentista. Meu nome é:",
+    "correct_answer": "Trépano"
+  },
+  {
+    "id": 2,
+    "question": "Qual é o maior planeta do sistema solar?",
+    "correct_answer": "Júpiter"
+  },
+  {
+    "id": 3,
+    "question": "Em que ano o Brasil foi descoberto?",
+    "correct_answer": "1500"
+  },
+  {
+    "id": 4,
+    "question": "Qual é o elemento químico representado pelo símbolo 'Au'?",
+    "correct_answer": "Ouro"
+  },
+  {
+    "id": 5,
+    "question": "Quem pintou a Mona Lisa?",
+    "correct_answer": "Leonardo da Vinci"
+  },
+  {
+    "id": 6,
+    "question": "Qual é a velocidade da luz no vácuo (em km/s)?",
+    "correct_answer": "300.000 km/s"
+  },
+  {
+    "id": 7,
+    "question": "Qual é o rio mais longo do mundo?",
+    "correct_answer": "Rio Nilo"
+  },
+  {
+    "id": 8,
+    "question": "Quantos ossos tem o corpo humano adulto?",
+    "correct_answer": "206"
+  },
+  {
+    "id": 9,
+    "question": "Qual é a fórmula química da água?",
+    "correct_answer": "H2O"
+  },
+  {
+    "id": 10,
+    "question": "Quem escreveu 'Dom Casmurro'?",
+    "correct_answer": "Machado de Assis"
+  }
+]
