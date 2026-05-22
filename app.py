@@ -1,8 +1,13 @@
+import base64
 import os
 
 import streamlit as st
+import streamlit.components.v1 as components
 
-from src.avatar import get_talking_gif_base64, ensure_avatar_exists
+from src.avatar import (
+    get_idle_gif_base64,
+    get_talking_gif_base64,
+)
 from src.config import MODERATION_ENABLED, OPENROUTER_API_KEY
 from src.content_filter import check_text, get_warning_level
 from src.llm_service import evaluate_answer
@@ -192,25 +197,28 @@ def main():
 
         if st.session_state.audio_file and os.path.exists(st.session_state.audio_file):
             try:
-                ensure_avatar_exists()
+                talking_b64 = get_talking_gif_base64()
+                idle_b64 = get_idle_gif_base64()
+
+                with open(st.session_state.audio_file, "rb") as f:
+                    audio_b64 = base64.b64encode(f.read()).decode("utf-8")
 
                 col1, col2, col3 = st.columns([1, 2, 1])
                 with col2:
-                    gif_base64 = get_talking_gif_base64()
-                    gif_html = (
-                        f'<div style="text-align:center;">'
-                        f'<img src="data:image/gif;base64,{gif_base64}" '
-                        f'width="160" style="display:block;margin:0 auto;" '
-                        f'alt="Professor Quiz">'
-                        f'<div style="color:#764ba2;font-weight:bold;margin-top:4px;font-size:14px;">Professor Quiz</div>'
-                        f'</div>'
-                    )
-                    st.markdown(gif_html, unsafe_allow_html=True)
-
-                audio_placeholder = st.empty()
-                with open(st.session_state.audio_file, "rb") as f:
-                    audio_bytes = f.read()
-                audio_placeholder.audio(audio_bytes, format="audio/mp3", autoplay=True)
+                    sync_html = f"""
+                    <div style="text-align:center;">
+                        <img id="prof-gif" src="data:image/gif;base64,{talking_b64}"
+                             width="160" style="display:block;margin:0 auto;"
+                             alt="Professor Quiz">
+                        <div style="color:#764ba2;font-weight:bold;margin-top:4px;font-size:14px;">Professor Quiz</div>
+                        <audio id="prof-audio" autoplay controls style="margin-top:10px;width:100%;"
+                            onplay="document.getElementById('prof-gif').src='data:image/gif;base64,{talking_b64}';"
+                            onended="document.getElementById('prof-gif').src='data:image/gif;base64,{idle_b64}';">
+                            <source src="data:audio/mp3;base64,{audio_b64}" type="audio/mp3">
+                        </audio>
+                    </div>
+                    """
+                    components.html(sync_html, height=250)
 
             except Exception as e:
                 st.warning(f"Não foi possível reproduzir o áudio: {e}")
