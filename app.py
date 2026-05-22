@@ -1,50 +1,38 @@
 import os
-import time
+
 import streamlit as st
-from src.config import OPENROUTER_API_KEY, MODERATION_ENABLED
-from src.quiz_data import load_questions, get_question
-from src.llm_service import evaluate_answer
-from src.tts_service import generate_speech, get_audio_duration
-from src.avatar import get_talking_gif_base64
+
+from src.avatar import get_talking_gif_base64, ensure_avatar_exists
+from src.config import MODERATION_ENABLED, OPENROUTER_API_KEY
 from src.content_filter import check_text, get_warning_level
-
-GIF_BASE64 = get_talking_gif_base64()
-
-SCIENTIST_CSS = """
-<style>
-.scientist-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-radius: 20px;
-    margin: 20px auto;
-    max-width: 200px;
-}
-.scientist-gif {
-    width: 160px;
-    height: 160px;
-    border-radius: 12px;
-}
-.scientist-label {
-    color: white;
-    font-size: 14px;
-    margin-top: 10px;
-    font-weight: bold;
-}
-</style>
-"""
-
-SCIENTIST_HTML = f"""
-<div class="scientist-container">
-    <img class="scientist-gif" src="data:image/gif;base64,{GIF_BASE64}" alt="Professor Quiz">
-    <div class="scientist-label">Professor Quiz</div>
-</div>
-"""
+from src.llm_service import evaluate_answer
+from src.quiz_data import get_question, load_questions
+from src.tts_service import generate_speech
 
 QUIZ_CSS = """
 <style>
+:root {
+    --bg-gradient-start: #f5f7fa;
+    --bg-gradient-end: #c3cfe2;
+    --question-bg: #f5f7fa;
+    --question-text: #1a1a2e;
+    --response-bg: #f0f4ff;
+    --response-text: #1a1a2e;
+    --progress-color: #666;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-gradient-start: #1a1a2e;
+        --bg-gradient-end: #16213e;
+        --question-bg: #1a1a2e;
+        --question-text: #f5f7fa;
+        --response-bg: #0f3460;
+        --response-text: #e4e4e7;
+        --progress-color: #a1a1aa;
+    }
+}
+
 .stTextInput > div > div > input {
     font-size: 18px;
     padding: 12px;
@@ -54,7 +42,7 @@ QUIZ_CSS = """
     padding: 8px 24px;
 }
 .question-box {
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     padding: 24px;
     border-radius: 16px;
     margin: 16px 0;
@@ -62,19 +50,21 @@ QUIZ_CSS = """
     font-weight: bold;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    color: var(--question-text);
 }
 .progress-text {
     text-align: center;
-    color: #666;
+    color: var(--progress-color);
     font-size: 14px;
 }
 .response-text {
-    background: #f0f4ff;
+    background: var(--response-bg);
     padding: 16px;
     border-radius: 12px;
     margin: 12px 0;
     font-size: 16px;
     line-height: 1.6;
+    color: var(--response-text);
 }
 </style>
 """
@@ -90,7 +80,9 @@ def main():
     st.markdown(QUIZ_CSS, unsafe_allow_html=True)
 
     if not OPENROUTER_API_KEY:
-        st.error("⚠️ OPENROUTER_API_KEY não configurada. Crie um arquivo .env com sua chave.")
+        st.error(
+            "⚠️ OPENROUTER_API_KEY não configurada. Crie um arquivo .env com sua chave."
+        )
         return
 
     if "questions" not in st.session_state:
@@ -119,16 +111,26 @@ def main():
             st.rerun()
         return
 
-    st.markdown(f'<div class="question-box">{question["question"]}</div>', unsafe_allow_html=True)
+    st.markdown(
+        f'<div class="question-box">{question["question"]}</div>',
+        unsafe_allow_html=True,
+    )
 
     if not st.session_state.answered:
-        user_answer = st.text_input("Sua resposta:", key="answer_input", placeholder="Digite sua resposta aqui...")
+        user_answer = st.text_input(
+            "Sua resposta:",
+            key="answer_input",
+            placeholder="Digite sua resposta aqui...",
+        )
 
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            submit = st.button("Enviar Resposta", type="primary", use_container_width=True)
+            submit = st.button(
+                "Enviar Resposta", type="primary", use_container_width=True
+            )
 
         if submit:
+
             def _process_answer():
                 with st.spinner("🤔 O professor está pensando..."):
                     try:
@@ -151,7 +153,9 @@ def main():
             if not user_answer.strip():
                 st.warning("Por favor, digite uma resposta antes de enviar.")
             elif st.session_state.get("moderation_blocked", False):
-                st.error("⚠️ Sua sessão foi bloqueada devido a tentativas repetidas de envio de conteúdo impróprio. Recarregue a página para tentar novamente.")
+                st.error(
+                    "⚠️ Sua sessão foi bloqueada devido a tentativas repetidas de envio de conteúdo impróprio. Recarregue a página para tentar novamente."
+                )
             else:
                 if MODERATION_ENABLED:
                     with st.spinner("Verificando conteúdo..."):
@@ -159,38 +163,54 @@ def main():
 
                     if is_blocked:
                         st.session_state.moderation_warnings += 1
-                        warning_level = get_warning_level(st.session_state.moderation_warnings)
+                        warning_level = get_warning_level(
+                            st.session_state.moderation_warnings
+                        )
 
                         if warning_level == "first":
-                            st.warning(f"⚠️ {block_msg} Esta é sua primeira advertência. Por favor, mantenha o respeito.")
+                            st.warning(
+                                f"⚠️ {block_msg} Esta é sua primeira advertência. Por favor, mantenha o respeito."
+                            )
                         elif warning_level == "second":
-                            st.warning(f"⚠️ {block_msg} Esta é sua segunda advertência. Uma última chance antes do bloqueio.")
+                            st.warning(
+                                f"⚠️ {block_msg} Esta é sua segunda advertência. Uma última chance antes do bloqueio."
+                            )
                         else:
                             st.session_state.moderation_blocked = True
-                            st.error("🚫 Você excedeu o número de tentativas com conteúdo impróprio. Sua sessão foi bloqueada.")
+                            st.error(
+                                "🚫 Você excedeu o número de tentativas com conteúdo impróprio. Sua sessão foi bloqueada."
+                            )
                     else:
                         _process_answer()
                 else:
                     _process_answer()
     else:
-        st.markdown(f'<div class="response-text">{st.session_state.response_text}</div>', unsafe_allow_html=True)
+        st.markdown(
+            f'<div class="response-text">{st.session_state.response_text}</div>',
+            unsafe_allow_html=True,
+        )
 
         if st.session_state.audio_file and os.path.exists(st.session_state.audio_file):
             try:
-                duration = get_audio_duration(st.session_state.audio_file)
+                ensure_avatar_exists()
 
-                animation_placeholder = st.empty()
+                col1, col2, col3 = st.columns([1, 2, 1])
+                with col2:
+                    gif_base64 = get_talking_gif_base64()
+                    gif_html = (
+                        f'<div style="text-align:center;">'
+                        f'<img src="data:image/gif;base64,{gif_base64}" '
+                        f'width="160" style="display:block;margin:0 auto;" '
+                        f'alt="Professor Quiz">'
+                        f'<div style="color:#764ba2;font-weight:bold;margin-top:4px;font-size:14px;">Professor Quiz</div>'
+                        f'</div>'
+                    )
+                    st.markdown(gif_html, unsafe_allow_html=True)
+
                 audio_placeholder = st.empty()
-
-                animation_placeholder.markdown(SCIENTIST_CSS + SCIENTIST_HTML, unsafe_allow_html=True)
-
                 with open(st.session_state.audio_file, "rb") as f:
                     audio_bytes = f.read()
                 audio_placeholder.audio(audio_bytes, format="audio/mp3", autoplay=True)
-
-                time.sleep(duration)
-
-                animation_placeholder.empty()
 
             except Exception as e:
                 st.warning(f"Não foi possível reproduzir o áudio: {e}")
@@ -208,7 +228,9 @@ def main():
                     st.session_state.audio_file = None
                 st.rerun()
         with col2:
-            if st.button("➡️ Próxima pergunta", type="primary", use_container_width=True):
+            if st.button(
+                "➡️ Próxima pergunta", type="primary", use_container_width=True
+            ):
                 st.session_state.current_index += 1
                 st.session_state.answered = False
                 st.session_state.response_text = ""
