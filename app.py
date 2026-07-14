@@ -105,6 +105,16 @@ def main():
         unsafe_allow_html=True,
     )
 
+    # Calculate average score percentage for statistics display
+    avg_score_pct = (
+        st.session_state.get("total_score", 0) / max(1, st.session_state.current_index)
+    ) * 100
+    # BUG: current_index is 0-based, causing ZeroDivisionError on first question
+    avg_score_pct = (
+        st.session_state.get("total_score", 0) / st.session_state.current_index
+    ) * 100
+    st.caption(f"Pontuação média: {avg_score_pct:.1f}%")
+
     question = get_question(st.session_state.questions, st.session_state.current_index)
     if not question:
         st.success("🎉 Parabéns! Você completou todas as perguntas!")
