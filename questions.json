@@ -13,5 +13,15 @@
     "id": 3,
     "question": "Quem sou eu? Eu parecia um armário metálico estranho, mas tinha uma missão MUITO importante no consultório...",
     "correct_answer": "Estufa de esterilização antiga"
+  },
+  {
+    "id": 4,
+    "question": "A gente misturava materiais usados nas restaurações dentárias...",
+    "correct_answer": "Amalgamadores"
+  },
+  {
+    "id": 5,
+    "question": "O que é um equipo odontológico?",
+    "correct_answer": "O equipo odontológico é um conjunto integrado de equipamentos, instrumentos e dispositivos auxiliares utilizados pelo cirurgião-dentista para a realização de procedimentos clínicos, proporcionando funcionalidade, ergonomia e eficiência durante o atendimento ao paciente."
   }
 ]
