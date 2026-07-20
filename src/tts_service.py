@@ -2,7 +2,6 @@ import asyncio
 import os
 import tempfile
 import edge_tts
-from mutagen.mp3 import MP3
 from src.config import TTS_VOICE, TEMP_AUDIO_DIR
 
 
@@ -25,7 +24,3 @@ def generate_speech(text):
 
     return tmp_path
 
-
-def get_audio_duration(filepath):
-    audio = MP3(filepath)
-    return audio.info.length
