@@ -37,3 +37,6 @@ tmp/
 .vscode/
 .idea/
 .codacy/codacy.yaml
+
+# Graphify generated output
+graphify-out/
