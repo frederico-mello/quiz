@@ -75,6 +75,8 @@ QUIZ_CSS = """
 </style>
 """
 
+QUIZ_TITLE = "🧑‍🔬 Quiz do Professor"
+
 
 def main():
     st.set_page_config(
@@ -103,7 +105,7 @@ def main():
     question_id = params.get("q")
 
     if not question_id:
-        st.title("🧑‍🔬 Quiz do Professor")
+        st.title(QUIZ_TITLE)
         st.info(
             "👋 Selecione uma pergunta para começar.\n\n"
             "Use um link com `?q=<id>` para acessar uma pergunta específica."
@@ -113,17 +115,17 @@ def main():
     try:
         question_id = int(question_id)
     except (ValueError, TypeError):
-        st.title("🧑‍🔬 Quiz do Professor")
+        st.title(QUIZ_TITLE)
         st.error("❌ ID da pergunta inválido. Use um número.")
         return
 
     question = get_question_by_id(st.session_state.questions, question_id)
     if not question:
-        st.title("🧑‍🔬 Quiz do Professor")
+        st.title(QUIZ_TITLE)
         st.error("❌ Pergunta não encontrada.")
         return
 
-    st.title("🧑‍🔬 Quiz do Professor")
+    st.title(QUIZ_TITLE)
 
     st.markdown(
         f'<div class="question-box">{question["question"]}</div>',
@@ -137,7 +139,7 @@ def main():
             placeholder="Digite sua resposta aqui...",
         )
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, _ = st.columns([1, 2, 1])
         with col2:
             submit = st.button(
                 "Enviar Resposta", type="primary", use_container_width=True
@@ -212,7 +214,7 @@ def main():
                 with open(st.session_state.audio_file, "rb") as f:
                     audio_b64 = base64.b64encode(f.read()).decode("utf-8")
 
-                col1, col2, col3 = st.columns([1, 2, 1])
+                col1, col2, _ = st.columns([1, 2, 1])
                 with col2:
                     sync_html = f"""
                     <div style="text-align:center;">
@@ -232,7 +234,7 @@ def main():
             except Exception as e:
                 st.warning(f"Não foi possível reproduzir o áudio: {e}")
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, _ = st.columns([1, 2, 1])
         with col2:
             if st.button("🔄 Tentar novamente", use_container_width=True):
                 st.session_state.answered = False
