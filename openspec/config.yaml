@@ -29,3 +29,5 @@ rules:
     - "MANDATORY: Invoke the 'openspec-plus-design' skill BEFORE writing the design document."
   tasks:
     - "MANDATORY: Invoke the 'openspec-plus-tasks' skill BEFORE writing the tasks file."
+  archive:
+    - "MANDATORY: Sync delta specs to main specs during archive. Run openspec-sync-specs BEFORE archiving the change. This ensures main specs never drift from completed changes."

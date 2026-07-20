@@ -15,12 +15,12 @@ The quiz user interface SHALL present questions and feedback without displaying 
 - **WHEN** the user advances to any question beyond the first
 - **THEN** the page renders without a "Pontuação média" caption
 
-### Requirement: Quiz UI shall present questions in JSON file order
-The quiz SHALL present questions in the order they appear in `questions.json`, without shuffling.
+### Requirement: Quiz UI shall not show progress indicator
+The quiz SHALL NOT display a "Pergunta X de Y" progress indicator, since questions are accessed individually by link.
 
-#### Scenario: Questions appear in fixed order
-- **WHEN** the user starts a new quiz session
-- **THEN** the first question displayed matches the first entry in `questions.json`
+#### Scenario: No progress text shown
+- **WHEN** a question is loaded via `?q=<id>`
+- **THEN** the system SHALL NOT display "Pergunta X de Y" progress text
 
 ### Requirement: Quiz UI shall sync avatar gif via client-side audio events
 The quiz SHALL use the browser's `<audio>` `onplay` and `onended` events to switch the avatar gif between talking and idle states, without server-side duration measurement.
