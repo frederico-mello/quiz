@@ -1,5 +1,4 @@
 import json
-import random
 
 
 def load_questions(filepath="questions.json"):
@@ -18,9 +17,3 @@ def get_question_by_id(questions, question_id):
         if q.get("id") == question_id:
             return q
     return None
-
-
-def shuffle_questions(questions):
-    shuffled = questions.copy()
-    random.shuffle(shuffled)
-    return shuffled
