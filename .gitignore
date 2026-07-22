@@ -18,25 +18,10 @@ tmp/
 # IDE
 .vscode/
 .idea/
-
-# Environment
-.env
-.venv/
-
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-dist/
-build/
-
-# Temp audio files
-tmp/
-
-# IDE
-.vscode/
-.idea/
 .codacy/codacy.yaml
 
 # Graphify generated output
 graphify-out/
+
+# OpenCode
+.opencode/node_modules/
