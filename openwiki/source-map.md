@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Source Map"
+description: "File-by-file reference for the Quiz do Professor codebase, covering app.py, src/ modules, config, and tooling directories."
+---
+
 # Source Map
 
 ## Top-Level Files
@@ -6,13 +12,15 @@
 The entire application UI and orchestration lives in this single file (~265 lines).
 
 - **Lines 17-74**: CSS with light/dark theme support via `prefers-color-scheme`
-- **Lines 78-99**: `main()` — Page config, session state initialization
-- **Lines 100-127**: Score statistics display, question retrieval, completion screen
-- **Lines 129-201**: Question display, answer input, content moderation pipeline, LLM evaluation
-- **Lines 202-261**: Response display (text + animated avatar + audio), retry/next buttons
-- **Line 264**: `if __name__ == "__main__": main()`
+- **Lines 78-94**: `main()` — Page config, API key check
+- **Lines 96-102**: Session state initialization
+- **Lines 104-126**: Query-param question access (`?q=<id>`), question retrieval
+- **Lines 128-202**: Question display, answer input, content moderation pipeline, LLM evaluation
+- **Lines 203-248**: Response display (text + animated avatar + audio), retry button
+- **Lines 250-254**: QR code generation and display for question sharing
+- **Line 257**: `if __name__ == "__main__": main()`
 
-Key imports: `avatar`, `config`, `content_filter`, `llm_service`, `quiz_data`, `tts_service`
+Key imports: `avatar`, `config`, `content_filter`, `llm_service`, `qrcode_service`, `quiz_data`, `tts_service`
 
 ### `questions.json` — Question Bank
 JSON array of 5 question objects. Each has `id`, `question` (text prompt), and `correct_answer`. Questions are about dental instruments and equipment history (in Portuguese). Currently hardcoded for a dentistry course context.
@@ -24,8 +32,8 @@ langchain>=0.2.0         # LLM orchestration
 langchain-openai>=0.1.0  # OpenAI-compatible LLM wrapper
 openai>=1.0.0            # OpenAI client (used by langchain-openai)
 edge-tts>=6.1.0          # Microsoft Edge TTS (free)
-mutagen>=1.47.0           # Audio metadata (MP3 duration)
 python-dotenv>=1.0.0     # .env file loading
+qrcode[pil]>=7.4.0       # QR code generation for question sharing
 ```
 
 ### `.env.example` — Environment Template
@@ -44,6 +52,7 @@ Loads `.env` via `python-dotenv` and exports all config constants.
 | `OPENROUTER_BASE_URL` | env | `https://openrouter.ai/api/v1` |
 | `LLM_MODEL` | env | `deepseek/deepseek-v4-flash` |
 | `MODERATION_ENABLED` | env | `true` |
+| `APP_URL` | env | `http://localhost:8501` |
 | `TTS_VOICE` | env | `pt-BR-FranciscaNeural` |
 | `TEMP_AUDIO_DIR` | env | `tmp/audio` |
 
@@ -91,14 +100,18 @@ Simple JSON loader:
 
 - **`load_questions(filepath)`** → Reads and returns JSON array from file
 - **`get_question(questions, index)`** → Returns question dict at index, or `None` if out of bounds
-- **`shuffle_questions(questions)`** → Returns a shuffled copy (not currently used in `app.py`)
+- **`get_question_by_id(questions, question_id)`** → Returns question dict matching the `id` field, or `None`
+
+### `src/qrcode_service.py` — QR Code Generation
+Thin wrapper around the `qrcode` library for generating shareable question links.
+
+- **`generate_qr_code(data)`** → Creates a QR code encoding the given string, returns a `BytesIO` buffer containing a PNG image
 
 ### `src/tts_service.py` — Text-to-Speech
 Wrapper around `edge-tts`:
 
 - **`generate_speech_async(text, output_path, voice)`** → Async edge-tts call
 - **`generate_speech(text)`** → Sync wrapper: creates temp dir, generates MP3, returns path
-- **`get_audio_duration(filepath)`** → Returns MP3 duration in seconds via `mutagen` (not currently used in `app.py`)
 
 ### `src/__init__.py`
 Empty file. Makes `src/` a Python package.
@@ -144,6 +157,7 @@ Both are generated on first run by `avatar.py` and persisted to disk.
 
 | Path | Purpose |
 |---|---|
-| `config.yaml` | OpenSpec schema config (spec-driven, minimal) |
-| `specs/` | Empty — no active specs |
-| `changes/archive/` | Archived change records |
+| `openspec/config.yaml` | OpenSpec schema config (spec-driven, minimal) |
+| `openspec/specs/` | Active specs (avatar, content-filter, independent-question-access, llm-evaluation, question-link-qr-code, quiz-ui, tts) |
+| `openspec/changes/` | Active change proposals |
+| `openspec/changes/archive/` | Archived change records |
