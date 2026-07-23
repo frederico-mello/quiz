@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Operations"
+description: "Environment setup, running the app, CI/CD, OpenSpec/OpenWiki tooling, and Graphify plugin for the Quiz do Professor project."
+---
+
 # Operations
 
 ## Environment Setup
@@ -17,6 +23,7 @@ All runtime config is environment-based via `.env` file. See `.env.example` for 
 | `OPENROUTER_BASE_URL` | No | `https://openrouter.ai/api/v1` | Override for proxy/self-hosted |
 | `LLM_MODEL` | No | `deepseek/deepseek-v4-flash` | Must be available on OpenRouter |
 | `MODERATION_ENABLED` | No | `true` | Set to `false` to disable content filtering |
+| `APP_URL` | No | `http://localhost:8501` | Base URL for QR code question links |
 | `TTS_VOICE` | No | `pt-BR-FranciscaNeural` | edge-tts voice identifier |
 | `TEMP_AUDIO_DIR` | No | `tmp/audio` | Created automatically if missing |
 
@@ -45,19 +52,8 @@ streamlit run app.py
 
 - Audio files are generated in `tmp/audio/` (gitignored)
 - Each answer generates one `.mp3` file via `tempfile.mkstemp`
-- Files are cleaned up when navigating to next question or retrying
+- Files are cleaned up when retrying
 - Avatar GIFs are cached in `assets/` (gitignored via `tmp/` pattern, but `assets/*.gif` files are tracked in git)
-
-## Known Issues
-
-### ZeroDivisionError in Score Statistics
-**Location:** `app.py` lines 112-116
-
-The safe calculation (line 109-111) is immediately overwritten by an unsafe version (lines 113-115) that divides by `current_index` when it's 0. This crashes on the first question.
-
-**Workaround:** Answer at least one question before the crash manifests (the safe code runs first, then the unsafe overwrite triggers on the same render).
-
-**Fix:** Remove lines 113-115 (the duplicate unsafe calculation).
 
 ## CI/CD: OpenWiki Update Workflow
 
@@ -90,7 +86,7 @@ The repo uses [OpenSpec](https://github.com/nicholasgriffintn/openspec) for stru
 Mirror the commands with detailed skill definitions. Also present under `.github/skills/` for GitHub Copilot integration.
 
 ### Config
-`openspec/config.yaml` uses `schema: spec-driven` with minimal configuration. No active specs in `openspec/specs/`; archived changes in `openspec/changes/archive/`.
+`openspec/config.yaml` uses `schema: spec-driven` with minimal configuration. Active specs in `openspec/specs/` cover avatar, content-filter, independent-question-access, llm-evaluation, question-link-qr-code, quiz-ui, and tts. Archived changes in `openspec/changes/archive/`.
 
 ## Graphify Plugin
 

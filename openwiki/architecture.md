@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Architecture"
+description: "Component diagram, data flow, session state model, and QR code question-sharing for the Quiz do Professor Streamlit app."
+---
+
 # Architecture
 
 ## System Overview
@@ -14,8 +20,9 @@
 │       │              │                │              │
 │  ┌────▼──────────────▼────────────────▼───────────┐  │
 │  │              Session State Manager              │  │
-│  │  current_index, answered, response_text,        │  │
-│  │  audio_file, moderation_warnings, total_score   │  │
+│  │  questions, answered, response_text,            │  │
+│  │  audio_file, moderation_warnings,               │  │
+│  │  moderation_blocked                             │  │
 │  └────────────────────┬───────────────────────────┘  │
 │                       │                              │
 │  ┌────────────────────▼───────────────────────────┐  │
@@ -48,8 +55,11 @@
 
 ## Data Flow: Answer Submission
 
-1. **User types answer** → Streamlit `text_input` widget
-2. **Submit clicked** → `st.button("Enviar Resposta")`
+Questions are accessed individually via URL query parameters (`?q=<id>`), not sequentially. The user navigates to a specific question URL (optionally via a QR code), types an answer, and submits.
+
+1. **Page load** → `st.query_params` reads `q` parameter; `get_question_by_id()` looks up the question by numeric ID
+2. **User types answer** → Streamlit `text_input` widget
+3. **Submit clicked** → `st.button("Enviar Resposta")`
 3. **Content moderation** → `check_text()` in `content_filter.py`
    - First pass: local keyword + regex pattern matching (fast, no API cost)
    - Second pass: LLM semantic check via OpenRouter (if local pass succeeds)
@@ -66,6 +76,17 @@
    - Returns base64-encoded GIF for inline HTML
 7. **Display** → Streamlit renders response text, animated avatar with synced audio player
 
+## Question Access and QR Code Sharing
+
+Questions are accessed individually via URL query parameters rather than sequential navigation. Each question URL follows the pattern `{APP_URL}?q=<question_id>`.
+
+- On page load, `app.py` reads `st.query_params.get("q")` and parses it as an integer
+- If no `q` parameter is present, the app shows an info message directing the user to use a `?q=<id>` link
+- If the ID is invalid or not found, an error message is displayed
+- At the bottom of every question page, `generate_qr_code()` from `src/qrcode_service.py` renders a QR code encoding the question's shareable URL, allowing students to scan and open a specific question on mobile devices
+
+**Key files:** `app.py:104-126` (query param handling), `app.py:250-254` (QR code display), `src/qrcode_service.py`
+
 ## Session State Model
 
 All quiz state lives in `st.session_state` (Streamlit's per-browser-tab state):
@@ -73,13 +94,11 @@ All quiz state lives in `st.session_state` (Streamlit's per-browser-tab state):
 | Key | Type | Purpose |
 |---|---|---|
 | `questions` | `list[dict]` | Loaded question bank |
-| `current_index` | `int` | Current question index (0-based) |
 | `answered` | `bool` | Whether current question has been answered |
 | `response_text` | `str` | LLM evaluation text |
 | `audio_file` | `str\|None` | Path to generated MP3 temp file |
 | `moderation_warnings` | `int` | Count of content filter hits |
 | `moderation_blocked` | `bool` | Whether session is blocked (3+ warnings) |
-| `total_score` | `float` | Accumulated score (added in commit `3c2af8e`) |
 
 No database or persistent storage exists. Closing the browser tab loses all progress.
 
@@ -121,9 +140,3 @@ The HTML audio player in `app.py` (lines 218-231) uses JavaScript `onplay`/`onen
 - **Provider routing**: `extra_body.provider.order` prioritizes DeepInfra, then Together
 - **Temperature**: 0.7 for evaluation, 0.1 for moderation
 - **Prompt**: System prompt instructs the LLM to act as a friendly quiz professor, respond in spoken Portuguese (no markdown), and keep responses under 500 characters
-
-## Score Statistics
-
-Added in commit `3c2af8e` (merged via PR #10). The average score percentage is calculated and displayed per question.
-
-**Known bug** (`app.py` lines 112-116): The score calculation is duplicated. Lines 109-111 compute a safe average with `max(1, ...)` to avoid division by zero, but lines 113-115 immediately overwrite it with an unsafe version that divides by `current_index` directly, causing a `ZeroDivisionError` on the first question.
