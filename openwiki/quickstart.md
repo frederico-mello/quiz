@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Quiz do Professor — Quickstart"
+description: "Entry point for the Quiz do Professor code wiki. Interactive dental/medical quiz with Streamlit, LangChain, edge-tts, and QR code question sharing."
+---
+
 # Quiz do Professor — Quickstart
 
 An interactive quiz application for dental/medical students built with **Streamlit**, **LangChain**, and **edge-tts**. A cartoon "professor" avatar evaluates answers using an LLM (via OpenRouter) and reads feedback aloud via text-to-speech.
@@ -8,11 +14,12 @@ An interactive quiz application for dental/medical students built with **Streaml
 
 | Layer | Technology |
 |---|---|
-| Frontend | Streamlit (single-page app) |
+| Frontend | Streamlit (single-page app, URL query-param routing) |
 | LLM | OpenRouter API → DeepSeek v4 Flash (via LangChain) |
 | TTS | edge-tts (`pt-BR-FranciscaNeural`) |
 | Avatar | Programmatic PIL-drawn scientist GIF, cached to disk |
 | Moderation | Local keyword blocklist + LLM semantic check |
+| QR Sharing | `qrcode` library generates scannable question links |
 | Config | python-dotenv (`.env` file) |
 
 ## Quick Start
@@ -48,6 +55,7 @@ The app opens at `http://localhost:8501`.
 | `OPENROUTER_BASE_URL` | `https://openrouter.ai/api/v1` | API base URL |
 | `LLM_MODEL` | `deepseek/deepseek-v4-flash` | Model identifier |
 | `MODERATION_ENABLED` | `true` | Enable content moderation |
+| `APP_URL` | `http://localhost:8501` | Base URL for QR code question links |
 | `TTS_VOICE` | `pt-BR-FranciscaNeural` | edge-tts voice |
 | `TEMP_AUDIO_DIR` | `tmp/audio` | Temp directory for generated audio |
 
@@ -78,6 +86,7 @@ quiz/
 │   ├── config.py             # Environment config loader
 │   ├── content_filter.py     # Two-layer moderation
 │   ├── llm_service.py        # LangChain + OpenRouter LLM
+│   ├── qrcode_service.py     # QR code generation for question sharing
 │   ├── quiz_data.py          # Question JSON loader
 │   └── tts_service.py        # edge-tts wrapper
 ├── openspec/                 # OpenSpec change management

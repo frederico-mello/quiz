@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Integrations"
+description: "External APIs, Python libraries, developer tooling, and CI/CD for the Quiz do Professor project."
+---
+
 # Integrations
 
 ## External APIs
@@ -42,11 +48,12 @@
 - **Usage:** Drawing scientist avatar frames, GIF generation with transparency
 - **Not in requirements.txt:** Installed as a transitive dependency of Streamlit
 
-### mutagen
-- **Version:** `>=1.47.0`
-- **Purpose:** Audio file metadata reading
-- **Usage:** `MP3(filepath).info.length` for getting audio duration
-- **Note:** `get_audio_duration()` exists in `tts_service.py` but is not currently called by `app.py`
+### qrcode
+- **Version:** `>=7.4.0` (with `[pil]` extra)
+- **Purpose:** QR code generation for question sharing links
+- **Used by:** `src/qrcode_service.py`
+- **Usage:** `generate_qr_code(data)` creates a QR code PNG encoding a question URL
+- **PyPI:** [qrcode](https://pypi.org/project/qrcode/)
 
 ---
 
