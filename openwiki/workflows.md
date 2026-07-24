@@ -1,3 +1,9 @@
+---
+type: "Reference"
+title: "Workflows"
+description: "Step-by-step workflows for the Quiz do Professor app: answer pipeline, moderation, avatar generation, QR code sharing, and question access via URL query params."
+---
+
 # Workflows
 
 ## 1. Quiz Answer Flow (Core Loop)
@@ -105,21 +111,34 @@ Avatars are drawn programmatically — no image files are bundled.
 
 **Key file:** `avatar.py:288-364`
 
-## 5. Question Navigation
+## 5. Question Access via URL Query Params
 
-Simple sequential navigation:
+Questions are accessed individually via URL query parameters, not sequentially:
 
 1. Questions loaded from `questions.json` on first page load
-2. Current question displayed by `current_index` in session state
-3. "Tentar novamente" → resets `answered` state, allows re-answer
-4. "Próxima pergunta" → increments `current_index`, resets state
-5. All questions completed → congratulations screen + "Recomeçar" button
+2. `st.query_params.get("q")` reads the question ID from the URL
+3. If no `q` parameter → info message directing user to use a `?q=<id>` link
+4. If `q` is not a valid integer → error message "ID da pergunta inválido"
+5. If `q` does not match any question → error message "Pergunta não encontrada"
+6. Matching question is displayed for answering
+7. "Tentar novamente" → resets `answered` state, allows re-answer
 
-**Note:** `shuffle_questions()` exists in `quiz_data.py` but is never called. Questions always appear in JSON order.
+**Note:** There is no "next question" or sequential navigation. Each question is an independent page accessed via its URL. Question IDs come from the `id` field in `questions.json`.
 
-**Key file:** `app.py:93-127`, `app.py:236-261`
+**Key file:** `app.py:104-126`, `app.py:239-248`
 
-## 6. Git Commit History (Development Progression)
+## 6. QR Code Question Sharing
+
+Each question page displays a QR code at the bottom for easy mobile sharing:
+
+1. `APP_URL` from `src/config.py` is combined with the current `question_id` to build the share URL: `{APP_URL}?q={question_id}`
+2. `generate_qr_code(question_url)` in `src/qrcode_service.py` creates a QR code PNG via the `qrcode` library
+3. The QR code is displayed at 150px width with a caption showing the shareable link
+4. Scanning the QR code opens the specific question page on the user's device
+
+**Key file:** `app.py:250-254`, `src/qrcode_service.py`
+
+## 7. Git Commit History (Development Progression)
 
 | Commit | Change | Significance |
 |---|---|---|
@@ -128,8 +147,6 @@ Simple sequential navigation:
 | `151919e` | Refactor config | Environment-based settings, `.env` support |
 | `b361c5b` | Avatar sync | Switch to idle-talking GIF swap with audio |
 | `e4b5b38` | Idle animation | Added `scientist_idle.gif` asset |
-| `3c2af8e` | Score statistics | Added `total_score` tracking, avg display |
-| `29d44dc` | Update app.py | Merged score stats (introduced ZeroDivision bug) |
 | `d9f1185` | OpenSpec sync | Added `opsx-sync` command |
 | `79d3153` | Dynamic paths | OpenSpec commands use status JSON paths |
-| `f80a297` | PR #10 merge | Feature branch merged to main |
+| `ea7147f` | PR #35 merge | Repo hygiene audit — added `.gitignore`, `.env.example`, independent question access, QR code sharing, OpenSpec specs |
