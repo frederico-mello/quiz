@@ -8,10 +8,11 @@ from src.avatar import (
     get_idle_gif_base64,
     get_talking_gif_base64,
 )
-from src.config import MODERATION_ENABLED, OPENROUTER_API_KEY
+from src.config import APP_URL, MODERATION_ENABLED, OPENROUTER_API_KEY
 from src.content_filter import check_text, get_warning_level
 from src.llm_service import evaluate_answer
-from src.quiz_data import get_question, load_questions
+from src.quiz_data import get_question_by_id, load_questions
+from src.qrcode_service import generate_qr_code
 from src.tts_service import generate_speech
 
 QUIZ_CSS = """
@@ -74,6 +75,8 @@ QUIZ_CSS = """
 </style>
 """
 
+QUIZ_TITLE = "🧑‍🔬 Quiz do Professor"
+
 
 def main():
     st.set_page_config(
@@ -92,39 +95,37 @@ def main():
 
     if "questions" not in st.session_state:
         st.session_state.questions = load_questions()
-        st.session_state.current_index = 0
         st.session_state.answered = False
         st.session_state.response_text = ""
         st.session_state.audio_file = None
         st.session_state.moderation_warnings = 0
         st.session_state.moderation_blocked = False
 
-    st.title("🧑‍🔬 Quiz do Professor")
-    st.markdown(
-        f'<p class="progress-text">Pergunta {st.session_state.current_index + 1} de {len(st.session_state.questions)}</p>',
-        unsafe_allow_html=True,
-    )
+    params = st.query_params
+    question_id = params.get("q")
 
-    # Calculate average score percentage for statistics display
-    avg_score_pct = (
-        st.session_state.get("total_score", 0) / max(1, st.session_state.current_index)
-    ) * 100
-    # BUG: current_index is 0-based, causing ZeroDivisionError on first question
-    avg_score_pct = (
-        st.session_state.get("total_score", 0) / st.session_state.current_index
-    ) * 100
-    st.caption(f"Pontuação média: {avg_score_pct:.1f}%")
-
-    question = get_question(st.session_state.questions, st.session_state.current_index)
-    if not question:
-        st.success("🎉 Parabéns! Você completou todas as perguntas!")
-        if st.button("Recomeçar"):
-            st.session_state.current_index = 0
-            st.session_state.answered = False
-            st.session_state.response_text = ""
-            st.session_state.audio_file = None
-            st.rerun()
+    if not question_id:
+        st.title(QUIZ_TITLE)
+        st.info(
+            "👋 Selecione uma pergunta para começar.\n\n"
+            "Use um link com `?q=<id>` para acessar uma pergunta específica."
+        )
         return
+
+    try:
+        question_id = int(question_id)
+    except (ValueError, TypeError):
+        st.title(QUIZ_TITLE)
+        st.error("❌ ID da pergunta inválido. Use um número.")
+        return
+
+    question = get_question_by_id(st.session_state.questions, question_id)
+    if not question:
+        st.title(QUIZ_TITLE)
+        st.error("❌ Pergunta não encontrada.")
+        return
+
+    st.title(QUIZ_TITLE)
 
     st.markdown(
         f'<div class="question-box">{question["question"]}</div>',
@@ -138,7 +139,7 @@ def main():
             placeholder="Digite sua resposta aqui...",
         )
 
-        col1, col2, col3 = st.columns([1, 2, 1])
+        col1, col2, _ = st.columns([1, 2, 1])
         with col2:
             submit = st.button(
                 "Enviar Resposta", type="primary", use_container_width=True
@@ -213,7 +214,7 @@ def main():
                 with open(st.session_state.audio_file, "rb") as f:
                     audio_b64 = base64.b64encode(f.read()).decode("utf-8")
 
-                col1, col2, col3 = st.columns([1, 2, 1])
+                col1, col2, _ = st.columns([1, 2, 1])
                 with col2:
                     sync_html = f"""
                     <div style="text-align:center;">
@@ -233,8 +234,8 @@ def main():
             except Exception as e:
                 st.warning(f"Não foi possível reproduzir o áudio: {e}")
 
-        col1, col2 = st.columns(2)
-        with col1:
+        col1, col2, _ = st.columns([1, 2, 1])
+        with col2:
             if st.button("🔄 Tentar novamente", use_container_width=True):
                 st.session_state.answered = False
                 st.session_state.response_text = ""
@@ -245,20 +246,12 @@ def main():
                         pass
                     st.session_state.audio_file = None
                 st.rerun()
-        with col2:
-            if st.button(
-                "➡️ Próxima pergunta", type="primary", use_container_width=True
-            ):
-                st.session_state.current_index += 1
-                st.session_state.answered = False
-                st.session_state.response_text = ""
-                if st.session_state.audio_file:
-                    try:
-                        os.remove(st.session_state.audio_file)
-                    except OSError:
-                        pass
-                    st.session_state.audio_file = None
-                st.rerun()
+
+    question_url = f"{APP_URL}?q={question_id}"
+    qr_img = generate_qr_code(question_url)
+    st.markdown("**🔗 Compartilhe esta pergunta:**")
+    st.image(qr_img, width=150)
+    st.caption(f"Link: {question_url}")
 
 
 if __name__ == "__main__":
