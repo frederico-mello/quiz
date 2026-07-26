@@ -54,12 +54,17 @@ jobs:
           echo "exit_code=$rc" >> $GITHUB_OUTPUT
 
       - name: Publish report to Summary
+        if: always()
         run: |
           echo '## Repository Hygiene Audit' >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
-          cat auditoria-report.txt >> $GITHUB_STEP_SUMMARY
-          echo '```' >> $GITHUB_STEP_SUMMARY
+          if [ -f auditoria-report.txt ]; then
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            cat auditoria-report.txt >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo 'Report file not found.' >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: Create or update issue
         if: github.event_name != 'pull_request' && steps.audit.outputs.exit_code != '0'
