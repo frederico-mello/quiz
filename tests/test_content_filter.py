@@ -139,6 +139,18 @@ def test_check_text_invokes_llm_once_for_clean_text(monkeypatch):
     mocked_check_text_llm.assert_called_once_with("olá mundo", mocked_llm)
 
 
+def test_check_text_returns_clean_when_llm_raises(monkeypatch):
+    monkeypatch.setattr(
+        content_filter,
+        "check_text_llm",
+        MagicMock(side_effect=RuntimeError("LLM indisponível")),
+    )
+
+    result = content_filter.check_text("olá mundo", use_llm=True)
+
+    assert result == (False, None)
+
+
 def test_check_text_skips_llm_when_disabled(monkeypatch):
     mocked_check_text_llm = MagicMock()
     monkeypatch.setattr(content_filter, "check_text_llm", mocked_check_text_llm)
