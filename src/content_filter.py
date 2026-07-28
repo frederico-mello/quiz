@@ -166,27 +166,6 @@ def check_text_local(text: str) -> Tuple[bool, Optional[str]]:
 
 
 def check_text_llm(text: str, llm) -> Tuple[bool, Optional[str]]:
-    from src.config import LLM_MODEL, OPENROUTER_API_KEY, OPENROUTER_BASE_URL
-
-    if not OPENROUTER_API_KEY:
-        return False, None
-
-    from langchain_openai import ChatOpenAI
-    from pydantic import SecretStr
-
-    llm_client = ChatOpenAI(
-        model=LLM_MODEL,
-        api_key=SecretStr(OPENROUTER_API_KEY),
-        base_url=OPENROUTER_BASE_URL,
-        temperature=0.1,
-        extra_body={
-            "provider": {
-                "order": ["DeepInfra", "Together"],
-                "allow_fallbacks": True,
-            }
-        },
-    )
-
     moderation_prompt = (
         "Você é um moderador de conteúdo. Analise o texto abaixo e determine "
         "se ele contém conteúdo SEXUAL ou OFENSIVO direcionado a terceiros."
@@ -200,7 +179,7 @@ def check_text_llm(text: str, llm) -> Tuple[bool, Optional[str]]:
         "Resposta:"
     )
 
-    response = llm_client.invoke(moderation_prompt)
+    response = llm.invoke(moderation_prompt)
     raw = response.content
     if isinstance(raw, list):
         content = "".join(
