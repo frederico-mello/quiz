@@ -45,25 +45,26 @@ jobs:
       - name: Install repository-hygiene
         run: |
           python -m pip install --only-binary :all: pip==25.1.1
-          pip install --only-binary :all: 'repository-hygiene==0.2.0'
+          pip install --only-binary :all: "repository-hygiene==0.2.0"
 
       - name: Run audit
         id: audit
         run: |
-          rc=0; repository-hygiene . --format text > auditoria-report.txt 2>&1 || rc=$?
-          echo "exit_code=$rc" >> $GITHUB_OUTPUT
+          rc=0
+          repository-hygiene . --format text > auditoria-report.txt 2>&1 || rc=$?
+          echo "exit_code=$rc" >> "$GITHUB_OUTPUT"
 
       - name: Publish report to Summary
         if: always()
         run: |
-          echo '## Repository Hygiene Audit' >> $GITHUB_STEP_SUMMARY
-          echo '' >> $GITHUB_STEP_SUMMARY
+          echo "## Repository Hygiene Audit" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
           if [ -f auditoria-report.txt ]; then
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            cat auditoria-report.txt >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            cat auditoria-report.txt >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
           else
-            echo 'Report file not found.' >> $GITHUB_STEP_SUMMARY
+            echo "Report file not found." >> "$GITHUB_STEP_SUMMARY"
           fi
 
       - name: Create or update issue
