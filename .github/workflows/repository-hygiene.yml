@@ -32,7 +32,6 @@ permissions:
 
 jobs:
   audit:
-    uses: frederico-mello/repository-hygiene/.github/workflows/audit-reusable.yml@v0.1.0
+    uses: frederico-mello/repository-hygiene/.github/workflows/audit-reusable.yml@0b3a3684a961554836672054b3576361e3d4116d
     with:
       python-version: "3.10"
-    secrets: inherit

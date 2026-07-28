@@ -1,7 +1,7 @@
 # Configuração do auditor de higiene do repositório
 # Regras, severidades e exceções para verificações automáticas
 
-versao_configuracao: 1
+config_version: 1
 
 regras:
   segredos_rastreados:
