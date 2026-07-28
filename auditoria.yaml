@@ -6,34 +6,37 @@ config_version: 1
 rules:
   tracked_secrets:
     enabled: true
-    severidade: error
+    severity: error
   broken_internal_links:
     enabled: true
-    severidade: error
+    severity: error
   missing_references:
     enabled: true
-    severidade: error
+    severity: error
   untracked_artifacts:
     enabled: true
-    severidade: error
+    severity: error
   empty_gitkeep_directories:
     enabled: true
-    severidade: warning
+    severity: warning
   unreferenced_files:
     enabled: true
-    severidade: warning
+    severity: warning
   outdated_documentation:
     enabled: true
-    severidade: warning
+    severity: warning
   unintegrated_configurations:
     enabled: true
-    severidade: warning
+    severity: warning
   stale_openspec_changes:
     enabled: true
-    severidade: warning
+    severity: warning
   insecure_workflows:
     enabled: true
-    severidade: warning
+    severity: warning
+  conventional_commits:
+    enabled: true
+    severity: warning
 
 exceptions:
   tracked_secrets:
@@ -52,3 +55,4 @@ exceptions:
   unintegrated_configurations: []
   stale_openspec_changes: []
   insecure_workflows: []
+  conventional_commits: []
