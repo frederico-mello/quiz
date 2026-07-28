@@ -1,54 +1,54 @@
-# Configuração do auditor de higiene do repositório
-# Regras, severidades e exceções para verificações automáticas
+# Repository hygiene auditor configuration
+# Rules, severities, and exceptions for automated checks
 
 config_version: 1
 
-regras:
-  segredos_rastreados:
-    habilitada: true
+rules:
+  tracked_secrets:
+    enabled: true
     severidade: error
-  links_internos_quebrados:
-    habilitada: true
+  broken_internal_links:
+    enabled: true
     severidade: error
-  referencias_inexistentes:
-    habilitada: true
+  missing_references:
+    enabled: true
     severidade: error
-  artefatos_fora_gitignore:
-    habilitada: true
+  untracked_artifacts:
+    enabled: true
     severidade: error
-  gitkeep_sem_conteudo:
-    habilitada: true
+  empty_gitkeep_directories:
+    enabled: true
     severidade: warning
-  arquivos_sem_referencia:
-    habilitada: true
+  unreferenced_files:
+    enabled: true
     severidade: warning
-  documentacao_desatualizada:
-    habilitada: true
+  outdated_documentation:
+    enabled: true
     severidade: warning
-  configuracao_sem_integracao:
-    habilitada: true
+  unintegrated_configurations:
+    enabled: true
     severidade: warning
-  openspec_parada:
-    habilitada: true
+  stale_openspec_changes:
+    enabled: true
     severidade: warning
-  workflows_inseguros:
-    habilitada: true
+  insecure_workflows:
+    enabled: true
     severidade: warning
 
-excecoes:
-  segredos_rastreados:
+exceptions:
+  tracked_secrets:
     - .secrets.baseline
     - .env.example
-  links_internos_quebrados: []
-  referencias_inexistentes:
+  broken_internal_links: []
+  missing_references:
     - auditoria-report.txt
-  artefatos_fora_gitignore:
+  untracked_artifacts:
     - .git
-  gitkeep_sem_conteudo: []
-  arquivos_sem_referencia:
+  empty_gitkeep_directories: []
+  unreferenced_files:
     - .gitignore
     - Makefile
-  documentacao_desatualizada: []
-  configuracao_sem_integracao: []
-  openspec_parada: []
-  workflows_inseguros: []
+  outdated_documentation: []
+  unintegrated_configurations: []
+  stale_openspec_changes: []
+  insecure_workflows: []
