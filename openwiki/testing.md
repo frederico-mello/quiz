@@ -1,18 +1,18 @@
 ---
 type: "Reference"
 title: "Testing"
-description: "Manual testing guidance, known issues, and test gaps for the Quiz do Professor app — no automated test suite exists yet."
+description: "Manual and automated testing guidance, known issues, and test gaps for the Quiz do Professor app."
 ---
 
 # Testing
 
 ## Current State
 
-**There is no automated test suite.** The repository has no test files, no test framework configured, and no CI step that runs tests. All validation is manual.
+An automated pytest suite lives under `tests/`, and a GitHub Actions workflow (`.github/workflows/test.yml`) runs it on pushes to `main` and on pull requests against `main`. Use the checklist below to cover behavior not exercised by the automated suite.
 
 ## Manual Testing Checklist
 
-Since there are no automated tests, use this checklist when making changes:
+Use this checklist to cover behavior not exercised by the automated suite:
 
 ### Core Quiz Flow
 - [ ] App loads without errors at `http://localhost:8501`
@@ -62,8 +62,6 @@ Since there are no automated tests, use this checklist when making changes:
 
 | Gap | Priority | Recommendation |
 |---|---|---|
-| No unit tests | High | Add pytest tests for `content_filter.py`, `quiz_data.py`, `llm_service.py` (mock LLM), `qrcode_service.py` |
 | No integration tests | Medium | Add Streamlit component tests for the quiz flow |
-| No CI test step | Medium | Add GitHub Actions job to run pytest on push |
 | No type checking | Low | Add mypy or pyright configuration |
 | No linting | Low | Add ruff or flake8 to CI |
