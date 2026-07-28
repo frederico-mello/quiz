@@ -1,21 +1,21 @@
 # Quiz do Professor
 
-Quiz educacional interativo em português brasileiro, desenvolvido com Streamlit. O aluno responde perguntas abertas sobre instrumentos odontológicos históricos e recebe avaliação pedagógica gerada por LLM, feedback em áudio e animação de um professor cientista.
+Quiz educacional interativo em português brasileiro, desenvolvido com Streamlit. A aplicação apresenta perguntas abertas sobre instrumentos odontológicos históricos, avalia respostas com um LLM via OpenRouter, gera feedback em áudio e permite compartilhar perguntas por link ou QR Code.
 
 ## Recursos
 
 - Perguntas abertas carregadas de `questions.json`.
-- Avaliação de respostas via OpenRouter e LangChain.
-- Moderação local e semântica com sistema de advertências.
-- Conversão do feedback em áudio usando `edge-tts`.
-- Avatar GIF animado com sincronização entre fala e movimento.
-- Interface responsiva com suporte a temas claro e escuro.
+- Avaliação de respostas com LangChain e OpenRouter.
+- Moderação local e semântica, configurável por ambiente.
+- Feedback em áudio com `edge-tts`.
+- Avatar de professor cientista em GIF.
+- Links e QR Codes para acesso direto a perguntas.
 
 ## Requisitos
 
-- Python 3.10 ou superior
-- Chave de API do [OpenRouter](https://openrouter.ai/)
-- Conexão com a internet para avaliação LLM e geração de áudio
+- Python 3.10 ou superior.
+- Chave de API do [OpenRouter](https://openrouter.ai/).
+- Acesso à internet para avaliação por LLM e geração de áudio.
 
 ## Instalação
 
@@ -38,57 +38,69 @@ source .venv/bin/activate
 Instale as dependências:
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ## Configuração
 
-Copie `.env.example` para `.env` e informe sua chave:
+Crie um arquivo `.env` na raiz do projeto e informe, no mínimo, sua chave do OpenRouter:
 
-```bash
-cp .env.example .env
+```dotenv
+OPENROUTER_API_KEY=sua-chave-aqui
 ```
 
 Variáveis disponíveis:
 
-| Variável | Obrigatória | Padrão | Descrição |
+| Variável | Obrigatória | Padrão | Uso |
 | --- | --- | --- | --- |
-| `OPENROUTER_API_KEY` | Sim | - | Chave de acesso ao OpenRouter |
-| `OPENROUTER_BASE_URL` | Não | `https://openrouter.ai/api/v1` | URL base da API |
-| `LLM_MODEL` | Não | `deepseek/deepseek-v4-flash` | Modelo usado na avaliação |
-| `MODERATION_ENABLED` | Não | `true` | Ativa moderação de conteúdo |
-| `TTS_VOICE` | Não | `pt-BR-FranciscaNeural` | Voz usada pelo `edge-tts` |
-| `TEMP_AUDIO_DIR` | Não | `tmp/audio` | Diretório para arquivos temporários de áudio |
+| `OPENROUTER_API_KEY` | Sim | - | Chave de acesso ao OpenRouter. |
+| `OPENROUTER_BASE_URL` | Não | `https://openrouter.ai/api/v1` | URL base da API. |
+| `LLM_MODEL` | Não | `deepseek/deepseek-v4-flash` | Modelo usado na avaliação. |
+| `MODERATION_ENABLED` | Não | `true` | Ativa a moderação de conteúdo quando `true`. |
+| `APP_URL` | Não | `http://localhost:8501` | URL base usada nos links compartilháveis e QR Codes das perguntas. |
+| `TTS_VOICE` | Não | `pt-BR-FranciscaNeural` | Voz usada pelo `edge-tts`. |
+| `TEMP_AUDIO_DIR` | Não | `tmp/audio` | Diretório temporário dos arquivos de áudio. |
+
+Ao publicar a aplicação em outro endereço, defina `APP_URL` com a URL acessível pelos usuários. O valor padrão `http://localhost:8501` é adequado apenas para execução local.
 
 ## Execução
+
+Com o ambiente virtual ativo e `.env` configurado:
 
 ```bash
 streamlit run app.py
 ```
 
-Acesse `http://localhost:8501` no navegador.
+Acesse <http://localhost:8501> no navegador. `app.py` é o entry point da aplicação.
 
-## Estrutura
+## Estrutura principal
 
 ```text
-app.py              # Entrada Streamlit e orquestração da aplicação
+app.py              # Entry point Streamlit e orquestração da aplicação
 questions.json      # Banco de perguntas
+requirements.txt    # Dependências de execução
 src/
-  avatar.py         # Geração do avatar GIF
+  avatar.py         # Avatar do professor
   config.py         # Configuração via variáveis de ambiente
   content_filter.py # Moderação de conteúdo
   llm_service.py    # Avaliação das respostas
-  quiz_data.py      # Leitura e embaralhamento das perguntas
+  qrcode_service.py # Geração de QR Codes
+  quiz_data.py      # Leitura das perguntas
   tts_service.py    # Geração de áudio
-assets/             # GIFs gerados e armazenados em cache
+assets/             # GIFs do avatar
+tests/              # Testes automatizados
+openwiki/           # Documentação detalhada do projeto
 ```
 
 ## Documentação adicional
 
-- [Quickstart](openwiki/quickstart.md)
-- [Arquitetura](openwiki/architecture/overview.md)
-- [Fluxo do quiz](openwiki/workflows/quiz-flow.md)
-- [Runbook operacional](openwiki/operations/runbook.md)
+- [Quickstart](openwiki/quickstart.md): visão técnica e mapa inicial.
+- [Arquitetura](openwiki/architecture.md): componentes e fluxo de dados.
+- [Workflows](openwiki/workflows.md): fluxos do quiz e da moderação.
+- [Operações](openwiki/operations.md): configuração e operação detalhadas.
+- [Testes](openwiki/testing.md): orientação e limitações conhecidas.
+- [Mapa de fontes](openwiki/source-map.md): referência dos arquivos e símbolos.
+- [Integrações](openwiki/integrations.md): serviços externos e ferramentas.
 
 ## Licença
 
