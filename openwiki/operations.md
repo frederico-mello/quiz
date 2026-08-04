@@ -1,7 +1,7 @@
 ---
 type: "Reference"
 title: "Operations"
-description: "Environment setup, running the app, CI/CD, OpenSpec/OpenWiki tooling, and Graphify plugin for the Quiz do Professor project."
+description: "Environment setup, running the app, running tests, CI/CD workflows, OpenSpec/OpenWiki tooling, and Graphify plugin for the Quiz do Professor project."
 ---
 
 # Operations
@@ -33,10 +33,15 @@ All runtime config is environment-based via `.env` file. See `.env.example` for 
 python -m venv .venv
 .venv\Scripts\activate        # Windows
 pip install -r requirements.txt
+pip install -r requirements-dev.txt   # pytest, for running the test suite
 copy .env.example .env
 # Edit .env: add your OPENROUTER_API_KEY
 streamlit run app.py
 ```
+
+### Development Dependencies
+
+`requirements-dev.txt` adds `pytest>=8.0` for the automated test suite. Runtime installs need only `requirements.txt`; contributors running tests or using CI must also install `requirements-dev.txt`.
 
 ## Running the App
 
@@ -48,6 +53,15 @@ streamlit run app.py
 - Streamlit auto-reloads on file changes in development
 - The app is a single-page application; no routing or multi-page setup
 
+## Running Tests
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt   # pytest>=8.0
+pytest                                                      # uses pytest.ini (testpaths=tests, pythonpath=src)
+```
+
+Tests run offline — `test_llm_service.py` injects a fake API key and mocks the LangChain `ChatOpenAI` instance, so no `OPENROUTER_API_KEY` is required. CI runs the same command on Python 3.10 via `.github/workflows/test.yml`. See [Testing](testing.md) for the per-module coverage map.
+
 ## Temporary Files
 
 - Audio files are generated in `tmp/audio/` (gitignored)
@@ -55,7 +69,24 @@ streamlit run app.py
 - Files are cleaned up when retrying
 - Avatar GIFs are cached in `assets/` (gitignored via `tmp/` pattern, but `assets/*.gif` files are tracked in git)
 
-## CI/CD: OpenWiki Update Workflow
+## CI/CD Workflows
+
+The repository ships three GitHub Actions workflows under `.github/workflows/`.
+
+### `test.yml` — Automated Test Suite
+
+- **Trigger:** Push to `main`, pull requests against `main`
+- **Runner:** `ubuntu-latest`, Python 3.10
+- **Steps:** Checkout → setup Python → `pip install --only-binary=:all: -r requirements.txt -r requirements-dev.txt` → `pytest`
+- **Scope:** Unit tests for `src/content_filter.py`, `src/llm_service.py`, `src/qrcode_service.py`, and `src/quiz_data.py` under `tests/`
+- **Local equivalent:** `pytest` (after installing `requirements-dev.txt`)
+
+### `repository-hygiene.yml` — Repository Hygiene Audit
+
+- **Trigger:** Weekly schedule (Mon 06:00 UTC), pushes/PRs touching `auditoria.yaml`, `.github/**`, `.opencode/**`, `openspec/**`, `docs/**`, `README.md`, `.gitignore`, `Makefile`
+- **Purpose:** Audits repo hygiene metadata; no build or test artifacts produced
+
+### `openwiki-update.yml` — OpenWiki Doc Refresh
 
 **File:** `.github/workflows/openwiki-update.yml`
 

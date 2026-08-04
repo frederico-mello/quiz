@@ -88,7 +88,15 @@ description: "External APIs, Python libraries, developer tooling, and CI/CD for 
 ## CI/CD
 
 ### GitHub Actions
-Single workflow: `.github/workflows/openwiki-update.yml`
+Three workflows under `.github/workflows/`:
+
+| Workflow | Trigger | Purpose |
+|---|---|---|
+| `test.yml` | Push/PR to `main` | Runs `pytest` on `ubuntu-latest` (Python 3.10) after installing `requirements.txt` + `requirements-dev.txt` |
+| `repository-hygiene.yml` | Weekly schedule + path-filtered push/PR | Repository hygiene audit (metadata, not build/test) |
+| `openwiki-update.yml` | Daily schedule (08:00 UTC) + `workflow_dispatch` | Regenerates `openwiki/` docs and opens a PR |
+
+### OpenWiki Update Workflow (`openwiki-update.yml`)
 
 ```yaml
 Triggers: schedule (daily 08:00 UTC) + workflow_dispatch

@@ -10,6 +10,26 @@ description: "Manual and automated testing guidance, known issues, and test gaps
 
 An automated pytest suite lives under `tests/`, and a GitHub Actions workflow (`.github/workflows/test.yml`) runs it on pushes to `main` and on pull requests against `main`. Use the checklist below to cover behavior not exercised by the automated suite.
 
+### Running the Suite
+
+```bash
+pip install -r requirements.txt -r requirements-dev.txt   # pytest>=8.0
+pytest                       # discover tests/, addopts from pytest.ini
+```
+
+`pytest.ini` sets `testpaths = tests`, `pythonpath = src`, and `addopts = -ra --strict-markers`, so `src.*` imports resolve without extra configuration. See [Source Map](source-map.md) for the modules under test.
+
+### Automated Test Inventory
+
+| Test file | Module under test | Coverage focus |
+|---|---|---|
+| `tests/test_content_filter.py` | `src/content_filter.py` | Keyword/pattern blocking, leet normalization, LLM moderation path, `get_warning_level` escalation |
+| `tests/test_llm_service.py` | `src/llm_service.py` | `build_prompt` content (incl. blank-answer marking), `clean_text_for_tts` markdown stripping, `evaluate_answer` orchestration via mocked LLM |
+| `tests/test_qrcode_service.py` | `src/qrcode_service.py` | `generate_qr_code` returns `BytesIO` with PNG signature |
+| `tests/test_quiz_data.py` | `src/quiz_data.py` | JSON load (valid/invalid), `get_question` index bounds, `get_question_by_id` lookup |
+
+Shared fixtures (`sample_questions`, `tmp_json_file`) live in `tests/conftest.py`. LLM tests inject a fake `OPENROUTER_API_KEY` via `monkeypatch` and mock the LangChain `ChatOpenAI` instance so no network calls are made.
+
 ## Manual Testing Checklist
 
 Use this checklist to cover behavior not exercised by the automated suite:

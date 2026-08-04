@@ -39,6 +39,17 @@ qrcode[pil]>=7.4.0       # QR code generation for question sharing
 ### `.env.example` — Environment Template
 Two variables: `OPENROUTER_API_KEY` and `MODERATION_ENABLED`. Actual `.env` is gitignored.
 
+### `requirements-dev.txt` — Development Dependencies
+Adds `pytest>=8.0` for the automated test suite. Not needed for runtime; required for running `pytest` and for CI.
+
+### `pytest.ini` — Pytest Configuration
+```
+testpaths = tests
+pythonpath = src
+addopts = -ra --strict-markers
+```
+Makes `src.*` imports resolve in tests without package installation.
+
 ---
 
 ## `src/` — Application Modules
@@ -118,6 +129,20 @@ Empty file. Makes `src/` a Python package.
 
 ---
 
+## `tests/` — Automated Test Suite
+
+Pytest unit tests (see [Testing](testing.md) for behavior and run commands).
+
+| File | Module under test | Key behaviors exercised |
+|---|---|---|
+| `conftest.py` | — | Shared fixtures: `sample_questions`, `tmp_json_file` |
+| `test_content_filter.py` | `src/content_filter.py` | Keyword/pattern blocking, leet normalization, LLM moderation, warning escalation |
+| `test_llm_service.py` | `src/llm_service.py` | Prompt building, TTS text cleaning, `evaluate_answer` via mocked LLM |
+| `test_qrcode_service.py` | `src/qrcode_service.py` | PNG signature in returned `BytesIO` |
+| `test_quiz_data.py` | `src/quiz_data.py` | JSON load errors, index bounds, ID lookup |
+
+---
+
 ## `assets/` — Generated Avatar Files
 
 | File | Description |
@@ -147,6 +172,8 @@ Both are generated on first run by `avatar.py` and persisted to disk.
 
 | Path | Purpose |
 |---|---|
+| `workflows/test.yml` | Runs pytest on push/PR to `main` (Python 3.10) |
+| `workflows/repository-hygiene.yml` | Weekly + path-filtered repository hygiene audit |
 | `workflows/openwiki-update.yml` | Scheduled daily OpenWiki doc refresh → auto-PR |
 | `prompts/opsx-*.prompt.md` | GitHub Copilot prompt files for OpenSpec |
 | `skills/openspec-*/SKILL.md` | GitHub Copilot skill definitions |

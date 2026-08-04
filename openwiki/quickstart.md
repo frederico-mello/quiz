@@ -35,6 +35,7 @@ python -m venv .venv
 
 # 3. Install dependencies
 pip install -r requirements.txt
+pip install -r requirements-dev.txt   # pytest (for running the test suite)
 
 # 4. Configure environment
 copy .env.example .env        # Windows
@@ -59,6 +60,7 @@ The app opens at `http://localhost:8501`.
 | `TTS_VOICE` | `pt-BR-FranciscaNeural` | edge-tts voice |
 | `TEMP_AUDIO_DIR` | `tmp/audio` | Temp directory for generated audio |
 
+<!-- openwiki: broken internal link [/.env.example] file "/.env.example" does not exist. Fix the href or restore the target, then delete this comment. -->
 See [.env.example](/.env.example) for the template.
 
 ## Documentation Map
@@ -69,7 +71,7 @@ See [.env.example](/.env.example) for the template.
 | [Source Map](source-map.md) | File-by-file reference with key functions |
 | [Workflows](workflows.md) | Quiz answer pipeline, moderation, avatar generation |
 | [Operations](operations.md) | Config, deployment, CI/CD, OpenSpec/OpenWiki tooling |
-| [Testing](testing.md) | Known bugs, manual test guidance, test gaps |
+| [Testing](testing.md) | Pytest suite coverage, manual checklist, test gaps |
 | [Integrations](integrations.md) | External services and developer tooling |
 
 ## Repository Structure (Top Level)
@@ -78,7 +80,9 @@ See [.env.example](/.env.example) for the template.
 quiz/
 ├── app.py                    # Streamlit entrypoint
 ├── questions.json            # Quiz question bank (5 items)
-├── requirements.txt          # Python dependencies
+├── requirements.txt          # Python runtime dependencies
+├── requirements-dev.txt      # pytest (for running the test suite)
+├── pytest.ini                # pytest config (testpaths, pythonpath=src)
 ├── .env.example              # Environment template
 ├── assets/                   # Generated/cached avatar GIFs
 ├── src/                      # Application modules
@@ -89,9 +93,10 @@ quiz/
 │   ├── qrcode_service.py     # QR code generation for question sharing
 │   ├── quiz_data.py          # Question JSON loader
 │   └── tts_service.py        # edge-tts wrapper
+├── tests/                    # Pytest unit tests for src/ modules
 ├── openspec/                 # OpenSpec change management
 ├── .opencode/                # OpenCode commands/skills
-├── .github/                  # CI workflow + OpenSpec prompts
+├── .github/                  # CI workflows + OpenSpec prompts
 └── openwiki/                 # This documentation
 ```
 
@@ -99,7 +104,6 @@ quiz/
 
 | Area | Source | Reason deferred |
 |---|---|---|
-| Automated testing | No test files exist | No test framework or test files present in the repo |
 | Question content management | `questions.json` (5 items) | No admin interface; questions are manually edited JSON |
 | User authentication | `app.py` session state | No auth layer; relies on Streamlit's anonymous sessions |
 | Database persistence | `app.py` session state only | All state is in-memory Streamlit session; no DB |
