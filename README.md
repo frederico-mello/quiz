@@ -57,11 +57,11 @@ Variáveis disponíveis:
 | `OPENROUTER_BASE_URL` | Não | `https://openrouter.ai/api/v1` | URL base da API. |
 | `LLM_MODEL` | Não | `deepseek/deepseek-v4-flash` | Modelo usado na avaliação. |
 | `MODERATION_ENABLED` | Não | `true` | Ativa a moderação de conteúdo quando `true`. |
-| `APP_URL` | Não | `http://localhost:8501` | URL base usada nos links compartilháveis e QR Codes das perguntas. |
+| `APP_URL` | Não | `https://lappquiz.ict.unesp.br` | URL base usada nos links compartilháveis e QR Codes das perguntas. |
 | `TTS_VOICE` | Não | `pt-BR-FranciscaNeural` | Voz usada pelo `edge-tts`. |
 | `TEMP_AUDIO_DIR` | Não | `tmp/audio` | Diretório temporário dos arquivos de áudio. |
 
-Ao publicar a aplicação em outro endereço, defina `APP_URL` com a URL acessível pelos usuários. O valor padrão `http://localhost:8501` é adequado apenas para execução local.
+Por padrão, os links compartilháveis e QR Codes usam `https://lappquiz.ict.unesp.br`. Para executar localmente, defina `APP_URL=http://localhost:8501` no arquivo `.env` (ou informe outro endereço acessível). Ao publicar a aplicação em outro endereço, defina `APP_URL` com a URL acessível pelos usuários.
 
 ## Execução
 
