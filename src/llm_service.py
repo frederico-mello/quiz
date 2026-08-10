@@ -34,6 +34,7 @@ def build_prompt(question, correct_answer, user_answer):
                     "Diga se o usuário acertou ou errou e explique a resposta correta de forma clara, detalhando o que, para que serve, como era usado e como foi substituído atualmente. "
                     "Responda em português brasileiro de forma natural, como se estivesse falando. "
                     "NÃO use markdown, negrito, itálico ou qualquer formatação especial. "
+                    "NÃO use tags HTML, links ou código: escreva apenas texto puro. "
                     "Escreva como texto falado, com frases curtas e naturais.\n\n"
                     "MANTENHA A RESPOSTA CURTA: no máximo 500 caracteres.\n\n"
                     "IMPORTANTE: Se o aluno enviar conteúdo sexual, violento, ofensivo ou impróprio, "
