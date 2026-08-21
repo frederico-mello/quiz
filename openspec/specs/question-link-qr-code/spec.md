@@ -22,7 +22,7 @@ The system SHALL use a configurable base URL for generating QR code links.
 
 #### Scenario: Default URL used
 - **WHEN** no `APP_URL` environment variable is set
-- **THEN** the system SHALL use `http://localhost:8501` as the base URL
+- **THEN** the system SHALL use `https://lappquiz.ict.unesp.br` as the base URL
 
 #### Scenario: Custom URL used
 - **WHEN** `APP_URL` environment variable is set to `https://quiz.example.com`
