@@ -1,4 +1,5 @@
 import base64
+import html
 import os
 
 import streamlit as st
@@ -128,7 +129,7 @@ def main():
     st.title(QUIZ_TITLE)
 
     st.markdown(
-        f'<div class="question-box">{question["question"]}</div>',
+        f'<div class="question-box">{html.escape(question["question"])}</div>',
         unsafe_allow_html=True,
     )
 
@@ -202,7 +203,7 @@ def main():
                     _process_answer()
     else:
         st.markdown(
-            f'<div class="response-text">{st.session_state.response_text}</div>',
+            f'<div class="response-text">{html.escape(st.session_state.response_text)}</div>',
             unsafe_allow_html=True,
         )
 

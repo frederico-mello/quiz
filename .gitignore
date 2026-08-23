@@ -25,3 +25,4 @@ graphify-out/
 
 # OpenCode
 .opencode/node_modules/
+.opencode/plugins/emdash-notifications.js
