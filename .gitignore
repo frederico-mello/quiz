@@ -30,3 +30,5 @@ graphify-out/
 .hermes/
 .omp/
 .pi/
+.kilo/
+.kilocode/
