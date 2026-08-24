@@ -8,7 +8,7 @@ from src.avatar import (
     get_idle_gif_base64,
     get_talking_gif_base64,
 )
-from src.config import APP_URL, MODERATION_ENABLED, OPENROUTER_API_KEY
+from src.config import APP_URL, MODERATION_ENABLED, OPENROUTER_API_KEY, validate_config
 from src.content_filter import check_text, get_warning_level
 from src.llm_service import evaluate_answer
 from src.quiz_data import get_question_by_id, load_questions
@@ -79,6 +79,7 @@ QUIZ_TITLE = "🧑‍🔬 Quiz do Professor"
 
 
 def main():
+    validate_config()
     st.set_page_config(
         page_title="Quiz do Professor",
         page_icon="🧑‍🔬",

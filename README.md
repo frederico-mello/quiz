@@ -1,11 +1,11 @@
 # Quiz do Professor
 
-Quiz educacional interativo em português brasileiro, desenvolvido com Streamlit. A aplicação apresenta perguntas abertas sobre instrumentos odontológicos históricos, avalia respostas com um LLM via OpenRouter, gera feedback em áudio e permite compartilhar perguntas por link ou QR Code.
+Quiz educacional interativo em português brasileiro, desenvolvido com Streamlit. A aplicação apresenta perguntas abertas sobre instrumentos odontológicos históricos, avalia respostas com um LLM via LiteLLM server (com fallback automático para OpenRouter), gera feedback em áudio e permite compartilhar perguntas por link ou QR Code.
 
 ## Recursos
 
 - Perguntas abertas carregadas de `questions.json`.
-- Avaliação de respostas com LangChain e OpenRouter.
+- Avaliação de respostas com LangChain, LiteLLM (primário) e OpenRouter (fallback).
 - Moderação local e semântica, configurável por ambiente.
 - Feedback em áudio com `edge-tts`.
 - Avatar de professor cientista em GIF.
@@ -14,7 +14,8 @@ Quiz educacional interativo em português brasileiro, desenvolvido com Streamlit
 ## Requisitos
 
 - Python 3.10 ou superior.
-- Chave de API do [OpenRouter](https://openrouter.ai/).
+- LiteLLM server acessível (com chave virtual) para o provedor LLM primário.
+- Chave de API do [OpenRouter](https://openrouter.ai/) para o provedor de fallback.
 - Acesso à internet para avaliação por LLM e geração de áudio.
 
 ## Instalação
@@ -43,23 +44,72 @@ python -m pip install -r requirements.txt
 
 ## Configuração
 
-Crie um arquivo `.env` na raiz do projeto e informe, no mínimo, sua chave do OpenRouter:
+Crie um arquivo `.env` na raiz do projeto com as chaves do LiteLLM (primário) e do OpenRouter (fallback). O `.env.example` traz um modelo pronto.
 
 ```dotenv
+# Provedor primário (LiteLLM)
+LITELLM_API_BASE_URL="http://localhost:4000"
+LITELLM_API_KEY=sua-chave-virtual-litellm
+LITELLM_MODEL="glm-4.7-flash:q4_K_M"
+
+# Provedor de fallback (OpenRouter)
 OPENROUTER_API_KEY=sua-chave-aqui
+OPENROUTER_FALLBACK_MODEL="nvidia/nemotron-3-nano-30b-a3b:nitro"
+OPENROUTER_BASE_URL="https://openrouter.ai/api/v1"
 ```
 
 Variáveis disponíveis:
 
 | Variável | Obrigatória | Padrão | Uso |
 | --- | --- | --- | --- |
-| `OPENROUTER_API_KEY` | Sim | - | Chave de acesso ao OpenRouter. |
-| `OPENROUTER_BASE_URL` | Não | `https://openrouter.ai/api/v1` | URL base da API. |
-| `LLM_MODEL` | Não | `deepseek/deepseek-v4-flash` | Modelo usado na avaliação. |
+| `LITELLM_API_BASE_URL` | Sim | - | URL do LiteLLM server (primário). |
+| `LITELLM_API_KEY` | Sim | - | Chave virtual de autenticação no LiteLLM. |
+| `LITELLM_MODEL` | Sim | - | Modelo primário (ex.: `glm-4.7-flash:q4_K_M`). |
+| `OPENROUTER_API_KEY` | Sim | - | Chave de acesso ao OpenRouter (fallback). |
+| `OPENROUTER_FALLBACK_MODEL` | Sim | - | Modelo usado quando o LiteLLM falha. |
+| `OPENROUTER_BASE_URL` | Não | `https://openrouter.ai/api/v1` | URL base da API do OpenRouter (fallback). |
 | `MODERATION_ENABLED` | Não | `true` | Ativa a moderação de conteúdo quando `true`. |
 | `APP_URL` | Não | `https://lappquiz.ict.unesp.br` | URL base usada nos links compartilháveis e QR Codes das perguntas. |
 | `TTS_VOICE` | Não | `pt-BR-FranciscaNeural` | Voz usada pelo `edge-tts`. |
 | `TEMP_AUDIO_DIR` | Não | `tmp/audio` | Diretório temporário dos arquivos de áudio. |
+
+### Migração da configuração antiga
+
+As variáveis antigas foram substituídas:
+
+| Variável antiga | Substituída por |
+| --- | --- |
+| `LLM_MODEL` | `LITELLM_MODEL` |
+| `OPENROUTER_BASE_URL` (usado como primário) | `LITELLM_API_BASE_URL` (agora `OPENROUTER_BASE_URL` é usada apenas no fallback) |
+| `OPENROUTER_API_KEY` (usada como primário) | `LITELLM_API_KEY` (a chave OpenRouter continua sendo usada, apenas no fallback) |
+
+Caminho de migração:
+
+1. Defina `LITELLM_API_BASE_URL`, `LITELLM_API_KEY` e `LITELLM_MODEL` no `.env`.
+2. Defina `OPENROUTER_API_KEY` e `OPENROUTER_FALLBACK_MODEL` para o fallback.
+3. Reinicie a aplicação e teste o fluxo principal e o fallback.
+4. Remova as variáveis antigas do `.env`.
+
+### Arquitetura do LLM
+
+```text
+                    ┌─────────────────────────┐
+ Pergunta do aluno  │  evaluate_answer()      │
+ ────────────────►  │  1. LiteLLM (primário)  │
+                    │     model: LITELLM_MODEL│
+                    │         falhou?         │
+                    │  2. OpenRouter (fallback)│
+                    │     OPENROUTER_FALLBACK_ │
+                    │     MODEL                │
+                    └─────────────────────────┘
+                              │
+                              ▼
+              Feedback de voz + texto (limpo para TTS)
+```
+
+- **Primário:** LiteLLM server (backend Ollama) — rápido e de baixo consumo.
+- **Fallback:** OpenRouter — acionado automaticamente se o primário falhar.
+- **Falha total:** `RuntimeError` com os detalhes das duas falhas.
 
 Por padrão, os links compartilháveis e QR Codes usam `https://lappquiz.ict.unesp.br`. Para executar localmente, defina `APP_URL=http://localhost:8501` no arquivo `.env` (ou informe outro endereço acessível). Ao publicar a aplicação em outro endereço, defina `APP_URL` com a URL acessível pelos usuários.
 

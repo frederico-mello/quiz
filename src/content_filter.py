@@ -201,12 +201,15 @@ def check_text(text: str, use_llm: bool = True) -> Tuple[bool, Optional[str]]:
 
     if use_llm:
         try:
-            from src.llm_service import get_llm
+            from src.llm_service import get_litellm_llm
 
-            llm = get_llm()
+            llm = get_litellm_llm()
             blocked_llm, msg_llm = check_text_llm(text, llm)
             return blocked_llm, msg_llm
         except Exception:
+            # Moderation LLM unavailable (timeout, 401, etc.) -> fail-open:
+            # allow the text through. The local keyword filter already ran
+            # above and is the primary defense; LLM moderation is best-effort.
             pass
 
     return False, None
