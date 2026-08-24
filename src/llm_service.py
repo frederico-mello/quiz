@@ -1,24 +1,39 @@
+import logging
 import re
 
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
-from src.config import LLM_MODEL, OPENROUTER_API_KEY, OPENROUTER_BASE_URL
+from src.config import (
+    LITELLM_API_BASE_URL,
+    LITELLM_API_KEY,
+    LITELLM_MODEL,
+    OPENROUTER_API_KEY,
+    OPENROUTER_BASE_URL,
+    OPENROUTER_FALLBACK_MODEL,
+)
+
+logger = logging.getLogger(__name__)
 
 
-def get_llm():
+def get_litellm_llm():
+    """Retorna o LLM primário (LiteLLM server com backend Ollama)."""
     return ChatOpenAI(
-        model=LLM_MODEL,
+        model=LITELLM_MODEL,
+        api_key=SecretStr(LITELLM_API_KEY),
+        base_url=LITELLM_API_BASE_URL,
+        temperature=0.7,
+    )
+
+
+def get_openrouter_fallback_llm():
+    """Retorna o LLM de fallback (OpenRouter)."""
+    return ChatOpenAI(
+        model=OPENROUTER_FALLBACK_MODEL,
         api_key=SecretStr(OPENROUTER_API_KEY),
         base_url=OPENROUTER_BASE_URL,
         temperature=0.7,
-        extra_body={
-            "provider": {
-                "order": ["DeepInfra", "Together"],
-                "allow_fallbacks": True,
-            }
-        },
     )
 
 
@@ -69,7 +84,28 @@ def clean_text_for_tts(text):
 
 
 def evaluate_answer(question, correct_answer, user_answer):
-    llm = get_llm()
     prompt_text = build_prompt(question, correct_answer, user_answer)
-    response = llm.invoke(prompt_text)
-    return clean_text_for_tts(response.content)
+
+    primary_error = None
+    try:
+        llm = get_litellm_llm()
+        response = llm.invoke(prompt_text)
+        return clean_text_for_tts(response.content)
+    except Exception as exc:  # primary provider failed
+        primary_error = exc
+        logger.warning(
+            "Primary LLM (LiteLLM/modelo %s) falhou, usando fallback OpenRouter: %s",
+            LITELLM_MODEL,
+            exc,
+        )
+
+    try:
+        fallback_llm = get_openrouter_fallback_llm()
+        response = fallback_llm.invoke(prompt_text)
+        return clean_text_for_tts(response.content)
+    except Exception as fallback_exc:
+        raise RuntimeError(
+            "Falha total na avaliação por LLM: ambos os provedores falharam. "
+            f"Erro primário (LiteLLM/modelo {LITELLM_MODEL}): {primary_error}. "
+            f"Erro de fallback (OpenRouter/modelo {OPENROUTER_FALLBACK_MODEL}): {fallback_exc}"
+        ) from fallback_exc

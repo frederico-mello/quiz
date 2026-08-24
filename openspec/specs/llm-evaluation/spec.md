@@ -6,15 +6,15 @@ Defines how the LLM evaluates user answers against correct answers, generates fe
 
 ### Requirement: LLM shall evaluate answers via OpenRouter
 
-The system SHALL use OpenRouter as the LLM provider with configurable model and provider routing.
+The system SHALL use the LiteLLM server (Ollama backend) as the primary LLM provider and OpenRouter as the fallback provider, with configurable models for each.
 
 #### Scenario: Answer evaluated successfully
-- **WHEN** the user submits an answer and the LLM responds
+- **WHEN** the user submits an answer and the primary LiteLLM provider responds
 - **THEN** the system SHALL return a feedback text evaluating the answer
 
-#### Scenario: Provider fallback on failure
-- **WHEN** the primary provider (DeepInfra) fails
-- **THEN** the system SHALL fall back to the secondary provider (Together)
+#### Scenario: Primary provider failure
+- **WHEN** the primary LiteLLM provider fails
+- **THEN** the system SHALL fall back to the OpenRouter provider and return its response
 
 ### Requirement: LLM shall format feedback for spoken output
 

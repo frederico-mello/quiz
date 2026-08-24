@@ -125,11 +125,13 @@ def test_check_text_skips_llm_when_text_is_blocked_locally(monkeypatch):
 
 
 def test_check_text_invokes_llm_once_for_clean_text(monkeypatch):
-    monkeypatch.setenv("OPENROUTER_API_KEY", "test-api-key")
+    monkeypatch.setenv("LITELLM_API_KEY", "test-litellm-key")
     from src import llm_service
 
     mocked_llm = MagicMock()
-    monkeypatch.setattr(llm_service, "get_llm", MagicMock(return_value=mocked_llm))
+    monkeypatch.setattr(
+        llm_service, "get_litellm_llm", MagicMock(return_value=mocked_llm)
+    )
     mocked_check_text_llm = MagicMock(return_value=(False, None))
     monkeypatch.setattr(content_filter, "check_text_llm", mocked_check_text_llm)
 

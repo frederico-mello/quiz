@@ -6,7 +6,11 @@ import pytest
 
 @pytest.fixture
 def llm_service(monkeypatch):
+    monkeypatch.setenv("LITELLM_API_BASE_URL", "http://litellm-test:4000")
+    monkeypatch.setenv("LITELLM_API_KEY", "test-litellm-key")
+    monkeypatch.setenv("LITELLM_MODEL", "glm-4.7-flash:q4_K_M")
     monkeypatch.setenv("OPENROUTER_API_KEY", "test-api-key")
+    monkeypatch.setenv("OPENROUTER_FALLBACK_MODEL", "nvidia/nemotron-3-nano-30b-a3b:nitro")
     return importlib.import_module("src.llm_service")
 
 
@@ -49,47 +53,67 @@ def test_clean_text_for_tts_removes_markdown_and_normalizes_whitespace(
     assert cleaned_text == "Correto! Veja este link. Mais detalhes agora"
 
 
-def test_evaluate_answer_invokes_mocked_llm_with_built_prompt(
-    llm_service, monkeypatch
-):
+def test_evaluate_answer_uses_litellm(llm_service, monkeypatch):
     question = "Qual instrumento substituiu a broca manual?"
     correct_answer = "O motor odontológico"
     user_answer = "A turbina"
-    mocked_llm = create_llm_mock("Resposta do professor")
-    mocked_get_llm = MagicMock(return_value=mocked_llm)
-    monkeypatch.setattr(llm_service, "get_llm", mocked_get_llm)
+    mocked_primary = create_llm_mock("Resposta do professor")
+    mocked_get_litellm = MagicMock(return_value=mocked_primary)
+    mocked_get_fallback = MagicMock()
+    monkeypatch.setattr(llm_service, "get_litellm_llm", mocked_get_litellm)
+    monkeypatch.setattr(
+        llm_service, "get_openrouter_fallback_llm", mocked_get_fallback
+    )
     expected_prompt = llm_service.build_prompt(
         question, correct_answer, user_answer
     )
 
-    llm_service.evaluate_answer(question, correct_answer, user_answer)
+    result = llm_service.evaluate_answer(question, correct_answer, user_answer)
 
-    mocked_get_llm.assert_called_once_with()
-    mocked_llm.invoke.assert_called_once_with(expected_prompt)
+    mocked_get_litellm.assert_called_once_with()
+    mocked_primary.invoke.assert_called_once_with(expected_prompt)
+    mocked_get_fallback.assert_not_called()
+    assert result == llm_service.clean_text_for_tts("Resposta do professor")
 
 
-def test_evaluate_answer_returns_cleaned_llm_response(
-    llm_service, monkeypatch
-):
-    markdown_response = (
-        "**Correto!**\n\nVeja   [a resposta](https://example.com)"
-    )
-    mocked_llm = create_llm_mock(markdown_response)
+def test_evaluate_answer_uses_fallback_when_primary_fails(llm_service, monkeypatch):
+    mocked_primary = MagicMock()
+    mocked_primary.invoke.side_effect = RuntimeError("LiteLLM indisponível")
+    mocked_fallback = create_llm_mock("Resposta do fallback")
+    mocked_get_litellm = MagicMock(return_value=mocked_primary)
+    mocked_get_fallback = MagicMock(return_value=mocked_fallback)
+    monkeypatch.setattr(llm_service, "get_litellm_llm", mocked_get_litellm)
     monkeypatch.setattr(
-        llm_service, "get_llm", MagicMock(return_value=mocked_llm)
+        llm_service, "get_openrouter_fallback_llm", mocked_get_fallback
     )
 
     result = llm_service.evaluate_answer("Pergunta", "Correta", "Usuário")
 
-    assert result == llm_service.clean_text_for_tts(markdown_response)
+    mocked_get_fallback.assert_called_once_with()
+    mocked_fallback.invoke.assert_called_once()
+    assert result == llm_service.clean_text_for_tts("Resposta do fallback")
 
 
-def test_evaluate_answer_propagates_llm_exception(llm_service, monkeypatch):
-    mocked_llm = MagicMock()
-    mocked_llm.invoke.side_effect = RuntimeError("LLM indisponível")
+def test_evaluate_answer_raises_on_both_failures(llm_service, monkeypatch):
+    mocked_primary = MagicMock()
+    mocked_primary.invoke.side_effect = RuntimeError("LiteLLM indisponível")
+    mocked_fallback = MagicMock()
+    mocked_fallback.invoke.side_effect = RuntimeError("OpenRouter indisponível")
     monkeypatch.setattr(
-        llm_service, "get_llm", MagicMock(return_value=mocked_llm)
+        llm_service,
+        "get_litellm_llm",
+        MagicMock(return_value=mocked_primary),
+    )
+    monkeypatch.setattr(
+        llm_service,
+        "get_openrouter_fallback_llm",
+        MagicMock(return_value=mocked_fallback),
     )
 
-    with pytest.raises(RuntimeError, match="LLM indisponível"):
+    with pytest.raises(RuntimeError) as exc_info:
         llm_service.evaluate_answer("Pergunta", "Correta", "Usuário")
+
+    message = str(exc_info.value)
+    assert "ambos os provedores falharam" in message
+    assert "LiteLLM indisponível" in message
+    assert "OpenRouter indisponível" in message

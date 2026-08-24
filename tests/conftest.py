@@ -1,6 +1,23 @@
 import json
+import os
 
 import pytest
+
+
+@pytest.fixture(autouse=True)
+def _required_llm_env(monkeypatch):
+    """Garante que as variáveis de ambiente obrigatórias do src.config estejam definidas."""
+    monkeypatch.setenv("SKIP_CONFIG_VALIDATION", "1")
+    defaults = {
+        "LITELLM_API_BASE_URL": "http://litellm-test:4000",
+        "LITELLM_API_KEY": "test-litellm-key",
+        "LITELLM_MODEL": "glm-4.7-flash:q4_K_M",
+        "OPENROUTER_API_KEY": "test-api-key",
+        "OPENROUTER_FALLBACK_MODEL": "nvidia/nemotron-3-nano-30b-a3b:nitro",
+    }
+    for key, value in defaults.items():
+        if os.environ.get(key) is None:
+            monkeypatch.setenv(key, value)
 
 
 @pytest.fixture
