@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:e57d97e88ecfc801becce6afe2af43f7ed382a448337727cfd2e67b936cce9e9",
+  "claims": [
+    {
+      "id": "claim_c75ec962f3124b3a8d382baf29ec0ec5",
+      "statement": "src/config.py declares LITELLM_API_BASE_URL, LITELLM_API_KEY, LITELLM_MODEL, OPENROUTER_API_KEY, and OPENROUTER_FALLBACK_MODEL as the required environment variables (REQUIRED_ENV_VARS) that must be present at startup.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L10-L16",
+          "version": "repo-lines-v1:sha256:c76256f5efb52fa41f71e3f2aa02000fc0d4a293aaa6a474fd625b43fdc170de:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY4MjQwZmIxMjU2ZmMyNzlmMGY1ODAxZDQ1NjE3YmFiNjBkY2VjMmJlNGUyYzkyMDkzZTJjMjEzOGJlZDdjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTgzMjUyOWQ1Y2JiMzk4OTNjMzc4ZDQ3ZjM0ZGYxZjFhYzBmODUwNDk4YTg5ZTIzZTQxNmU4NmFiZjI4YzRkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI3ZGZmNzg0NWM4MWZkMDExMmFmYWUxZDUxYzdhZmFlODcyN2YzZDU4M2RjZmI3YzAyNzQ2MmM1NGFjNjg0MSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5c59a28bb9e4a02bce6f6e7bacdda8c",
+      "statement": "src/config.py reads optional variables with defaults: OPENROUTER_BASE_URL defaults to https://openrouter.ai/api/v1, MODERATION_ENABLED defaults to true (parsed as boolean), APP_URL defaults to https://lappquiz.ict.unesp.br, TTS_VOICE defaults to pt-BR-FranciscaNeural, and TEMP_AUDIO_DIR defaults to tmp/audio.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L48-L58",
+          "version": "repo-lines-v1:sha256:49f47c3d2ffd5edf068a38a0d20c2bbeff9ba7bdfb31416f4422b30aa0ca5999:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4YmEwNWI0NDhlOWQwYzU2YzQwMmE1NGQ2ODYzZTUzYTY0ZWUxYzhmMjc2YzdjN2YwMmNlNTk2MDM2ODJjNmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkOTIyNDQ3OTRjYmZmMTdmZTNmZjk2NTU4NjlhZGFhODY2NzQ1NjM1MjQ0MzUzNjM2OWUwMTNmZGE0ZmE4YmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQwNjQxZDFjZWVhMzdlNzYxNWNhNGExYjhiZjhiYzY5OTMyZTlkM2Y3NTk4OWM1ZDgxYzhlYWVlOTdkYzkzNTgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_aa1312298f3c40bfa0ba0b8a62a832f7",
+      "statement": "validate_config() in src/config.py collects any missing required env vars with their descriptions and raises a ValueError listing them; it returns immediately without checking when SKIP_CONFIG_VALIDATION=1.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L19-L38",
+          "version": "repo-lines-v1:sha256:0dd3152908752a5a577aa30ae967a556100b8ea97aeac43fe2bd08f4803b5bf9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2MjU3NTVmZDRhOTIxZjU4MzIyYzQzZTE2ODI4NjlmN2Y2MjBlNTJkYzA0MzcyMWUyZTA1ZTMwNjFkOTM3N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0YjY1OTAwNjkxMzVlMDZkZTk4YzQ5NjYwOWRkZDcyMDcxZjZkNWE5OTFjMmM0MWIxMjgyZjkyMmNjNjY1ZDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b1c86d08867f406cad01d22b2513ce55",
+      "statement": "Config validation is not performed at import time: src/config.py only reads the environment into module-level constants on import, and validate_config() is invoked explicitly at startup as the first call inside app.main(), before st.set_page_config.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L81-L87",
+          "version": "repo-lines-v1:sha256:d5cd96b8c75c98bfd2ab6b0935e42e7e52e012eeeca7b39da22a0f07ff29c2b9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzJlMzEyNTdkYzBhZTFkNTkzMDM3YzI4MGM5YWQ1MDgxOWI4YTZjOGNmNzI4YmUwNzE2ZDAwYTNlZWNjMDRiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU4YWI2ODRlZTA3Y2M3YWI3NzcxM2FjM2I1NTQ5YTI1NDdjM2Y3NjY0ZWY3NzgxMDJiNTIyZGZlMjQ5ZTIwNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTdkYjU4NDQ1NTRjNDJjNzI3NTYzMTA4ZGNjNWE4YTFjMzk2NGIxYzBmMTdhNzJlOWJiMjY5MDQ4M2M3ODE1OCJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L19-L25",
+          "version": "repo-lines-v1:sha256:2b34f45a7c7d92d617c46a7cc1b68d97f7c189bb80a04d7f3cd6d2524d29d913:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyNTc1NWZkNGE5MjFmNTgzMjJjNDNlMTY4Mjg2OWY3ZjYyMGU1MmRjMDQzNzIxZTJlMDVlMzA2MWQ5Mzc3YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTZhNzE1MjU3MmVlODRmMTA5MDZjNzRiOWYyYTkyNDM0ZGRhYjBlM2M0MjgxM2IwNGU1OTdlZmNlYzk1MWIyNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMDlmOTMwODNjMTk3MTIxYjk4MjcwMGJhOGFmYWJkMTcyMmNmMWQzZTc0MDQ1MDllODBlZmEyNzI0N2Y2MmYwNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjhmMTJhNGYzMDliMWY5NzI3NTBjNjdjM2I2OTEwMDY4MjU4MzFkNjU1MTI0NTRhYjZlMDVjMTIzYzA5NjljZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4cfb1d117c4c4221b4733bf3f46548e5",
+      "statement": "src/config.py loads environment variables from a .env file at import time via dotenv.load_dotenv(), making .env.example the canonical configuration template.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L1-L6",
+          "version": "repo-lines-v1:sha256:8c620b1376b3137ab2835bd400e88afd6df802acdeb470f8da9265fed836d934:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMzcyN2FkZmY1MjRlMDYxNjAyMmVhZGQ4ZjRhZjIxYTA3NzhiMjlmYzRjNzdiZGZlZmQxYWZjZTJjYmY1ZTRiNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTgzMjUyOWQ1Y2JiMzk4OTNjMzc4ZDQ3ZjM0ZGYxZjFhYzBmODUwNDk4YTg5ZTIzZTQxNmU4NmFiZjI4YzRkMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb7dcd842d30499fb82c7237cf42eccd",
+      "statement": "The deprecated-variable migration replaced LLM_MODEL with LITELLM_MODEL, moved the primary base URL/key from OPENROUTER_BASE_URL/OPENROUTER_API_KEY to LITELLM_API_BASE_URL/LITELLM_API_KEY, and repurposed OpenRouter as the fallback provider; .env.example documents the migration path of setting the LITELLM_* vars, setting OPENROUTER_* fallback vars, restarting, then removing the old variables.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example#L26-L37",
+          "version": "repo-lines-v1:sha256:5e8d3176565a1af833f56a0c55bf66774657fdca29b63460a931d1c6f8261cae:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhNmQyZmI0MjQ3YWM4YzM5ZmNlOTdjNjJhMDUwZmFkMTcxMTRjNDc2MDM2ZTBhNWFlMDhhYWZkMmQ2ZTE3NzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ZGUwMmYzNDI5NDQ3ZTU5MmNjZmNhOTcyOTc4ZmEyN2M1M2VjMjE2MDJlZmRjNjIzOWJlYmM4ZmQzYTMwZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjRiNGU0ZjQwZTVjNTA1ZjRlOGVlNWViNjY4ZmQxZDEwZTFiY2FmMWMzYjVhMTZmNjBmN2Y0ODE0MmMyMDMyMWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://README.md#L76-L91",
+          "version": "repo-lines-v1:sha256:5518389feee0554912b4baa75d28544da9bc3008f13c0b6ee3db81abbb8529aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmNTIwY2Y4ZTAzNDgxYzU3ODNmMTU3MDkwMTg5Njc4NjA5ZTM4YjA2YzliMjA1ZTFjNjFlMTdjNDA5ZTI3NmUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjIyY2IzZTNhMjUyZWJjZWJjYmU3ZWUwZDkxMGRmYzA2NDdkYmUzZjVmY2MxMTM0YjZiMjcyYTBkYTYxZDU2M2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImJhYjVjNTUyMjI5MzU2M2MwYmUzYjY2MjUyOGFmNWExZWVjMDhmZDFmNGI0NjRlYjk1NTlkZDZmYjY4MjE4NjUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImY0OGJiZDgyMWIxMjdkYzg3ODRkNWU2Mjc5NDJjNTRhZmU1ZjQxNGVkNTNhN2FmYjcwM2QxNzY3MjNiNGIxNDgifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_083db9e72f6c4428981b7e2f2bd40366",
+      "statement": "APP_URL defaults to the public deployment https://lappquiz.ict.unesp.br and is overridable via the environment; setting APP_URL=http://localhost:8501 makes shareable links and QR codes point at the local server instead of production.",
+      "evidence": [
+        {
+          "resource": "repo://README.md#L114-L114",
+          "version": "repo-lines-v1:sha256:5577ea525c04522f50dad7a3574d178391848c9bb860a900b70acce3e1183b1c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTU3N2VhNTI1YzA0NTIyZjUwZGFkN2EzNTc0ZDE3ODM5MTg0OGM5YmI4NjBhOTAwYjcwYWNjZTNlMTE4M2IxYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTU3N2VhNTI1YzA0NTIyZjUwZGFkN2EzNTc0ZDE3ODM5MTg0OGM5YmI4NjBhOTAwYjcwYWNjZTNlMTE4M2IxYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDVlZTkxYTQxN2VhNGRhNjIzYTgyMWE3ZWQ5NmFlYmY3YzI1Y2RiMGM5YjNlOTc5OGE1YTNjM2ZiZDgzODc1MiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWMzNWJiYTYyZjBhNTNmNDVhYTY3OTE3ZjM5ZWQyYzhiMzc5YjAxYzM1NjdhODFmZTE5M2U5NTJlYjViY2EyNyJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L54-L54",
+          "version": "repo-lines-v1:sha256:fb30c58e8ea95f997c6d6a135ed9693edbc805fa8cd84e8c6aebc0ff25828bcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ4Yzc1ODgzZmE1NWEzYmZhYzFmOTY5ZTZjOWNiY2Q3MjM0NDRhNjJhOWY5M2ZiNDMzNGM3NzgwN2QyM2M1OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_325fe315eb93420b89dac028fc3d0300",
+      "statement": "app.py composes the shareable question URL as f\"{APP_URL}?q={question_id}\" and passes it to generate_qr_code(), which encodes the URL as a PNG BytesIO buffer; the QR image and link caption are rendered at the bottom of each question page.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/qrcode_service.py#L6-L11",
+          "version": "repo-lines-v1:sha256:891578c7e17f4198c7f9ff627a3e22bec0eb3972607828d60e5692d4f7fc1573:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDlkNGNjNTBhYjY0NDYyMzc5OGU3MzYyZjc1NmIyMjBmOTk1YmU2NmJjOTRiZmM0ZGQ4MzFkMDE3MmExZTllMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmU1ZjVmNTdlNGQ3ODhiMmQ2OTFlM2ExNTljN2IwZmFlNTE1MzgzODhlNDYyOWYwOTAwOWM4ZDE5MzIyODVhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTVmZjNjNGRjYWQ0NGE2YWM4NWI3YmFiNzM0MzZiMjFiZjYyYWEzZTYxZjQ1ZWM1OTQyYjM4NmU1NTcxMmE5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c9348e8d922f430395a24c59ee95885d",
+      "statement": "src/llm_service.py builds a primary ChatOpenAI client from LITELLM_MODEL/LITELLM_API_KEY/LITELLM_API_BASE_URL and a fallback ChatOpenAI client from OPENROUTER_FALLBACK_MODEL/OPENROUTER_API_KEY/OPENROUTER_BASE_URL, both at temperature=0.7.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L37",
+          "version": "repo-lines-v1:sha256:625750c8da0c1d8d2982c67575acf834ee2b92d79e839b66aa524f7e41645c8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjYzA5NTRmMmY0ZjU4ZGUwMzUwODExNWUyZDQ1NTFiOWU0ZTY1MjdlYzU2OTNkMGY0YjU0YWU4ZWUwZTY5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyMDA5N2U0YWE1MDA2OGJhMTU3ZjlhMjczOWZhZDg2OTk1ZTFlMGNkY2NkYWRjNTg5N2MyMDM0Yzc0ZDNlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOWMzZTllNjExNTgwOWU4ODRjNzUwZTAzZmVmZDdhYThiNTllYTFhNzI2MjBhYTA5MmFkNDdiZTc2M2MwYWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_20c480e88af64b05b44d0cd62926240e",
+      "statement": "evaluate_answer() tries the LiteLLM primary first; on any exception it logs a warning and retries the same prompt with the OpenRouter fallback, and if both fail it raises a RuntimeError containing both the primary and fallback error details before returning the cleaned response text.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ddccebb8d784c508b2597653874494a",
+      "statement": "generate_speech() in src/tts_service.py creates TEMP_AUDIO_DIR if missing, writes a .mp3 temp file via tempfile.mkstemp, removes it and raises RuntimeError on TTS failure, and returns the temp path.",
+      "evidence": [
+        {
+          "resource": "repo://src/tts_service.py#L13-L25",
+          "version": "repo-lines-v1:sha256:baa31347c35348730b156be3f18958ef5a1225133c875b6366dd2682d737e30c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhODVkZjY2ZTAxMzdlMmQ5MjE0YzNlNzkwOWNkZTU2MGJiODI5ZWJkNGU4NTNkNzQ4MDE3MzBiMzU1YzIwNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMTY2NTY1Y2RhYzI2NTAzZWQ1MWY5ZDJmN2E1YTE3M2M4ZWNkZjhkYzc4MTczNDkwNDQ5YmYyZGJiNDM0ZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c3393fb656ed47b0957938d0f62b8194",
+      "statement": "app.py performs a secondary UI guard: if OPENROUTER_API_KEY is unset after validation, it shows st.error and returns early; this is in addition to the authoritative validate_config() startup check.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L91-L95",
+          "version": "repo-lines-v1:sha256:99cbfee3f8f61087610ee404d3d98fcee4f8f2fa1a90d969a2c4dbfd4df985f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAzZTQ1YzM1ZjY5ZDE0NDFiNGRhNTBjMjRkMThiNTFjNWQyNmFlYmYxM2IxZDk0OGY3YTliYWFjN2JkMGZjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWI1YzgyNjMyZmM4MmQ0YjJjMzQwZjQyNTU4YmEzZGZhMzFjNzY1NWRmNmZjYzE2OGI0ZmRjZTU3ZmFjNjA0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTdkYjU4NDQ1NTRjNDJjNzI3NTYzMTA4ZGNjNWE4YTFjMzk2NGIxYzBmMTdhNzJlOWJiMjY5MDQ4M2M3ODE1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjI4NjczM2NiODc4OTdkYjFhZjU2NmU2ZGY2NzA4Y2RmMjczODc4OTE5ZDEzNjkwZTI1MmY4MTZjNThjY2VhMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b712b1906e6a4e0c891195a3068f0e83",
+      "statement": "tests/test_config.py verifies APP_URL resolves to https://lappquiz.ict.unesp.br when unset and to the environment override when set.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_config.py#L4-L22",
+          "version": "repo-lines-v1:sha256:a02100e1063af6bd3985cbaade83caa8ca035a7d67102a6e9945614cf443f8bb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE0OTlhZGFjZGJmYjY4YWRmOTFmMGQ5NDNmZjU1YzhiZTdhYjc0Zjk4ZTlkNDdhZjg0NzI5MjgzMGUzMDYxZDYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ3ZWVlNjIyYjU2NTYwODVjMWVlMjBhY2FhMTVhNTBkOWEzODNhMGIzOGMzNzM3YzcxZTQyZDU0Nzg3MGIwMzIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjdjMjM3MTczZGM4M2QzNDI4ZjQ1NzE4MzgwZTY3MDUwNTdhNDlhOGQ1Y2Y2MTEyYzZlYWZmYjE3NjVjNjZhODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_38714e09fcfa4478b0623f013c3aa082",
+      "statement": "tests/test_app.py stubs streamlit and all src.* submodules in sys.modules, reloads app, runs main() with a fake _Streamlit, and asserts the URL passed to generate_qr_code is https://lappquiz.ict.unesp.br?q=7 when APP_URL is unset and https://quiz.example.com?q=7 with a custom APP_URL.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L57-L127",
+          "version": "repo-lines-v1:sha256:6abed2fe37120b0fee046ecde2b087e5cc93401b038fc9c6feb19ce67de9b0bf:eyJzZWxlY3RlZExpbmVDb3VudCI6NzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyZjg0YWY2NDgzYzBhNDc1YzhkNjNjY2YxODgwZjE2NzY3NWE2NjY4ZDFjOGRiMTRlOTUwMDQwMjQ4M2UyMzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhMjhmMzA0MGRmYmViNjhjYzk0NjA4NDdiODVkYjU5ZDNlMGFkNzA5Nzk5NzFhNzM0YzQ5NWEyMTBiOWViN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3ZWZjMDkwNzljZGI5YmY2NjNiMGY4YjU2ZWEwNjZmYTU2ZGJlOGY4ZmM4M2JhZmM2NWQ1MGVmMjAxOGI1ZTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4e0f23c9469b4b39b045c12c2ae2e62d",
+      "statement": "The OpenWiki update GitHub workflow runs daily at 08:00 UTC and on manual dispatch, installs OpenWiki globally, runs openwiki code --update --print using model z-ai/glm-5.2 via OpenRouter with LangSmith tracing, and creates a PR on branch openwiki/update covering openwiki, AGENTS.md, CLAUDE.md, and the workflow file.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/openwiki-update.yml#L1-L51",
+          "version": "repo-lines-v1:sha256:bc6af93a5bebbf2ce64d5339b410dfb378f3e39e46e25317d1db6fe393c42509:eyJzZWxlY3RlZExpbmVDb3VudCI6NTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA2MDI3ODdhZjZkY2MwODM0ZGUxMjFjYmIxY2I5NWY5NDU5YjcyMWVhYjAzNDlmMTA1MDFiOTk2YzFjNzdmZmYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0Nzc5NmQzMTczMmZiY2U4OTk4YTJmN2U3YjFiYjk3NTVjMjNlNTg1MDMyMGI5MDkzN2Q4MmMzZmQwZTYyYTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:49be43bb0eab52cf3c75ff802552e74af19ff2f2df16ad34a298597665812130",
+  "claims": [
+    {
+      "id": "claim_602b94628d15408fa0aa6deb28a53250",
+      "statement": "src/llm_service.py provides the LLM evaluation entry point evaluate_answer(question, correct_answer, user_answer), which app.py imports and invokes inside its submit handler as the step after content moderation has allowed the answer through.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L13-L13",
+          "version": "repo-lines-v1:sha256:822fef014865237f4c89984242ce93a4a29fe92e5069d5ed4ed7d982e94b4e5c:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODIyZmVmMDE0ODY1MjM3ZjRjODk5ODQyNDJjZTkzYTRhMjlmZTkyZTUwNjlkNWVkNGVkN2Q5ODJlOTRiNGU1YyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODIyZmVmMDE0ODY1MjM3ZjRjODk5ODQyNDJjZTkzYTRhMjlmZTkyZTUwNjlkNWVkNGVkN2Q5ODJlOTRiNGU1YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWY3MmUzZTc4MWY0NWZmNWZmYmMzMmQ0ZTQ1OGVjYmNmYzVjNDM4ZGZlN2M0NzI4MGYxZDc5MzA5M2Y3YmJhMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTg2MmFhMWRmMTc0YzM1MWEwN2JiODg3OGI3NWRhMzgwMjJkMWZmZWFjOTZhYWU5MmIxMDdlZDlmNzdmN2IzOCJ9"
+        },
+        {
+          "resource": "repo://app.py#L151-L168",
+          "version": "repo-lines-v1:sha256:f2b6d697f9a62d8c70f6e63a711c926de76664cde6240f231316314ebec1942e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZTQxMGFiZTI3MjJjMDRhZDk1YzQxNjYwYjYzZTE3OWRmMjdhZGIzZDMzOTc2MjI5MTcxYTZkMDFmM2U5MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZjA4MDAwZjU1NjI4ODM2NWEzNDYwNDkyZWE1NjBlY2NiMGE1MzkwZmNlZWMwNDE3YjM3MWExOTQ1MmFhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ZTg4NTY5ZjE0YzYzMjViMmEyNjA3MWUxOTkyZDk3ZmNjZjUzNWE5ZTllNDBhNWJhYmFmMjlhZTQzZDAyMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmMTY4ZGNkZjIzZDZiYmUzZDhhNDI4MGM4ODU4NjQwZTJhNjNiOGIxOWVjMDg4ZWM3NWMzMGZmMzRjMjFmMGQifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c53a6cf6d3f454dad6ee6ff8ef8763a",
+      "statement": "get_litellm_llm() returns a ChatOpenAI instance pointed at LITELLM_API_BASE_URL using model LITELLM_MODEL and api_key wrapped in SecretStr(LITELLM_API_KEY) at temperature=0.7; it is the primary provider and fronts the Ollama backend served by the LiteLLM server.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L42-L44",
+          "version": "repo-lines-v1:sha256:0e0a31a83824058335a43305636c8055614d1e23717c067ade83d0a8e260a178:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY0OWIyZGVkYjY1ZTQ1Mjk5OWRjZGZjZjA0MzE5ZjdhMmM5MzhjMWE0MTMyODMyZWU2ZWNiY2U3ZjU2ZGJiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWMzMjk1MTRhODMwNjliMTI5N2I4ZGE1ZWE1YTc2ZjIwYzZkZmVmMTA5YTY3Yjg3ZjAyYmQyNmQyNWQyMTFjMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjRiNjU5MDA2OTEzNWUwNmRlOThjNDk2NjA5ZGRkNzIwNzFmNmQ1YTk5MWMyYzQxYjEyODJmOTIyY2M2NjVkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNDA2NDFkMWNlZWEzN2U3NjE1Y2E0YTFiOGJmOGJjNjk5MzJlOWQzZjc1OTg5YzVkODFjOGVhZWU5N2RjOTM1OCJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L20-L27",
+          "version": "repo-lines-v1:sha256:52d3df44c397fb26db50f2d3dd0a7ae7bccf52e7c4c23f1c899a023d85235fed:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNjMDk1NGYyZjRmNThkZTAzNTA4MTE1ZTJkNDU1MWI5ZTRlNjUyN2VjNTY5M2QwZjRiNTRhZThlZTBlNjkwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIwMDk3ZTRhYTUwMDY4YmExNTdmOWEyNzM5ZmFkODY5OTVlMWUwY2RjY2RhZGM1ODk3YzIwMzRjNzRkM2VmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBmYmE3YTA0YTc0YWYyMGUyMzVlMzMyYWNlZmFhZDNlNjg3NWEyZTVjN2NkM2YyNDUyNGE0NzM2MWEzZTAzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_79e2e8497d9d4809b8316cd037ee697b",
+      "statement": "get_openrouter_fallback_llm() returns a ChatOpenAI instance pointed at OPENROUTER_BASE_URL using model OPENROUTER_FALLBACK_MODEL and api_key wrapped in SecretStr(OPENROUTER_API_KEY) at temperature=0.7; it is the fallback provider, and OPENROUTER_BASE_URL defaults to https://openrouter.ai/api/v1 (OpenRouter's OpenAI-compatible endpoint).",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L46-L50",
+          "version": "repo-lines-v1:sha256:376ba27964e911ab72238393297ac7dd9f0e16825951155851510b0c55324506:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzMzNGZhOTRjYmIxOTdkOTk3NGI0ZDM5YzcwMDEwZDQ5NDhhZmVmZGRkYTAzYzc4Y2Q0MDU1M2Y1MGU0MDcwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmFmYmEwNTI3YzM5NTNjNGI2ZTBlNWI1NzM5YmE4MzYxMmY4MDUzYmNkYzk0NjY3MzAxOTNjZDFkNTkwYjQwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQ0YWJiYzNmOWI4Mjc5NTNhODgwNjhlMjI5ODI0YWRjMWM5NDg5N2MxMDRlYzFmMjUzOWYwOWYzYzMwNGQ2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L30-L37",
+          "version": "repo-lines-v1:sha256:e5408aecee4019aaea50fe7693fc96c71193a3a431d3748223f2a128b4295e71:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjYWRmNzc3MDU5MmQ1NDRiODUxYWQxZmE1NTAyZDk0MTYzNzYxOGZjYWU4MGRjYTA5MzY1MzgzMTVkOWY3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjM5YzNlOWU2MTE1ODA5ZTg4NGM3NTBlMDNmZWZkN2FhOGI1OWVhMWE3MjYyMGFhMDkyYWQ0N2JlNzYzYzBhYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_31afda2e375c41929e21e462ffd6551f",
+      "statement": "Both providers are constructed with langchain_openai.ChatOpenAI with the API key wrapped in pydantic.SecretStr; because both the LiteLLM server and OpenRouter expose OpenAI-compatible HTTP endpoints, the same ChatOpenAI client is reused for both providers, differing only in base_url, model, and api_key — there is no OpenAI-the-company dependency, only an OpenAI-protocol client pointed at two different proxies.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L37",
+          "version": "repo-lines-v1:sha256:625750c8da0c1d8d2982c67575acf834ee2b92d79e839b66aa524f7e41645c8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjYzA5NTRmMmY0ZjU4ZGUwMzUwODExNWUyZDQ1NTFiOWU0ZTY1MjdlYzU2OTNkMGY0YjU0YWU4ZWUwZTY5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyMDA5N2U0YWE1MDA2OGJhMTU3ZjlhMjczOWZhZDg2OTk1ZTFlMGNkY2NkYWRjNTg5N2MyMDM0Yzc0ZDNlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOWMzZTllNjExNTgwOWU4ODRjNzUwZTAzZmVmZDdhYThiNTllYTFhNzI2MjBhYTA5MmFkNDdiZTc2M2MwYWIifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L4-L6",
+          "version": "repo-lines-v1:sha256:f34309ca9f02ac3524dd027a55c070e4fdc4dd4271ff7c8d0260209ee2beb225:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDc2YmM1NzJlYmI5ZjZmMjNlMmFiODYwZjZlODgxZTM4MjE4OGViNzIzM2FjNzUxZjEwYmU2MTk1MmU5NzEyNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNGQ4M2I1Mzg3N2Y4ZWM2MTdlOTNlNjNkMGQxMjg1NjFhY2VkNDVjNjAzODQwZjAzYmVmYTAzMDJmYTYxNzk2ZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiY2YxZTY4OGE2MTBkNTgyMjBiNDg2ZmMyMTI1NTM5Nzk5NDZiYjgxOTFhZmY0NzdiOTkwZTMwNjAxZDFmNDk5NyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDAwMjZmYmE2NjEzMGE4MmYxNGYyMjY2N2E3YTA5YTg2ZmNjNjRmZTljMTg3Njc0Mjk5N2FlNDI3NDRjOTIzNCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_747beb8c733a4d14a61ff9e733632352",
+      "statement": "evaluate_answer builds the prompt once via build_prompt, invokes the primary LiteLLM ChatOpenAI first, and on any exception from llm.invoke it logs a warning naming the failed LITELLM_MODEL before invoking the OpenRouter fallback; the same prompt_text is passed to whichever provider runs.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L86-L105",
+          "version": "repo-lines-v1:sha256:474e337f44392b3a876c96564af9c2729094abb5c83ffff3803cf9f578c324f8:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3OWQwMDI4Y2NiYWU2OGEwMjE4YzdiODhhM2VmM2JjNWExNWI1MTkyMjMzMzk2YWIxMmM2YjAxZDI3ZmZkMGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiMzkyYTllMWQ0OWU2MTdlMjkwYjEyZjdkZDI1MzEzNTI3ZDA0MmMyNTBmZTdkYzAxNmU3ZmM0ZDViNzU5OWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_2431cad6929e4b2d8322fbc6c845632c",
+      "statement": "On any primary exception, evaluate_answer falls back to get_openrouter_fallback_llm() and invokes it; if the fallback succeeds its response.content is passed through clean_text_for_tts and returned, so a primary failure is transparent to the caller aside from the logged warning.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-fallback/spec.md#L11-L18",
+          "version": "repo-lines-v1:sha256:70e574359eb953184609e55238bac627080c203b1451a54bd6c762c352b4e0bc:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMmUzM2E4OWIyMzYxNmE5NGUzZWY0NTE2ODdjMWY1N2Y5ODI5ZDIwMTJhMWViMmViMTMxMDM1MjgxNTQyZWYxNiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODdmOTFkZGNhZTgxZTQ1MTIzYmUxYjU2NTFiOTIxNWExMDdmZjA4ZWIzYmQ2ZTdkMWIzMjNmNmU4MTY1NWY2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNWRjNjMwMWIzNmQ3ODY0YmI5ZWZhMDM0ZmIwMGZlYWM3N2ViNDc0MTNiYzhiNWEwNTExZDA3MmQ5YzliNTc1ZiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGY0YjI4NDI5ZGMyMWMzNTM3NDVlZjE0NWIyMzQ0YTA2YmQyYTQ2YjE3NDU2MTZkMzY0NDY3OTJiY2UyYjc2NyJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L94-L105",
+          "version": "repo-lines-v1:sha256:23f635e06068b9dd3a0f320b341d03241db956aa83477a66b4d4687dd9e4a245:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNDNhNDYwZTcxMDVmZmVjYmY4OTdjYzE2N2EyZGRjY2VlMjFjNWNhMDQ2Y2I3OTY1ZGFiZTQ0MDk5ZTg2MWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3OWQwMDI4Y2NiYWU2OGEwMjE4YzdiODhhM2VmM2JjNWExNWI1MTkyMjMzMzk2YWIxMmM2YjAxZDI3ZmZkMGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwZTQ4N2E5ZWMwNDNiN2MxM2YyNmI5NmQ2ODRmZDMxNmY3ZjZjNjhmM2VlNDc1YTUwMTMzOGE0Y2M2M2Y3NWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhiMzkyYTllMWQ0OWU2MTdlMjkwYjEyZjdkZDI1MzEzNTI3ZDA0MmMyNTBmZTdkYzAxNmU3ZmM0ZDViNzU5OWUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_deeb29f06d5349a19b2272c0a86a78d2",
+      "statement": "When both providers raise, evaluate_answer raises a RuntimeError whose message begins with 'Falha total na avaliação por LLM: ambos os provedores falharam.' and embeds both the primary error (naming LITELLM_MODEL) and the fallback error (naming OPENROUTER_FALLBACK_MODEL); the exception is raised from the fallback exception, preserving the fallback traceback as the cause.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-fallback/spec.md#L20-L22",
+          "version": "repo-lines-v1:sha256:892037218ad8730be1947f983ba7016fe813486243ebad51456475539d1efca6:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGM0NTY5ZTI2Y2YyMzA3MzBmN2QwMjU3YWIzYWJkYjZjMmM2NzczYjU3MjRjYzgxZjVlNzllNDU0YTcwYzQyNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDYyYTZlZTBkYmU5YTE5NTQxOWZhZDU3MDM5N2NhZmFkNmE4ZDNiY2I4ZGJlMjBlOGQ3MzM5YzFlM2E5YzY5MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiN2JiN2UzNDRjMTQzM2EzMDZhZWU2MWIyMDZhNzEyZmNkNjExYmU1ZDY1N2QzMmY1ZmNkNDFlYTdhZjY4MmQ4NCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMDU3NjQ4ZWNmNTMxODgzNTVkMWQwYTMzZWIxNTQ1MzkyYjBkYmMwZDNiNmQxOTcwNjFiNWM0MTAxNzc1OGI2YiJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L106-L111",
+          "version": "repo-lines-v1:sha256:ea8cc8e1fdfdbff2d4624ad1c46d749a45dc16d1e818bfb8c9898582c3510bb0:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjBmOTM2YTJjMGJkZDcyM2MyN2FkNjliMTQ2ZDI5NTM1ODIyYTJmZmYwOGUwM2EyMmE2OWQ0NTJhOTlkMGMyZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZDU1M2YyYzM4NGQzY2NlODRmYzMwZTJhMGE5NzMzZmI4ZmE4MGMzYjc0MjBjNmFhMzQyMWFmZjhlYjkzZjE1ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjdmNjIxOTE0N2M5MmI1YzM3OWQ4YTI3YjVhYTljNDg2ZDIxZjc2MzhjMDE3YmRkMmEyM2ZiZTA5YzExMDNmOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_87611b2a2e434eb788bca6aad7ba781b",
+      "statement": "app.py catches the RuntimeError from evaluate_answer inside _process_answer and surfaces it as st.error(f'Erro ao processar: {e}'), so total LLM failure produces a user-facing generic error rather than a raw traceback, and the session state is not otherwise corrupted.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L151-L168",
+          "version": "repo-lines-v1:sha256:f2b6d697f9a62d8c70f6e63a711c926de76664cde6240f231316314ebec1942e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZTQxMGFiZTI3MjJjMDRhZDk1YzQxNjYwYjYzZTE3OWRmMjdhZGIzZDMzOTc2MjI5MTcxYTZkMDFmM2U5MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZjA4MDAwZjU1NjI4ODM2NWEzNDYwNDkyZWE1NjBlY2NiMGE1MzkwZmNlZWMwNDE3YjM3MWExOTQ1MmFhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ZTg4NTY5ZjE0YzYzMjViMmEyNjA3MWUxOTkyZDk3ZmNjZjUzNWE5ZTllNDBhNWJhYmFmMjlhZTQzZDAyMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmMTY4ZGNkZjIzZDZiYmUzZDhhNDI4MGM4ODU4NjQwZTJhNjNiOGIxOWVjMDg4ZWM3NWMzMGZmMzRjMjFmMGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b99c2644044441a8b992fddd299845a9",
+      "statement": "build_prompt(question, correct_answer, user_answer) constructs a ChatPromptTemplate from a system message and a human message and returns the fully formatted prompt string; the system message instructs the model to act as a friendly, enthusiastic Brazilian-Portuguese quiz professor, give motivating feedback on wrong answers, explain the correct answer didactically, respond in natural spoken pt-BR with no markdown/bold/italic/special formatting, keep the response to a maximum of 500 characters, and politely refuse and redirect sexual/violent/offensive/inappropriate content without evaluating or commenting on it.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-evaluation/spec.md#L35-L41",
+          "version": "repo-lines-v1:sha256:0fc041ce40df8edb19190ccfc822f397a83383d81e85270e8d249d935de5fea4:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTc4ODEwMmZlMDAxZjczMjJmOTY1MzJkYTBmMDBlNTMyNGZiZDBhMjdhNmQyYjc5YWMyYjE3ODc5ZDY1ZDE3MSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmRhYzMwN2M3NjAyOTFmYWE4MjVkMGY5NzQ5YmU0YWY2MmM5N2ZlNGQzODgwZDUyMWM2MzQ2OTRiZDY2NGY0MiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTFkZjI0MTg0NmY2Zjk0OWFlYmM4OGI1NzRmMDdkMGU1YzFiOWZjYTA3ZmEwZjQyMmNiMGI2NmZlYmU3MTU5YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L40-L74",
+          "version": "repo-lines-v1:sha256:ecbce8be2185ca8f2b8be79d6a4f442404554c03dbec8fee06b37bc8516f5bb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2YzFjM2EyYjkxMDBjYTUzOTkxZGVjNzRkYmZkOTcyMmEwNjdjMzM0Mzg2OWY3NDAxZWNhODgxOTAzYTgzMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYzRhN2QxY2M3OTZhYmEzZTQ2NzIzMzI3ZjUxN2U5ZjgxMTk4MmQyNTBmMDcwMjk4NmU0YjU3NjRhZDk1ODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhMzQxN2JjOTRjODU4YzgxYjk2NzhkOTFhMGFkZTI1MmRmNTNlYmVhM2Q2ZDQ2NzAwMzU3MTMzNGJhMmUwOTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b5807dd6a1284ddeae3fc38755413661",
+      "statement": "The human message in build_prompt is a template containing 'Pergunta: {question}', 'Resposta correta: {correct_answer}', 'Resposta do usuário: {user_answer}', followed by 'Avalie a resposta e explique de forma didática.'",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L59-L68",
+          "version": "repo-lines-v1:sha256:9dc7591861cd55e48a136edc20d5636efe02f4b459ab64decf673b5e810b6888:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAwY2FlM2RjMjc4ZjY0OWFhYWViMTlkN2ExMGM4NjM2NDI1MjNmOGVmMDBjOTE4NTM2MTM0ZGIwYzQzOTg0NTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJhYWU4YTBjYTc2Zjk4ZjdiN2RjNzk4NDk1MWQ2M2U1N2RiM2M2NDU1NzljYTUxYmFkNmE1MzlkNjE0ZWRiYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImYyMzE2Mjg1ZjdiOGYxNWQwZGI0MmU4NjRhOWE3N2I0NDQ5YzdlODEzZTM5NjFjYmJmMDc1NWM4NWEyMTA2YTciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNlMDZlYmZmNzc4MTc3YTkyMGY0ZTk4MzQxMTUwMTVkYzViNWZlODQzNGNkNjMwN2JjOGRkYTk2NWNjYjRkZmYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0a6d91768cca483ebf12df34dd3b9ab4",
+      "statement": "build_prompt substitutes a blank user_answer (one whose .strip() is falsy) with the literal string '(sem resposta)' before formatting, so the LLM never sees an empty user-answer field; the question and correct_answer are not otherwise normalized.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L70-L74",
+          "version": "repo-lines-v1:sha256:321d3ed01950b453de87564162906734606fa03bac44d6311795f93f29a48d00:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmYzOWYyNjhmYThhMDBhOTE2NDUzYjFkNjFkYmFhN2M0NjI4NzFlYWQzODBmZGQ5MDZhNGNkNWVjM2JlMGFhMiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjA0MTNhNWQwNTczMDBjZjA0OWFlOTZmNmU2MjRhNThmNTBiMDM1ODA4OGVkYTBlNGNmOTJkZDQ4Zjk5Mzg5OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWEzNDE3YmM5NGM4NThjODFiOTY3OGQ5MWEwYWRlMjUyZGY1M2ViZWEzZDZkNDY3MDAzNTcxMzM0YmEyZTA5MyJ9"
+        },
+        {
+          "resource": "repo://tests/test_llm_service.py#L37-L40",
+          "version": "repo-lines-v1:sha256:55e869745acb74477b52e8e43240cfe8f4b349f8ef1fbe258ba346ade82dbd61:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTE5Y2EyZDY4MjVhNjA3NDZlMDYyYzE4Y2YzMjQ3NWUyZDQxMGYxMDI1MzAwNzM2ODljODI0YTM5OGU2MDYxYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTYwNTY2ZjBkNjliYmY5ZTZhMzE1ZjgxNzdmYTdmMDk0ODE3MDQ5MzQyN2E4NGY5NTEwYzVlNjcxZDQyNjBiMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiODJlNGI1YWJmOTI4MmU3NzBjY2Y0MGEzNGI1ZDMyZWZhNzEwOGNhYmY1ZDc1YTMzODY5NjBkMGVmZTcwODhjYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTg3NDM1YWIwYWYzMGI5NTdjNzk2ZmNiZmFkYjI0N2IyZWY3MzdhZGQ0YTk2MzljYTdlNmI4MjZlODhiZDYxMiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9016a2c0d83b4c33b62dca6ccda99376",
+      "statement": "clean_text_for_tts strips markdown emphasis/heading/inline-code markers (* # _ ~ and backticks), converts markdown links [text](url) to just the link text, collapses runs of two or more newlines into a single '. ', replaces remaining single newlines with spaces, and collapses all whitespace runs to a single space before stripping; the output is a flat, speakable string handed to edge-tts.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-evaluation/spec.md#L19-L34",
+          "version": "repo-lines-v1:sha256:c1ea7f11070e06d122d2decd00983710b148f6420f9a5292c275fc246b713a40:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBhMWY1YTIyYzk2ODRkYWJlMGNlZmFiYTIxZWRlNGQxMmQzODMzOGI4NTBkMzI0MjJjOTZhYjQ5ZTdiMzE5ZTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImNhMzlhOGVhNDNkOGZjYTIwMWI1NzFiNzFmNGJmOGU1NmM2ZDNiNjZkM2MwMjNhZDllMTkyMDQzZWZiZGQ3NzciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImM4ZjM4YzljZWYyZDI4YmZmMDk5NzdkODkyYTgyOGNkMzg3YjFhZTc0N2MzMjYzYzgxY2Y5ODQ5YjE2MzJiNDcifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L77-L83",
+          "version": "repo-lines-v1:sha256:8d0ac2c6d02a5df833a4a7e0b5641b923a10a37e16399e2315dedbd699e114b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU2MmY0N2MwYmIxNjEzMzEyZTU3YjM4ZGM5YzI4NzViOGYzMjNmODliMTc5NTU0NTI1NjhkYTc2ZjcyY2Y2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFiOGY0ZjQxMzU5ZjZjMGJmN2FiYzA0N2Q0YzU3NzQ1NzIyMzM0ZjVkMmQ2ZTcyZTE2NmE1NWIzYTA5NzQ3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjE5MWQ5ZWNhM2E5NTFlYjJmN2M1NmE2N2ZlNDFmMGY1NGZhNDFkNDFmNDE2ZWFlYjI2Yjg1MzVhNDgwMmMwNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_6609dff635b443b0a217bfe271cd05a6",
+      "statement": "clean_text_for_tts is applied only to the successful provider's response.content and identically for whichever provider wins; the failed provider's exception is never cleaned — the primary error is logged and the fallback error is folded into the RuntimeError.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L90-L111",
+          "version": "repo-lines-v1:sha256:d2480487a47840ed3f0864888ed573c9434eb4444ce8e8d3ed7f99c447487449:eyJzZWxlY3RlZExpbmVDb3VudCI6MjIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkYTVjNjZlMTdiMTQ1Mzk3ODM0YjhjODU0ZGM0MTkzZTIxMjUxODBhODk5NmExNGMzMTg4MzMyNmIyZWZiY2YiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiZTc3ZDk4NzNhMzYwYWE4NzI5YmRkZWJjMzFlOWY3NDMxOTNlYTNjNjRkNTZhYTc4OGFhMWQ4NDc1MDBiNjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d998ff923e944dda9dd283ac7488fa7e",
+      "statement": "The provider chain is driven by environment variables read at import time in src/config.py: LITELLM_API_BASE_URL, LITELLM_API_KEY, LITELLM_MODEL, OPENROUTER_API_KEY, and OPENROUTER_FALLBACK_MODEL are required, while OPENROUTER_BASE_URL is optional with default https://openrouter.ai/api/v1; validate_config() (called from main() at app startup, not at import time) raises a ValueError listing any missing required variable, and SKIP_CONFIG_VALIDATION=1 short-circuits the check so tests can import src.* without real credentials.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L81-L82",
+          "version": "repo-lines-v1:sha256:37a07b76c73d54dd8eff25a274e8fa7d5b04d55302fe02d4f315a94cd333b288:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzJlMzEyNTdkYzBhZTFkNTkzMDM3YzI4MGM5YWQ1MDgxOWI4YTZjOGNmNzI4YmUwNzE2ZDAwYTNlZWNjMDRiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTYxNTkxMWQxNjkwYmExOTA1NTQ0Y2NkOGY1NDZjZWYwNTJmYzExZmQ4MWQwOTJhOTJlMWEwOWYyMzRlMGMxNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU4YWI2ODRlZTA3Y2M3YWI3NzcxM2FjM2I1NTQ5YTI1NDdjM2Y3NjY0ZWY3NzgxMDJiNTIyZGZlMjQ5ZTIwNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiN2JiMmI1OTM5MzQ2ZGIxODE5ZGRiMWNmNzJlZGY4NWQyNWRjMTUxODMzMTg2YjAxMTcyZTJhZmU5MDUwZDIxMSJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L41-L50",
+          "version": "repo-lines-v1:sha256:f669669318a427cfde6365cfcf9f534c1f1c8d98e8ef5676508c1625e26f3686:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFlNTFjOTJkNTdiZmZkZDMwOGNmZDI4ZmMwNTRhMDE4NGIzMGY0NjVkMDM2NTNjYjRjY2NhY2VkODJkN2IyNzYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhZmJhMDUyN2MzOTUzYzRiNmUwZTViNTczOWJhODM2MTJmODA1M2JjZGM5NDY2NzMwMTkzY2QxZDU5MGI0MDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImIzZGYyYWNmMDZlOGMzZjAzYzcxMzVjNmU4YWM1YTljYTU0MzJhYmUwNmE3NGFjYTBmZGQ5YTUzYTAwOGY5ODciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQwMTY3MTgwNTc4YTU5NzNkYmIwNDkxODZkYzZlMjU5OGNjZDkxMzkxN2NiYWRmZGYxNzhmMGQ3NGIyODc2NzUifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L7-L39",
+          "version": "repo-lines-v1:sha256:b65e84687929553ca36359c22c38730552416c4125e448d0b45f9cc2a534635f:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhMGMyMWFlYzI4ZTY2MjBmZWMyMjQ1ODllOWEwMjQ2OTllZjNiZThlZmNhZGRhYTE2YjQzNTNiZWFiMmU1NWUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImZkMTA1NmU1Y2E2ZGY4ZmVmNmIwY2Y0NTlhYTAwMWI3MTAzYTI0ZWUwMDlmODQ1ODA4MWJiODg0MTAyZWI1MzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZiNDAxODA5OGEzN2M3ZjM3MDk4NTQxZDE5NzgwMTUzMzljY2JmYjRkNDIxMDI4ZDYzODBmNTJlZmIwODQ0OGYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1d344c8a193483db4f21429e1a9b600",
+      "statement": "LITELLM_MODEL and OPENROUTER_FALLBACK_MODEL are interpolated into both the primary-failure warning log and the total-failure RuntimeError message, so changing them changes the diagnostic strings an operator sees, not just the model that is invoked.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L96-L110",
+          "version": "repo-lines-v1:sha256:292f8f2b316aca9a8c922d5a6d5b1b057d5251ea0518e469ed7723f92fc73fb4:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM4MThiNzgwMDM5YzI5YTE2ZjBhMWJmNDA0YTdlZGZiYjdhOGU2ZDA3NzQyZDk1ZjEwNzY5NmQ4ODI2Yjc1MGEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5YTRlZTAzZmRjMmI2ZDMwOGI3MjIzMzI2NzJkMThhYTVjNzhlMzlkN2E0YzYxM2Y5MWUzOTAxY2U3NDJlYTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ0ZTcxNDlkNTRiNjc0MWE5MWQwNmMwZjE4OTE3ZDlhYzA1MDBhMmRkNTA5MmVkMjg3ZWUxMzIzMWY1ZWFlY2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fdffa49b81344132b93ab4f599296292",
+      "statement": "src/content_filter.py's LLM semantic moderation pass imports and reuses get_litellm_llm (the primary LiteLLM provider) rather than the OpenRouter fallback; on any exception it fails open (returns clean) rather than falling back, so the primary ChatOpenAI constructor is shared between answer evaluation and LLM moderation but the fallback chain is specific to evaluate_answer.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L202-L215",
+          "version": "repo-lines-v1:sha256:d5f9dc6af3b056a05aee0d6589f6e2fc6602181e0bf86ee444edb0d026dfd3d8:eyJzZWxlY3RlZExpbmVDb3VudCI6MTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRhMjhlY2E5MDExNjU3MjEyNmEwYjk0NDU0YThlNDllMWVkZWU2M2NhOTk1MjYwNjY4NDAyOTk0YmVlZmIwNTUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijk3ZDljYWYzYTRhMTgwMGM5OGIxNTg0NjFlZDY5N2VmMDc4NzhkM2QzOTRkOWM0YjQ1YmE2MDEwOWYxN2QxOGYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L20-L27",
+          "version": "repo-lines-v1:sha256:52d3df44c397fb26db50f2d3dd0a7ae7bccf52e7c4c23f1c899a023d85235fed:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNjMDk1NGYyZjRmNThkZTAzNTA4MTE1ZTJkNDU1MWI5ZTRlNjUyN2VjNTY5M2QwZjRiNTRhZThlZTBlNjkwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIwMDk3ZTRhYTUwMDY4YmExNTdmOWEyNzM5ZmFkODY5OTVlMWUwY2RjY2RhZGM1ODk3YzIwMzRjNzRkM2VmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBmYmE3YTA0YTc0YWYyMGUyMzVlMzMyYWNlZmFhZDNlNjg3NWEyZTVjN2NkM2YyNDUyNGE0NzM2MWEzZTAzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d1b2e88a8b1c4c59a417213dbc5cdfba",
+      "statement": "tests/test_llm_service.py pins the contract at the get_litellm_llm/get_openrouter_fallback_llm boundary (not the HTTP layer), reloading src.llm_service with test env vars per fixture: the primary is invoked once with the exact built prompt and the fallback is never constructed when the primary succeeds; when the primary raises the fallback is invoked and its cleaned content is returned; when both raise a RuntimeError is raised whose message contains 'ambos os provedores falharam' plus both error strings; and clean_text_for_tts maps a markdown sample to 'Correto! Veja este link. Mais detalhes agora'.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_llm_service.py#L7-L119",
+          "version": "repo-lines-v1:sha256:055a2e56002a50da8a7dc75222fbb54aaafd518730cfa719d0731b97ce0775f3:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIyM2YzNjZiOWJkOWE4ZDBmMzQwYTJiYzBiZTFlMjJlZWEyMDU2OGRkNzhhNDUyODFiNzIxYjMwZjIyZDA4N2YwIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzNTc3OTY2Y2EyNTc2MmJkYzA1ZGFkNmNjYTE5MWQzYTY5ZGJiMmE5ZGUxZWRiMTkzODRjODIxMzQzNjM5NmZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkOTdkNTNiYTZjMTMwMTA3ZmE4OWQ5N2NhNDUxODY1NjVlNDBjMzM2MDFjZGVmMzZhNDc5ZGRkOTY1Zjg5MjYwIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_28b07440a061499488a5000c1ca81d26",
+      "statement": "The behavior is specified by openspec/specs/llm-evaluation/spec.md (answer evaluation via the LiteLLM-primary/OpenRouter-fallback chain plus markdown/link/whitespace TTS cleaning and in-prompt inappropriate-content refusal) and openspec/specs/llm-fallback/spec.md (automatic fallback on primary failure and a RuntimeError naming both failures when both providers fail).",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-evaluation/spec.md#L1-L41",
+          "version": "repo-lines-v1:sha256:a7b7670d8609e622ddb29eef9e4149186e795339e69f0bb3ed3881cb653f9b04:eyJzZWxlY3RlZExpbmVDb3VudCI6NDEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5NDQxMzI5N2EzZTk1YTliNzJmNWU0YzA0YWE5YzMwNmY5MDA5YWQ4OGZhMGY5OTQ1M2QxOTYzODM1NjY4YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZkYWMzMDdjNzYwMjkxZmFhODI1ZDBmOTc0OWJlNGFmNjJjOTdmZTRkMzg4MGQ1MjFjNjM0Njk0YmQ2NjRmNDIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://openspec/specs/llm-fallback/spec.md#L1-L34",
+          "version": "repo-lines-v1:sha256:3fb1967717c98bc3b90bbb59e5a9896066fbd974166096733798003079ea7123:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5NDQxMzI5N2EzZTk1YTliNzJmNWU0YzA0YWE5YzMwNmY5MDA5YWQ4OGZhMGY5OTQ1M2QxOTYzODM1NjY4YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNhNDMyNzQ3ZTY0NDI0ODlhMDAyZWM0MmU3NzUxZjUwMDE5NTg2ZjY2MjcwNTcxOTA4NmI0YjRjZjkzNTdhMmEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkOWMxM2FiYjJjOTk4ODE3MGNjYjQ4NjQzNWNjNGJmZjlkZWRlNWIxM2NkMGYwMDI0MjU0MDI2NTEwY2RiMzUifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

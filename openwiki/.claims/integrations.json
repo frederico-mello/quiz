@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:77ddeb5208eee01c7d817df9c69e0c7e668dd5bf42171b504398dbcf76f3d371",
+  "claims": [
+    {
+      "id": "claim_48d0ebac39ee4b358c822b36ce9ae20a",
+      "statement": "The app depends on two LLM endpoints via LangChain ChatOpenAI: a primary LiteLLM server (Ollama backend) and a fallback OpenRouter endpoint; both are OpenAI-compatible HTTP APIs so the same ChatOpenAI client is reused for both, differing only in base_url, model, and api_key.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L37",
+          "version": "repo-lines-v1:sha256:625750c8da0c1d8d2982c67575acf834ee2b92d79e839b66aa524f7e41645c8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjYzA5NTRmMmY0ZjU4ZGUwMzUwODExNWUyZDQ1NTFiOWU0ZTY1MjdlYzU2OTNkMGY0YjU0YWU4ZWUwZTY5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyMDA5N2U0YWE1MDA2OGJhMTU3ZjlhMjczOWZhZDg2OTk1ZTFlMGNkY2NkYWRjNTg5N2MyMDM0Yzc0ZDNlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOWMzZTllNjExNTgwOWU4ODRjNzUwZTAzZmVmZDdhYThiNTllYTFhNzI2MjBhYTA5MmFkNDdiZTc2M2MwYWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_091a3dcf66db46e4be64e6b74bf7b28d",
+      "statement": "get_litellm_llm() constructs the primary ChatOpenAI at LITELLM_API_BASE_URL using LITELLM_MODEL and LITELLM_API_KEY (SecretStr-wrapped) at temperature 0.7.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L27",
+          "version": "repo-lines-v1:sha256:52d3df44c397fb26db50f2d3dd0a7ae7bccf52e7c4c23f1c899a023d85235fed:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNjMDk1NGYyZjRmNThkZTAzNTA4MTE1ZTJkNDU1MWI5ZTRlNjUyN2VjNTY5M2QwZjRiNTRhZThlZTBlNjkwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIwMDk3ZTRhYTUwMDY4YmExNTdmOWEyNzM5ZmFkODY5OTVlMWUwY2RjY2RhZGM1ODk3YzIwMzRjNzRkM2VmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBmYmE3YTA0YTc0YWYyMGUyMzVlMzMyYWNlZmFhZDNlNjg3NWEyZTVjN2NkM2YyNDUyNGE0NzM2MWEzZTAzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_ea4e6878106b4a04915b8447aac75b45",
+      "statement": "get_openrouter_fallback_llm() constructs the fallback ChatOpenAI at OPENROUTER_BASE_URL (default https://openrouter.ai/api/v1) using OPENROUTER_FALLBACK_MODEL and OPENROUTER_API_KEY (SecretStr-wrapped) at temperature 0.7.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L46-L50",
+          "version": "repo-lines-v1:sha256:376ba27964e911ab72238393297ac7dd9f0e16825951155851510b0c55324506:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzMzNGZhOTRjYmIxOTdkOTk3NGI0ZDM5YzcwMDEwZDQ5NDhhZmVmZGRkYTAzYzc4Y2Q0MDU1M2Y1MGU0MDcwYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmFmYmEwNTI3YzM5NTNjNGI2ZTBlNWI1NzM5YmE4MzYxMmY4MDUzYmNkYzk0NjY3MzAxOTNjZDFkNTkwYjQwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTQ0YWJiYzNmOWI4Mjc5NTNhODgwNjhlMjI5ODI0YWRjMWM5NDg5N2MxMDRlYzFmMjUzOWYwOWYzYzMwNGQ2NiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L30-L37",
+          "version": "repo-lines-v1:sha256:e5408aecee4019aaea50fe7693fc96c71193a3a431d3748223f2a128b4295e71:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDVjYWRmNzc3MDU5MmQ1NDRiODUxYWQxZmE1NTAyZDk0MTYzNzYxOGZjYWU4MGRjYTA5MzY1MzgzMTVkOWY3OSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNjM5YzNlOWU2MTE1ODA5ZTg4NGM3NTBlMDNmZWZkN2FhOGI1OWVhMWE3MjYyMGFhMDkyYWQ0N2JlNzYzYzBhYiJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_de5563c24d7c4b5dafbae1f7a86782bf",
+      "statement": "evaluate_answer() invokes the primary LiteLLM client first; on any exception it logs a warning naming LITELLM_MODEL and invokes the OpenRouter fallback with the same prompt; if the fallback also raises it raises a RuntimeError whose message names both the primary and fallback errors.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_98f49312ee35416c9e217c2cf15b39f9",
+      "statement": "The successful LLM response (whichever provider produced it) is passed through clean_text_for_tts() to strip markdown and normalize whitespace before being returned.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L77-L83",
+          "version": "repo-lines-v1:sha256:8d0ac2c6d02a5df833a4a7e0b5641b923a10a37e16399e2315dedbd699e114b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU2MmY0N2MwYmIxNjEzMzEyZTU3YjM4ZGM5YzI4NzViOGYzMjNmODliMTc5NTU0NTI1NjhkYTc2ZjcyY2Y2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFiOGY0ZjQxMzU5ZjZjMGJmN2FiYzA0N2Q0YzU3NzQ1NzIyMzM0ZjVkMmQ2ZTcyZTE2NmE1NWIzYTA5NzQ3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjE5MWQ5ZWNhM2E5NTFlYjJmN2M1NmE2N2ZlNDFmMGY1NGZhNDFkNDFmNDE2ZWFlYjI2Yjg1MzVhNDgwMmMwNSJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c90a8631a8b44e5b8d0378f8e2551129",
+      "statement": "Moderation in content_filter.py reuses the same primary get_litellm_llm() client (not the OpenRouter fallback) for its LLM semantic check, and is best-effort and fail-open: if the LiteLLM call raises, check_text swallows the exception and lets the text through, treating the local keyword blocklist as the primary defense.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L168-L194",
+          "version": "repo-lines-v1:sha256:0a58bd50dea046e58bcc0b5dcec9ee6c7f6ea8ab3607bcd9d27f545e847809b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhYjZmNjVkY2E5OWVhNDM2Y2FiOWY0ZWUyMWI0YjUxNWUxYjUzNzk0OTY1NTRkODcxMzJmMThlMjQ4NTIwZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQzMTA5NjA3YmQ4ZDc5NjVhYjYzNjMwMzE2MDdmMTFkMDNiZTI1YzNkOTYwYWNlMzU2MDE1NWU5M2M4ZDMxMTIifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ab46e7982fb4fd9843eda8bd95d2c1f",
+      "statement": "MODERATION_ENABLED (default true) gates whether the LLM moderation pass is attempted at all in app.py's submit handler.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L177-L203",
+          "version": "repo-lines-v1:sha256:1672a6ebf5eeb3590441da173aa1934ff3a24602c2ef3a369c02bd34dc2b73ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGZlN2YwZDFiYzgwYjczODExMjM1ZjcxZGUxZjVkMjYxMDAxM2NhZmJlMjMxNTA4YjM0MTgyOTMxYzE1NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiY2RlM2IwNWZhZjRiNjZkNWJiODQ3NWNiNmY3YWM1MTlhMmYwMzUwNjkzOThmODNjNmIxZmQ5OTZmMDEwYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L52-L52",
+          "version": "repo-lines-v1:sha256:f5fdce9ed764032fd9fee906023a6c9ceee4ab8146efd83fd0498cafbabb773d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWY0MjBlZGIxNzU5YTM2YzU1MTI1MGRlZWI0OTk4NWUyZTc0ZTgzM2IxYzk1OThhNjliMWYwYmIwZGExNGEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGYyNjgyMzBmYjlmMTU5ZTg0MjVhMzU3ODg1MzYwMjY2MDQ0OTkzMjNmZGJkYWRlZDM4ZjRhYjA2MjZiMzhmNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_78a4c784f41d4d62a3f367781cf694d0",
+      "statement": "All LLM endpoint configuration is read from the environment by src/config.py at import time and enforced by validate_config() at app startup; required vars are LITELLM_API_BASE_URL, LITELLM_API_KEY, LITELLM_MODEL, OPENROUTER_API_KEY, and OPENROUTER_FALLBACK_MODEL; OPENROUTER_BASE_URL defaults to https://openrouter.ai/api/v1.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L10-L16",
+          "version": "repo-lines-v1:sha256:c76256f5efb52fa41f71e3f2aa02000fc0d4a293aaa6a474fd625b43fdc170de:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY4MjQwZmIxMjU2ZmMyNzlmMGY1ODAxZDQ1NjE3YmFiNjBkY2VjMmJlNGUyYzkyMDkzZTJjMjEzOGJlZDdjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTgzMjUyOWQ1Y2JiMzk4OTNjMzc4ZDQ3ZjM0ZGYxZjFhYzBmODUwNDk4YTg5ZTIzZTQxNmU4NmFiZjI4YzRkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI3ZGZmNzg0NWM4MWZkMDExMmFmYWUxZDUxYzdhZmFlODcyN2YzZDU4M2RjZmI3YzAyNzQ2MmM1NGFjNjg0MSJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L19-L38",
+          "version": "repo-lines-v1:sha256:0dd3152908752a5a577aa30ae967a556100b8ea97aeac43fe2bd08f4803b5bf9:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ2MjU3NTVmZDRhOTIxZjU4MzIyYzQzZTE2ODI4NjlmN2Y2MjBlNTJkYzA0MzcyMWUyZTA1ZTMwNjFkOTM3N2MiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA5ZjkzMDgzYzE5NzEyMWI5ODI3MDBiYThhZmFiZDE3MjJjZjFkM2U3NDA0NTA5ZTgwZWZhMjcyNDdmNjJmMDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0YjY1OTAwNjkxMzVlMDZkZTk4YzQ5NjYwOWRkZDcyMDcxZjZkNWE5OTFjMmM0MWIxMjgyZjkyMmNjNjY1ZDMifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L42-L50",
+          "version": "repo-lines-v1:sha256:35b86f3ee0fd7181de156fe3bfc8cfbafaa2f8e5f3c250b37db78ad215b5bded:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYWY0OWIyZGVkYjY1ZTQ1Mjk5OWRjZGZjZjA0MzE5ZjdhMmM5MzhjMWE0MTMyODMyZWU2ZWNiY2U3ZjU2ZGJiOSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmFmYmEwNTI3YzM5NTNjNGI2ZTBlNWI1NzM5YmE4MzYxMmY4MDUzYmNkYzk0NjY3MzAxOTNjZDFkNTkwYjQwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjRiNjU5MDA2OTEzNWUwNmRlOThjNDk2NjA5ZGRkNzIwNzFmNmQ1YTk5MWMyYzQxYjEyODJmOTIyY2M2NjVkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_74d37711bc534cc9bf8c40c656ff5c06",
+      "statement": "LITELLM_MODEL and OPENROUTER_FALLBACK_MODEL are interpolated into the fallback warning log and the total-failure RuntimeError message, so changing them changes operator-visible diagnostics.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L94-L111",
+          "version": "repo-lines-v1:sha256:10b7144fd31906388eccce225a6a196bedf893fef6df163b436d6d6b4584f8a6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMxNDNhNDYwZTcxMDVmZmVjYmY4OTdjYzE2N2EyZGRjY2VlMjFjNWNhMDQ2Y2I3OTY1ZGFiZTQ0MDk5ZTg2MWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYwZTQ4N2E5ZWMwNDNiN2MxM2YyNmI5NmQ2ODRmZDMxNmY3ZjZjNjhmM2VlNDc1YTUwMTMzOGE0Y2M2M2Y3NWEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_848625b03e26401d980f1ad36d368e06",
+      "statement": "edge-tts is wrapped by src/tts_service.py to synthesize speech; it requires no API key (free Microsoft TTS service) but needs network access and is invoked async via asyncio.run(edge_tts.Communicate(text, voice).save(output_path)).",
+      "evidence": [
+        {
+          "resource": "repo://src/tts_service.py#L1-L25",
+          "version": "repo-lines-v1:sha256:e6f03d1a65e080758d269efeadf958a4e6eff30f0ac975f2efa28ae41cae1610:eyJzZWxlY3RlZExpbmVDb3VudCI6MjUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAzNGM5Y2RkNDJmOGQ4OGMwNDQyNTM3M2E3MzM2MjA5ZjZiMmEyZGNlYmVjMzJiNGQ0MDU5M2Y5MGJlMmJiMjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3273a9ba33f546cb80dc6916b7d487b1",
+      "statement": "generate_speech() ensures TEMP_AUDIO_DIR exists, allocates a temp .mp3 path via tempfile.mkstemp under TEMP_AUDIO_DIR, runs the async synthesis under asyncio.run using voice TTS_VOICE (default pt-BR-FranciscaNeural), deletes the temp file on failure and raises RuntimeError, and returns the temp path on success.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L57-L57",
+          "version": "repo-lines-v1:sha256:585eab7f4e9151d3d77f642a67ccb6b95ec034e36e7bba129e2e92573698b011:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg1ZWFiN2Y0ZTkxNTFkM2Q3N2Y2NDJhNjdjY2I2Yjk1ZWMwMzRlMzZlN2JiYTEyOWUyZTkyNTczNjk4YjAxMSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTg1ZWFiN2Y0ZTkxNTFkM2Q3N2Y2NDJhNjdjY2I2Yjk1ZWMwMzRlMzZlN2JiYTEyOWUyZTkyNTczNjk4YjAxMSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZWIyMjI1MGQ1OTc1NWM4NTAzNzFkYmU1YWYzZjNmYjIwMmEyY2E3MzQ2ZjRkOGU2NDliZmI4MjhhYjYwZmU3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZWQ5MjI0NDc5NGNiZmYxN2ZlM2ZmOTY1NTg2OWFkYWE4NjY3NDU2MzUyNDQzNTM2MzY5ZTAxM2ZkYTRmYThiZCJ9"
+        },
+        {
+          "resource": "repo://src/tts_service.py#L8-L25",
+          "version": "repo-lines-v1:sha256:2be32ce06225ff3a33f21c4b7f0dabfa6858a15356906fa1c0603000610209fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNWRiNGU2NzQxNWZiOWZlNzQ0OTU4NDljZTI5ODc5M2MxMWQ0YjZhMzg5OWExYWE0ODM3YmI3MjMyMDRkMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlYjU3ZTRhMDVmNGNhMWYzNTMzYjEzOTYwNjkzNmI5ZDQxZjdhNzE5Yzg4MDU0MDM2NTkzYjNlMmFiYmE0MWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c63b9f24cce54db5baa9378e6f78b22b",
+      "statement": "app.py deletes the temp audio file (st.session_state.audio_file) when the user retries, removing it and resetting the state before rerun.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L238-L249",
+          "version": "repo-lines-v1:sha256:d149b8f8d9a77e062d9feece53589e55c86d8f192dd3f61d6a89a707fa4d36da:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0NDI0NTZmNzA2OGQ0OWExYjJiYjM1NTVkZjE5ZmQ4MmU5OWEzZTA4NmEzNTU5NTZmMWQ1YWJkYTBmNzIxMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNmRlYjYyODQwNGE5OTUyYjI0ZGQwZWExODY0NzU3NGMwMjMzZTBlZmJjZjAzMWFlNjcxMzIxZTQ3YTQ1NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkZjQ1NWQ0OGNiZmM1MzkwMmFmZmU5YTI1NjMzNTg0NTMyMmU0N2Y1YWI3YTBmNzBkY2ZmZTljOGM4ODUzOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1MjU0ODE5ZWY5M2UyOWUwNzAyNzM4N2ZjNjgzZWY1YTc5YjAzM2RiMzNkMzNmZjhjNDliNjFlYjE2Yzk2ZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_fb57f5b22ece4ab59b1b072aab5747d8",
+      "statement": "generate_qr_code(data) in src/qrcode_service.py calls qrcode.make(data), saves the image as PNG into an io.BytesIO buffer, seeks it to 0, and returns the BytesIO which app.py renders via st.image.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/qrcode_service.py#L1-L11",
+          "version": "repo-lines-v1:sha256:799055860254d35912ccff4a1c4bfbf53d234838c97e980cbe7aa092e2f34fc2:eyJzZWxlY3RlZExpbmVDb3VudCI6MTEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYyY2QzYWU0MDI5NzBhZGZkYzU4NmYyNzAzNjg0MjFiNDRkOWFkMmYwNjA1M2UyMGMxNGEyYTYxY2YzYjMxMGIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZlNWY1ZjU3ZTRkNzg4YjJkNjkxZTNhMTU5YzdiMGZhZTUxNTM4Mzg4ZTQ2MjlmMDkwMDljOGQxOTMyMjg1YTUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0929b34ce761467a80f5e86b2bb709c2",
+      "statement": "The QR code encodes the question's shareable URL f\"{APP_URL}?q={question_id}\", where APP_URL defaults to https://lappquiz.ict.unesp.br and is overridable via the environment.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L54-L54",
+          "version": "repo-lines-v1:sha256:fb30c58e8ea95f997c6d6a135ed9693edbc805fa8cd84e8c6aebc0ff25828bcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ4Yzc1ODgzZmE1NWEzYmZhYzFmOTY5ZTZjOWNiY2Q3MjM0NDRhNjJhOWY5M2ZiNDMzNGM3NzgwN2QyM2M1OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_45366c1aed834b03a738d93503f17cea",
+      "statement": "src/avatar.py uses Pillow (imported as PIL) to programmatically draw a cartoon scientist avatar with no pre-bundled image assets; _draw_scientist_frame composes hair, face, eyes, glasses, nose, mouth, and lab coat onto an RGBA canvas via ImageDraw.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L6-L265",
+          "version": "repo-lines-v1:sha256:a1269d9e09a382817f98f1a879f578eacec8fed55756038ae9c24fd3d231c4d6:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYwLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0MmIyMzk1YjQyYzdjOGFlMzg2NTViMzYzNGM4YjIxMzIzMGM1NmU3YTZmYmE2MjY2MWNlMDRlNjRlOWU3ZTIwIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYjg0YTIwODQwM2VjY2Y1NGNkNTViZWVlZThiMjE4N2I3NWVkNmU0MDY0N2M4MGEwNWM1MzRiNWIzNTZhN2EzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI5MTZiZmI3Njg1YTQwNGJmYzM0MzQ4OTEwNmNjNTIxNTczZThhODljOTQ0YjEzMzZhZDFiOWI5YWFlZGI4YmY3IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3MTBjOTA4YTllOTJjMzdiY2JlZjQ4OGY0ZmI2MjU0ZWQxYWM2NDhhODEyMmY5YTM2YjZjZTA5ZTJmNjM2ODU4In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f2174d442334a798c592bc5108f3548",
+      "statement": "TransparentGifConverter converts RGBA frames to palette-mode (P) GIFs with transparency index 0 (info['transparency']=0), producing transparent-background GIFs.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L17-L68",
+          "version": "repo-lines-v1:sha256:46720ae32869c387304b21e53c2c1153b8d10d0879e5b7ebbe9656380c41c522:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNTYyNmJmY2NkZjcyN2U3NjViNjc2NWFhNmNmZDRmOTY0NjliNWM0YTI5MTU2YjA0YWRlMDE5YmE2NWJmMzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYjU0MmE5MDcwY2FhNGM5OTg5ZmQxN2U0NGE5NmIwMmViNTBmY2JjZWQ2N2VhMGU0N2FjODgzZTg5NjgwZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhYzI5OTQ5Y2JlN2E4NTVhOTIyOThlYzU3MDAxOTVjMDYwOTEyOTg3YzlhNDMzNjFlZWJkMjhmYjM0MjkyYzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmZGU3MGM5ZGU1YWFjMjYxNjA1MzhkNWE2ZWNiMjRkZTcxOGIyZDczMmE2MzNjMzBlMzMxYjUxY2Y3MjZmZmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7fbd56ef7ca345b0b879696b3b95db64",
+      "statement": "The talking GIF is a multi-frame animation at 10 FPS with the mouth animated via a sin wave and blinks every 10th frame; when an audio duration is supplied the frame count matches the audio length and it plays once (loop=1), otherwise it defaults to 20 frames with an infinite loop (loop=0).",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L288-L311",
+          "version": "repo-lines-v1:sha256:218003b2454f796e04a8e01b416fd73f2b9c213659f928a8b9f8de35fa299001:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkNzNkYWY0NzVmZmU0MGZhZDk5ZjhlYWRlZjEwYzYwZmZiZmU0N2YyZGU4YWVkOTUxNjhlYWYyYzAxNDg4MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI4YjI2NmY0NWE2MTg2MTgzNzgxYmFmN2YwOThiNGJiMWU1ZWVkNzY0NWEzMDViMjE3Yzg5NDIwMDM5YTNmMDYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwYTlkZmFkNTRiNzMzMWI2YmM1OWEwYzc1ODJmMWFlYjg1MjFmOWY0ZWM4MzgyNDhiNDk5NzlmNzFkZWY5YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjlmYjJlZjIxYTQ5MDg1N2U4NzljMjkwYzExYzk1YmVjNDk4YmM3NWUyMGZlZWYzMDVkMGFkNGJiNGYyYTY2YWQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3f8c69b357fa428a8ca459d9ff230f60",
+      "statement": "get_talking_gif_base64 and get_idle_gif_base64 cache the generated GIFs on disk under assets/ (scientist.gif and scientist_idle.gif), generating them on cache miss; the duration-matched talking GIF is generated fresh and not cached.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L334-L364",
+          "version": "repo-lines-v1:sha256:2959d4131de74f6056cbe0de04ff386d058ce88041a515bc9228010cf2e796ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmNWJjZjM4MTI2MTMwZTBjMThjYTgxNzQ3MGFmZWIwZmIwZjFjZWNlNzdjNDZiZTI0MjRhODUxMGIzOTA2ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjNTYwMDE3ZWUzMGZmZTAxZTIzNTBmOGQyZDYxZDYwY2U0NThjMzY4Y2ZjNmIyNDViZTExMjYwNWRiMjAxOTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2Yjk4ODBlY2E4ODZkOTNlNjMzNzM0NWExNzJkOWUyOTdiM2JiZTMwNDU2YTk4Yzk2NzA5NzJiZDgxZDM0NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_386b87363d0f464998364577cbaa93af",
+      "statement": "app.py inlines the base64 avatar GIFs and base64-encoded MP3 into an HTML block via streamlit.components.v1.html, with an <audio> element whose onplay/onended JavaScript handlers swap the image source between the talking and idle GIFs during playback.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L210-L233",
+          "version": "repo-lines-v1:sha256:735114d87c8b78ab54b41d5ca981d239b270f48a97ae7cfc2f14433314adc14e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4Mjk2YzAwY2VlNjg2MTIwZGZkNmQ4YmExYTlhMzBmOGNkNWVlNWNhOTMxZjE4YjI0ODg3OTE0YTdhZjBiYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5YjkzYjNlNTNlODAzN2RhOGNmZjkyMzA2NDA1NWM3MWM3ZmFiZDEwZmM3YmVkZGE3ODRkZWJjOTQxNTM1Y2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjMjczOWE4MTk0ZDI0NTczMzJjMTY5MDFkNjk3MWRhYTVlZmI3NDk0Njk4MzE5YzQyMjQ1MjljYWFhNjk2YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwNWVlYWE2YzdhYjkwY2FiNGU4NDY0MTgxOTE5ZjgxODlhNjFjZDEyYzM0MGNlNzU1ZDc3OTI1N2Y1NGUyN2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_43e7690c4e514d0a86d33f63d55b68c6",
+      "statement": "The app is a single-file Streamlit app (app.py) using st.session_state for per-tab state, st.query_params for question routing by numeric id, and st.markdown with unsafe_allow_html for CSS and response HTML injection; there is no database or server-side persistence.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L81-L103",
+          "version": "repo-lines-v1:sha256:9abf38462bb461399cc826d171709bdfb33635e4bdf38589c7f080418ad6d73e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZTMxMjU3ZGMwYWUxZDU5MzAzN2MyODBjOWFkNTA4MTliOGE2YzhjZjcyOGJlMDcxNmQwMGEzZWVjYzA0YmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkNWEyMTMyNzM1MTg2ZmRjZmZjZWUwY2UxYTUyYWExODg5ODBhY2U0ZmFiMWFhNzg1YTMwMWMwMjc3OWNlZjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1OGFiNjg0ZWUwN2NjN2FiNzc3MTNhYzNiNTU0OWEyNTQ3YzNmNzY2NGVmNzc4MTAyYjUyMmRmZTI0OWUyMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNmJiMDU0MGQ1ZGZhYTgzMTUwNTdkNTYwNjFkOTE0MWMxYTdhOWFkZDBhMGYyYWM2NTE5OTI0NGUyYjhlM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6ed2ca8d11f14ccf9a740d66fb0836f1",
+      "statement": "requirements.txt pins streamlit>=1.30.0, langchain>=0.2.0, langchain-openai>=0.2.0, openai>=1.0.0, edge-tts>=6.1.0, python-dotenv>=1.0.0, and qrcode[pil]>=7.4.0.",
+      "evidence": [
+        {
+          "resource": "repo://requirements.txt",
+          "version": "repo-file-v1:sha256:4e857202a323d235c4da642c132fabc6b005b2944c1c77c5f13066c5920e8ec9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3e77191563b54c95a7938697c2ddc910",
+      "statement": "Pillow (imported as PIL) is not listed directly in requirements.txt; it is pulled in transitively by streamlit and by the qrcode[pil] extra, and src/avatar.py imports it at runtime.",
+      "evidence": [
+        {
+          "resource": "repo://requirements.txt",
+          "version": "repo-file-v1:sha256:4e857202a323d235c4da642c132fabc6b005b2944c1c77c5f13066c5920e8ec9"
+        },
+        {
+          "resource": "repo://src/avatar.py#L6-L6",
+          "version": "repo-lines-v1:sha256:42b2395b42c7c8ae38655b3634c8b213230c56e7a6fba62661ce04e64e9e7e20:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJiMjM5NWI0MmM3YzhhZTM4NjU1YjM2MzRjOGIyMTMyMzBjNTZlN2E2ZmJhNjI2NjFjZTA0ZTY0ZTllN2UyMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDJiMjM5NWI0MmM3YzhhZTM4NjU1YjM2MzRjOGIyMTMyMzBjNTZlN2E2ZmJhNjI2NjFjZTA0ZTY0ZTllN2UyMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTE2YmZiNzY4NWE0MDRiZmMzNDM0ODkxMDZjYzUyMTU3M2U4YTg5Yzk0NGIxMzM2YWQxYjliOWFhZWRiOGJmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNWZlMDEzN2MyNzRhNmQxMjA5NzAxYWE3ZmNmYjI4ZWNhYjQzOGNmZTEzYTA5Y2U5ZmJiNTA0ZDU3MjFhMzc2NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

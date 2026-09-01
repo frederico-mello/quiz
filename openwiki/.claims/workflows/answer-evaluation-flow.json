@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:3d1dca7e4f955cfaa377f7a2fc9cd16f8795abf778737c60bf3c99b9398ed6e3",
+  "claims": [
+    {
+      "id": "claim_02d84355034b43fda096fc817a4fe7f5",
+      "statement": "The answer-evaluation flow is driven entirely by a single submit handler inside app.py main(); there is no separate controller, queue, or background job, and the flow only runs after st.query_params provides a valid integer q id that get_question_by_id resolves to a question.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L105-L127",
+          "version": "repo-lines-v1:sha256:752f80b6f9f4d94e1d0bf05cf9d5a720576c245dec8c8df0c1db15f642dcac65:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNjU5MDk3ZmQyNDg5ZjExNWUzNTdmZTMzMTllYzg5MTE2NDNhYTk5NTQ2MDA3ZTEzYjE5MmUwZDI3NTExZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiNWM4MjYzMmZjODJkNGIyYzM0MGY0MjU1OGJhM2RmYTMxYzc2NTVkZjZmY2MxNjhiNGZkY2U1N2ZhYzYwNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YTAzNzA1NTllNmM3OTRhNGM1MTY0YTFiZmUyOTEwNTdmMThhMjAyYzIyYTQ1ZDJlZmE5ODVjZTljMTIxMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2Y2YxNTdhNTk3Y2YxMmU5MTQ3OTllOTA0M2QzNjIwYTViYWU0MTEwMDFkZmQ2NGMwOTVhNWI4NDg5ZDczNTYifQ"
+        },
+        {
+          "resource": "repo://app.py#L149-L203",
+          "version": "repo-lines-v1:sha256:d03d651a007839f568607e9449431539143061ce95761c5e58be3612ad355e69:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1YjgxMTg0Y2YyNDliODJiNDU0ZjA2ZTRkZjA2YmE5MzQ1YWYxNzBjZTAwY2UxNTI1NWViY2RlOTA2ZGJkMjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkYmYxNTY2ZDQ2YzQ2ZmE3Y2Y4MTVkNjhlYjAwNTkyNWFmMTMyMzQzYjE3ODMyNmM0ZTFjOWJjZmQxMjQ5NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b8fa9236496c46d3834e21e218731cff",
+      "statement": "Session state is initialized once on first load with answered=False, response_text='', audio_file=None, moderation_warnings=0, and moderation_blocked=False; these keys back every transition in the flow.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L97-L103",
+          "version": "repo-lines-v1:sha256:df1403d1ae641d9fe643e4707523c3e495f58c77cef7bda11e37326e28dc5b1a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM3OTk0NzU5NWRhMDhkMmUyZGE1NTU5Zjk2MTYxZjVjOTJkZmI3YjFmY2ZkYzQ2NmU5NmQzNmRjMjBjN2ZkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q1YTIxMzI3MzUxODZmZGNmZmNlZTBjZTFhNTJhYTE4ODk4MGFjZTRmYWIxYWE3ODVhMzAxYzAyNzc5Y2VmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDhkMWFjNzMxMjU1MTRmMzkzM2UyNTk2NzVlN2NmZWJmMzQ2ZWIyMzNhMzk2YjNjODg0Y2VjMDM3MjU4MmQyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA2YmIwNTQwZDVkZmFhODMxNTA1N2Q1NjA2MWQ5MTQxYzFhN2E5YWRkMGEwZjJhYzY1MTk5MjQ0ZTJiOGUzZCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_486bf0523c9a40e68a83a6d7ee553b54",
+      "statement": "The submit handler short-circuits in a fixed order: a blank (whitespace-only) answer is rejected with st.warning before anything else runs, then a blocked session is rejected with st.error and the handler stops before any moderation check or evaluation.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L170-L175",
+          "version": "repo-lines-v1:sha256:9368de60b0393cf5c6a7a6933a5cbb92e17da3d501936282d2dbe99c23e74f08:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMjNjMDNkNGM4NGIzYmVmN2E0MzU1MDQxNWFjYWQxNjE2MWVjZmExODdlMDRlNWU1OTBkOGJlMDE5YjQ5MWE2NCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEwMzQ4MWM1N2QwZjBkYzBmNzZjZDJjYzhiMzYwNGM0ZTgyOTZkYTQxMjJhZGQxOWU4MTc0NWRjN2UzMzFhNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDFkYzg5Yzg1YTczMWQ4OWZmZjgyMGZkMmI0MzU2Y2Y4MDU5NGJmZTg1ZWYxMzdjZjViMzY0YzdlYjUzZmNlYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRmODVmZDY1ZTQ5MTI2MmY2MTIyYzU0ZDYyOGZiNDQwZTNhZDhiYzE5MzA1YWE5YTJjMDkwZTZhZGQ1MDYzOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e1c1e2245da48979f10666f496e0f86",
+      "statement": "The moderation gate runs only when MODERATION_ENABLED is true: check_text(user_answer) is called inside st.spinner('Verificando conteúdo...'), and when it is false the handler skips check_text entirely and calls _process_answer directly, so moderation_warnings never increments and no LLM moderation cost is incurred.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L177-L203",
+          "version": "repo-lines-v1:sha256:1672a6ebf5eeb3590441da173aa1934ff3a24602c2ef3a369c02bd34dc2b73ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGZlN2YwZDFiYzgwYjczODExMjM1ZjcxZGUxZjVkMjYxMDAxM2NhZmJlMjMxNTA4YjM0MTgyOTMxYzE1NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiY2RlM2IwNWZhZjRiNjZkNWJiODQ3NWNiNmY3YWM1MTlhMmYwMzUwNjkzOThmODNjNmIxZmQ5OTZmMDEwYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L52-L52",
+          "version": "repo-lines-v1:sha256:f5fdce9ed764032fd9fee906023a6c9ceee4ab8146efd83fd0498cafbabb773d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWY0MjBlZGIxNzU5YTM2YzU1MTI1MGRlZWI0OTk4NWUyZTc0ZTgzM2IxYzk1OThhNjliMWYwYmIwZGExNGEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGYyNjgyMzBmYjlmMTU5ZTg0MjVhMzU3ODg1MzYwMjY2MDQ0OTkzMjNmZGJkYWRlZDM4ZjRhYjA2MjZiMzhmNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_aef7f364950546048128b18644fa852a",
+      "statement": "When check_text returns blocked, the handler (not content_filter) increments st.session_state.moderation_warnings and escalates via get_warning_level: 'first' shows a warning, 'second' shows a final-warning warning, and 'blocked' sets st.session_state.moderation_blocked=True with a st.error; on any non-blocked result the handler dispatches to _process_answer.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L181-L203",
+          "version": "repo-lines-v1:sha256:18e4727905f17e68bcefabb2f12be1f5f1dea5b9533f7556de3672198c084329:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0Yzk2Mzg4MTUxNjk2Y2FhY2JmODlhYWRjN2YwNjZlYzQ5YjBiYjMwYzg1NDU4YTFjMThiOGNlYmM4M2I2ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMjhjNGNmYjY4ODliZGQzYjA5NDIyZjViMzUwMDhiOThkOWZkZTZlYzM4Y2YzNTM0ZjE1Y2ExZmRkY2UxOTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_cd22c56474c648fbbaa2281b9b468d9d",
+      "statement": "moderation_warnings increments by one on every blocked result (first, second, and third alike), while moderation_blocked is set True only on the third block after the count reaches 3 and get_warning_level returns 'blocked'; the first and second blocks leave it False.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L181-L199",
+          "version": "repo-lines-v1:sha256:2fa7b03a229ab32b427a80d34d7a1d47dcaa220c357e807060cd87244396f2dc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY0Yzk2Mzg4MTUxNjk2Y2FhY2JmODlhYWRjN2YwNjZlYzQ5YjBiYjMwYzg1NDU4YTFjMThiOGNlYmM4M2I2ZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzNGM1NDNhZDI3YzMzODFhNTAzMjMxOTk2Y2Y2MjIyNjVkMWQzOTMzMzUxMGEyZGEzZjFjZDBjMTBhZTdmMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImVhMjhjNGNmYjY4ODliZGQzYjA5NDIyZjViMzUwMDhiOThkOWZkZTZlYzM4Y2YzNTM0ZjE1Y2ExZmRkY2UxOTYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyMTA5MmEyNDEzNTIxODc0ZTQyYTU4ZDllMDA5M2I0NmNlZjhiY2FmMjY4MTQ3YmIyZWUxODViMTdlMWU4NTEifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_3d3c5769a5294020bc4ce002f8d49f85",
+      "statement": "Once moderation_blocked is True, the blocked-session guard at the top of the handler fires on every subsequent submit for the session, so no further moderation check or evaluation runs; the only reset is a page reload (new Streamlit session), because the handler never resets moderation_blocked itself.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L172-L175",
+          "version": "repo-lines-v1:sha256:3ed2da830e377253587446cf15e1fe1c298675a22e6faee643ce851762d58b30:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJmZTMxMDE3ZmI0NThkZGZjODFjY2NlMWFhMjg2ZTQzODhlNzNiNjBiZDM5ZTM5NThkZjQ4ZDhjN2IwODZhZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNTEwMzQ4MWM1N2QwZjBkYzBmNzZjZDJjYzhiMzYwNGM0ZTgyOTZkYTQxMjJhZGQxOWU4MTc0NWRjN2UzMzFhNiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmYxNjhkY2RmMjNkNmJiZTNkOGE0MjgwYzg4NTg2NDBlMmE2M2I4YjE5ZWMwODhlYzc1YzMwZmYzNGMyMWYwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNzRmODVmZDY1ZTQ5MTI2MmY2MTIyYzU0ZDYyOGZiNDQwZTNhZDhiYzE5MzA1YWE5YTJjMDkwZTZhZGQ1MDYzOSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_32816f9f43ab4aa2967fc5bd81e14d4f",
+      "statement": "_process_answer is a nested closure that calls evaluate_answer under st.spinner('O professor está pensando...'), stores the result in st.session_state.response_text, then calls generate_speech under st.spinner('Gerando áudio da resposta...'), stores the temp path in st.session_state.audio_file, sets answered=True, and calls st.rerun().",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L151-L168",
+          "version": "repo-lines-v1:sha256:f2b6d697f9a62d8c70f6e63a711c926de76664cde6240f231316314ebec1942e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZTQxMGFiZTI3MjJjMDRhZDk1YzQxNjYwYjYzZTE3OWRmMjdhZGIzZDMzOTc2MjI5MTcxYTZkMDFmM2U5MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZjA4MDAwZjU1NjI4ODM2NWEzNDYwNDkyZWE1NjBlY2NiMGE1MzkwZmNlZWMwNDE3YjM3MWExOTQ1MmFhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ZTg4NTY5ZjE0YzYzMjViMmEyNjA3MWUxOTkyZDk3ZmNjZjUzNWE5ZTllNDBhNWJhYmFmMjlhZTQzZDAyMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmMTY4ZGNkZjIzZDZiYmUzZDhhNDI4MGM4ODU4NjQwZTJhNjNiOGIxOWVjMDg4ZWM3NWMzMGZmMzRjMjFmMGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_75c75003ff5d4d8aa7a194e02ca29098",
+      "statement": "The entire _process_answer body is wrapped in try/except Exception as e: st.error(f'Erro ao processar: {e}'); on exception answered is not set to True, so the page stays on the input branch and the user can resubmit without a retry.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L151-L168",
+          "version": "repo-lines-v1:sha256:f2b6d697f9a62d8c70f6e63a711c926de76664cde6240f231316314ebec1942e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjcxZTQxMGFiZTI3MjJjMDRhZDk1YzQxNjYwYjYzZTE3OWRmMjdhZGIzZDMzOTc2MjI5MTcxYTZkMDFmM2U5MWYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZlZjA4MDAwZjU1NjI4ODM2NWEzNDYwNDkyZWE1NjBlY2NiMGE1MzkwZmNlZWMwNDE3YjM3MWExOTQ1MmFhNWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjU5ZTg4NTY5ZjE0YzYzMjViMmEyNjA3MWUxOTkyZDk3ZmNjZjUzNWE5ZTllNDBhNWJhYmFmMjlhZTQzZDAyMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImZmMTY4ZGNkZjIzZDZiYmUzZDhhNDI4MGM4ODU4NjQwZTJhNjNiOGIxOWVjMDg4ZWM3NWMzMGZmMzRjMjFmMGQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_488dda769a2e4422b14adb91f6f7bcae",
+      "statement": "evaluate_answer raises a RuntimeError whose message names both the primary (LITELLM_MODEL) and fallback (OPENROUTER_FALLBACK_MODEL) errors only when both providers fail; that RuntimeError is the total-failure surface caught by _process_answer and surfaced as st.error.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L167-L168",
+          "version": "repo-lines-v1:sha256:27c12923938a1045190361401fc0164419589d4c355e222499f1b9bfb5913681:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFmNDcyMDRlYzdmZTRlYjYxY2RmZjQ1ZTRlNjdiNTZlM2MyZjZkYWU4MWUyYzE2YTk4MTNiZTc5ZGJmMzBkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmVmMDgwMDBmNTU2Mjg4MzY1YTM0NjA0OTJlYTU2MGVjY2IwYTUzOTBmY2VlYzA0MTdiMzcxYTE5NDUyYWE1YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmQ4NWUyODA2YTRjNTBiZGQ3ODkwNWU4Y2VkYjQ4NTlhZTRlNGMyZmVlNGM5NDNmNTlmNTM1YjliNTk2ODlhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmYxNjhkY2RmMjNkNmJiZTNkOGE0MjgwYzg4NTg2NDBlMmE2M2I4YjE5ZWMwODhlYzc1YzMwZmYzNGMyMWYwZCJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_49f7c83e5d5541c3b8817b4f6d7a353c",
+      "statement": "generate_speech removes the temp file and raises RuntimeError('Falha ao gerar áudio TTS: ...') on any synthesis exception; this RuntimeError is caught by the same _process_answer catch and surfaced as st.error.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L167-L168",
+          "version": "repo-lines-v1:sha256:27c12923938a1045190361401fc0164419589d4c355e222499f1b9bfb5913681:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFmNDcyMDRlYzdmZTRlYjYxY2RmZjQ1ZTRlNjdiNTZlM2MyZjZkYWU4MWUyYzE2YTk4MTNiZTc5ZGJmMzBkZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNmVmMDgwMDBmNTU2Mjg4MzY1YTM0NjA0OTJlYTU2MGVjY2IwYTUzOTBmY2VlYzA0MTdiMzcxYTE5NDUyYWE1YSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmQ4NWUyODA2YTRjNTBiZGQ3ODkwNWU4Y2VkYjQ4NTlhZTRlNGMyZmVlNGM5NDNmNTlmNTM1YjliNTk2ODlhYiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZmYxNjhkY2RmMjNkNmJiZTNkOGE0MjgwYzg4NTg2NDBlMmE2M2I4YjE5ZWMwODhlYzc1YzMwZmYzNGMyMWYwZCJ9"
+        },
+        {
+          "resource": "repo://src/tts_service.py#L13-L25",
+          "version": "repo-lines-v1:sha256:baa31347c35348730b156be3f18958ef5a1225133c875b6366dd2682d737e30c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhODVkZjY2ZTAxMzdlMmQ5MjE0YzNlNzkwOWNkZTU2MGJiODI5ZWJkNGU4NTNkNzQ4MDE3MzBiMzU1YzIwNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMTY2NTY1Y2RhYzI2NTAzZWQ1MWY5ZDJmN2E1YTE3M2M4ZWNkZjhkYzc4MTczNDkwNDQ5YmYyZGJiNDM0ZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_f556c0b7a3264d14914803f0e60c4996",
+      "statement": "After st.rerun with answered True, the answered branch renders the response text in a .response-text div and, only when audio_file is truthy and the file exists, builds an inline HTML block whose <img id='prof-gif'> defaults to the talking GIF and whose <audio autoplay controls> onplay swaps the image to the talking GIF and onended swaps it back to the idle GIF, with the MP3 base64-inlined as a data URI.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L204-L233",
+          "version": "repo-lines-v1:sha256:6042e1d531387a180f3eddb0f533f8ca5a62d9cf3f19577e94c05aabe60f71b5:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5YzcxNDk3Y2ZjODJlNmZlMGZmZmYwYjA2MjM2NWVmNDk3MTUzODhhNjU0N2I5N2ExMzAwZjdlZWEyOGYwMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5YjkzYjNlNTNlODAzN2RhOGNmZjkyMzA2NDA1NWM3MWM3ZmFiZDEwZmM3YmVkZGE3ODRkZWJjOTQxNTM1Y2QiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiOTA1YTdmNzFlZTE0OWY0OTFlMmNiNzNiZDFmODdkNTAzNmFmYTJmYjRkZWE4ZTcyMzNmMmUzMmQ5ZTUzNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUwNWVlYWE2YzdhYjkwY2FiNGU4NDY0MTgxOTE5ZjgxODlhNjFjZDEyYzM0MGNlNzU1ZDc3OTI1N2Y1NGUyN2YifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_bc48bf0d1f2d40caacb7c3424f250068",
+      "statement": "The answered-branch avatar/audio render is wrapped in try/except Exception as e: st.warning('Não foi possível reproduzir o áudio: {e}'), so a render failure (missing file, base64 failure, component error) becomes a warning rather than crashing the page, while the response text still renders.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L210-L236",
+          "version": "repo-lines-v1:sha256:6d80f691cfe1206413318e78da248bb81e4f2b18e06bd14e4add2aefc4d0358c:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjA4Mjk2YzAwY2VlNjg2MTIwZGZkNmQ4YmExYTlhMzBmOGNkNWVlNWNhOTMxZjE4YjI0ODg3OTE0YTdhZjBiYTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI5NWUwNTlmZTc4MzU1NjU5MDYwNGY2NjNlMjc4NTUwNGJlMGQ4MmQzN2ZhYTg1MjhiYTY2MDMzZmQwNjliOGYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZjMjczOWE4MTk0ZDI0NTczMzJjMTY5MDFkNjk3MWRhYTVlZmI3NDk0Njk4MzE5YzQyMjQ1MjljYWFhNjk2YzQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQ4NDBkODEzM2VlYzY3ZjM1NjM5ZGM3N2I3ZWI4YThhNTdjZWMzN2NhYTZmN2EwYjRmNTViMDg4YjI2NjRhNDUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9c1b4ebb3f634847a599607f41a820df",
+      "statement": "The 'Tentar novamente' button resets the answered state: sets answered=False, clears response_text to '', and if audio_file is set os.removes the temp file (swallowing OSError), sets audio_file=None, and calls st.rerun(); this deletes the temp audio file so stale MP3s do not accumulate across retries.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L238-L249",
+          "version": "repo-lines-v1:sha256:d149b8f8d9a77e062d9feece53589e55c86d8f192dd3f61d6a89a707fa4d36da:eyJzZWxlY3RlZExpbmVDb3VudCI6MTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM0NDI0NTZmNzA2OGQ0OWExYjJiYjM1NTVkZjE5ZmQ4MmU5OWEzZTA4NmEzNTU5NTZmMWQ1YWJkYTBmNzIxMTEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNmRlYjYyODQwNGE5OTUyYjI0ZGQwZWExODY0NzU3NGMwMjMzZTBlZmJjZjAzMWFlNjcxMzIxZTQ3YTQ1NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkZjQ1NWQ0OGNiZmM1MzkwMmFmZmU5YTI1NjMzNTg0NTMyMmU0N2Y1YWI3YTBmNzBkY2ZmZTljOGM4ODUzOGEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1MjU0ODE5ZWY5M2UyOWUwNzAyNzM4N2ZjNjgzZWY1YTc5YjAzM2RiMzNkMzNmZjhjNDliNjFlYjE2Yzk2ZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1e6142c5bba403ab2eccf525fc2361a",
+      "statement": "The retry button does not reset moderation_warnings or moderation_blocked; those persist until a page reload (new Streamlit session), so retrying the same question does not forgive repeated moderation blocks.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L240-L249",
+          "version": "repo-lines-v1:sha256:ed89b3a25f01e9f2c165448cb2ae4ba076830584762120b6f66e42b27a63bbdc:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNlMDYyNTcyMGY1NDI0Yzk4ZGVkMWNhMzM0MTQ3OWFlOGVhMTU5Y2ExNDZjYzhjYTBlMmRmNjczMThhZDNmMTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNmRlYjYyODQwNGE5OTUyYjI0ZGQwZWExODY0NzU3NGMwMjMzZTBlZmJjZjAzMWFlNjcxMzIxZTQ3YTQ1NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ4NDBkODEzM2VlYzY3ZjM1NjM5ZGM3N2I3ZWI4YThhNTdjZWMzN2NhYTZmN2EwYjRmNTViMDg4YjI2NjRhNDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1MjU0ODE5ZWY5M2UyOWUwNzAyNzM4N2ZjNjgzZWY1YTc5YjAzM2RiMzNkMzNmZjhjNDliNjFlYjE2Yzk2ZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_36d90868e1434f8fb7a63ee7d8e13757",
+      "statement": "get_warning_level maps the violation count deterministically: 0 to 'none', 1 to 'first', 2 to 'second', and 3 or more to 'blocked'; because the handler increments before the lookup, the first block yields 'first', the second 'second', and the third 'blocked'.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L182-L199",
+          "version": "repo-lines-v1:sha256:d4ad43883495135da1a3e1ef0c3819378e16809e29c0ec66b6d5e6aa990c88da:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVlNTE5YmVlMjJhNmE4MWQ5NWVlNzhlMmMzMTBkYTQ1Yjk0YTI5NzkyNzg0MjA3YTYyMzExNGM2NTkzOWZmMDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEzNGM1NDNhZDI3YzMzODFhNTAzMjMxOTk2Y2Y2MjIyNjVkMWQzOTMzMzUxMGEyZGEzZjFjZDBjMTBhZTdmMDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ1MjRmZGVjNjQ1MDA5ZGNkMmJlYzM4MDQ0NTYzZGYxYzE5NzE5MGM3NDgxNjgxYzk2Y2ZlYTJlZWM2NzRjZDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjIyMTA5MmEyNDEzNTIxODc0ZTQyYTU4ZDllMDA5M2I0NmNlZjhiY2FmMjY4MTQ3YmIyZWUxODViMTdlMWU4NTEifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_488bc809c3fe4d3787c8607891a21b45",
+      "statement": "The moderation LLM's own fail-open behavior is handled inside check_text: if the semantic LLM pass raises, check_text swallows the exception and returns (False, None), so the answer proceeds to evaluation as if clean and that failure never reaches _process_answer.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_07c49e3025ae45a8a863c25de2d89de8",
+      "statement": "OPENROUTER_API_KEY is additionally guarded at the top of main(): if unset, the app shows st.error and returns before rendering any question, making the submit handler unreachable.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L91-L95",
+          "version": "repo-lines-v1:sha256:99cbfee3f8f61087610ee404d3d98fcee4f8f2fa1a90d969a2c4dbfd4df985f6:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAzZTQ1YzM1ZjY5ZDE0NDFiNGRhNTBjMjRkMThiNTFjNWQyNmFlYmYxM2IxZDk0OGY3YTliYWFjN2JkMGZjYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYWI1YzgyNjMyZmM4MmQ0YjJjMzQwZjQyNTU4YmEzZGZhMzFjNzY1NWRmNmZjYzE2OGI0ZmRjZTU3ZmFjNjA0MyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOTdkYjU4NDQ1NTRjNDJjNzI3NTYzMTA4ZGNjNWE4YTFjMzk2NGIxYzBmMTdhNzJlOWJiMjY5MDQ4M2M3ODE1OCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjI4NjczM2NiODc4OTdkYjFhZjU2NmU2ZGY2NzA4Y2RmMjczODc4OTE5ZDEzNjkwZTI1MmY4MTZjNThjY2VhMCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_835cb947e3af4c0297d9e2539ff040f5",
+      "statement": "The QR-code share block at the bottom of the page is rendered for both the answered and unanswered branches and is not part of the answer-evaluation flow; it encodes f'{APP_URL}?q={question_id}'.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_b88155d7651f4900aed64b95bc811073",
+      "statement": "tests/test_app.py loads app.py with stubbed src.* modules (Streamlit, content_filter, llm_service, tts_service, avatar, qrcode, quiz_data all replaced) and pins the QR-URL construction against APP_URL, while the moderation escalation is pinned by tests/test_content_filter.py and the both-providers-fail RuntimeError by tests/test_llm_service.py.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L113-L127",
+          "version": "repo-lines-v1:sha256:31e4367ce6c33c2693c070cd7c705a513cb06b9d0093503064c0ed834c70e8ed:eyJzZWxlY3RlZExpbmVDb3VudCI6MTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YTVmZWU3OWRkNTI5ZGY2YTYxNTdhYzc2ZDVmZjYyZWFmOTgyMTg5NjRlMjQ3Y2UzYTFiMTg1ZWQ4YWMxYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwOTlhZDhmYzE2OTNkYjQ3YTk5NTYzM2Q5MzE1OTZiOTBkZmUyODhkYzk3Zjk4YTJhNDEzYzk0MGUyOWM0MjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3ZWZjMDkwNzljZGI5YmY2NjNiMGY4YjU2ZWEwNjZmYTU2ZGJlOGY4ZmM4M2JhZmM2NWQ1MGVmMjAxOGI1ZTAifQ"
+        },
+        {
+          "resource": "repo://tests/test_app.py#L57-L93",
+          "version": "repo-lines-v1:sha256:46e92543de237046595b6609bd26dee4d40552e8a2094b370e6dd803223edc49:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyZjg0YWY2NDgzYzBhNDc1YzhkNjNjY2YxODgwZjE2NzY3NWE2NjY4ZDFjOGRiMTRlOTUwMDQwMjQ4M2UyMzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU5NGViZjA1MTBlMWRmNTY1YjA3Y2M2MzZhMDhmMjNmNzQyODE1YjcxNTBhNzMzMWEzNmUzNTIwOTI0OTFhMDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhMjhmMzA0MGRmYmViNjhjYzk0NjA4NDdiODVkYjU5ZDNlMGFkNzA5Nzk5NzFhNzM0YzQ5NWEyMTBiOWViN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNmOWUwOGY2NTQxNTA1OGQzOTBkYmMzZWJkYzFhMGNkZGJjM2I4MWRmNmI2MzU5YmUyY2IxOWU1NWUzMTg3ZjYifQ"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

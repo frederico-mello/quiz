@@ -1,0 +1,412 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:996318a3964c5c48cb56ecc1eaeaef7ac7a318e23ea6c185f2e2a7a6cc32fcaf",
+  "claims": [
+    {
+      "id": "claim_1539802c4b794673937df5760f36d7a1",
+      "statement": "app.py is the sole Streamlit entry point: main() runs the app, initializes session state (questions, answered, response_text, audio_file, moderation_warnings, moderation_blocked), and delegates to one or two public functions imported from each src/ module (avatar, config, content_filter, llm_service, qrcode_service, quiz_data, tts_service).",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L7-L16",
+          "version": "repo-lines-v1:sha256:35926abc68a7460080d8384e9edfb26eae2f2467eca1d08ed0db9fc7a3ae5740:eyJzZWxlY3RlZExpbmVDb3VudCI6MTAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0MDA1OWE5NzhiZWU1ZjI3ODQxODU5MWQ0NGQwMjZjNGM1ZWFkZGRlM2U5NTc5YzVhZWRlMjU1YmM5NjQ1OTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU3YjllOGU5N2JlMmYyM2MwMTlmNTQzNjAwODliZDcwOTcwNTVmNmY0MzUzMmM5MDE3YmY4ZmY4N2FiZjI3NDQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc4Y2Q2MTEyYjY3ZDFkMzIxODgyMGI5NzZmZmE3NDU2OGZiYThhMjAyOGY5OGRkNDM2NTIyOTU3OWI0MzFkODYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImRhYjI5YWJmMzY5NDUxZDkzZDU5YTg2NTRlMTRkZjViYmJmNTA3MDc3MDk0ZGQ4Y2E3MDg2YWMwMTRiOGNmYzQifQ"
+        },
+        {
+          "resource": "repo://app.py#L81-L103",
+          "version": "repo-lines-v1:sha256:9abf38462bb461399cc826d171709bdfb33635e4bdf38589c7f080418ad6d73e:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImMyZTMxMjU3ZGMwYWUxZDU5MzAzN2MyODBjOWFkNTA4MTliOGE2YzhjZjcyOGJlMDcxNmQwMGEzZWVjYzA0YmIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNkNWEyMTMyNzM1MTg2ZmRjZmZjZWUwY2UxYTUyYWExODg5ODBhY2U0ZmFiMWFhNzg1YTMwMWMwMjc3OWNlZjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc1OGFiNjg0ZWUwN2NjN2FiNzc3MTNhYzNiNTU0OWEyNTQ3YzNmNzY2NGVmNzc4MTAyYjUyMmRmZTI0OWUyMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjEwNmJiMDU0MGQ1ZGZhYTgzMTUwNTdkNTYwNjFkOTE0MWMxYTdhOWFkZDBhMGYyYWM2NTE5OTI0NGUyYjhlM2QifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_a7fd183ebf4e46aabb45a6b9244b9985",
+      "statement": "Question selection is driven by the ?q=<id> query parameter: app.main reads st.query_params['q'], coerces it to int, and resolves it via quiz_data.get_question_by_id; a missing, non-numeric, or unknown id shows an error and returns early.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L105-L127",
+          "version": "repo-lines-v1:sha256:752f80b6f9f4d94e1d0bf05cf9d5a720576c245dec8c8df0c1db15f642dcac65:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNjU5MDk3ZmQyNDg5ZjExNWUzNTdmZTMzMTllYzg5MTE2NDNhYTk5NTQ2MDA3ZTEzYjE5MmUwZDI3NTExZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFiNWM4MjYzMmZjODJkNGIyYzM0MGY0MjU1OGJhM2RmYTMxYzc2NTVkZjZmY2MxNjhiNGZkY2U1N2ZhYzYwNDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YTAzNzA1NTllNmM3OTRhNGM1MTY0YTFiZmUyOTEwNTdmMThhMjAyYzIyYTQ1ZDJlZmE5ODVjZTljMTIxMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijk2Y2YxNTdhNTk3Y2YxMmU5MTQ3OTllOTA0M2QzNjIwYTViYWU0MTEwMDFkZmQ2NGMwOTVhNWI4NDg5ZDczNTYifQ"
+        },
+        {
+          "resource": "repo://src/quiz_data.py#L15-L19",
+          "version": "repo-lines-v1:sha256:e78aee01e6f1fb143191009d40b88edc21079cd7bf4254d6ff13e87d10b766fe:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNmNmMGNlYzA4MDdjNjI2YzE4MjRkNmQ0ZTMyMmE4M2U2Y2U0MzcwMDYwNTMwNGM1YWY0YzI5MzUyNWFhZmRlMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5NjAwYTczZDJlMDJmMzUyYjkwZmVmMWQ4ZDYzODExYmE0YThlZTBjMWJlYWE3YWU0NjU4ZjM2YWEyZTE5OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDcwMTQ5ZTA2OWFkNjdlY2NmNDczNjQ2ZmYxYzc1MDA1MGQzMjlkMTEwMDE4ZGM1NzY2ODc4ZWFmYTFkNjA3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d99b140aac54f2cbadf86563915d225",
+      "statement": "Answer submission guards empty answers and already-blocked sessions; when MODERATION_ENABLED it runs content_filter.check_text, and on a block increments moderation_warnings and escalates via get_warning_level to first/second/blocked (a 'blocked' level sets moderation_blocked). Clean text flows to _process_answer → llm_service.evaluate_answer → tts_service.generate_speech → answered=True → st.rerun().",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L149-L203",
+          "version": "repo-lines-v1:sha256:d03d651a007839f568607e9449431539143061ce95761c5e58be3612ad355e69:eyJzZWxlY3RlZExpbmVDb3VudCI6NTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1YjgxMTg0Y2YyNDliODJiNDU0ZjA2ZTRkZjA2YmE5MzQ1YWYxNzBjZTAwY2UxNTI1NWViY2RlOTA2ZGJkMjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFkYmYxNTY2ZDQ2YzQ2ZmE3Y2Y4MTVkNjhlYjAwNTkyNWFmMTMyMzQzYjE3ODMyNmM0ZTFjOWJjZmQxMjQ5NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e097ebbbee3341c89c812d90de3899a4",
+      "statement": "After answering, app.py renders the evaluated response and, if the audio file exists, embeds the talking and idle avatar GIFs plus base64 MP3 in an <audio> element whose onplay/onended handlers swap the avatar image; the 'Tentar novamente' button resets answered/response_text/audio_file and reruns.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L204-L249",
+          "version": "repo-lines-v1:sha256:229094a059362aae8e1b2b2de05915b5b472ffe0a149784717878e4c83b39b00:eyJzZWxlY3RlZExpbmVDb3VudCI6NDYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5YzcxNDk3Y2ZjODJlNmZlMGZmZmYwYjA2MjM2NWVmNDk3MTUzODhhNjU0N2I5N2ExMzAwZjdlZWEyOGYwMmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhhNmRlYjYyODQwNGE5OTUyYjI0ZGQwZWExODY0NzU3NGMwMjMzZTBlZmJjZjAzMWFlNjcxMzIxZTQ3YTQ1NjgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhiOTA1YTdmNzFlZTE0OWY0OTFlMmNiNzNiZDFmODdkNTAzNmFmYTJmYjRkZWE4ZTcyMzNmMmUzMmQ5ZTUzNjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE1MjU0ODE5ZWY5M2UyOWUwNzAyNzM4N2ZjNjgzZWY1YTc5YjAzM2RiMzNkMzNmZjhjNDliNjFlYjE2Yzk2ZWYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5812c4a59f8a4c3381e88901084b2266",
+      "statement": "app.py renders a QR code for the shareable URL '{APP_URL}?q={question_id}' via qrcode_service.generate_qr_code and displays it with the link caption at the bottom of each question page.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/qrcode_service.py#L6-L11",
+          "version": "repo-lines-v1:sha256:891578c7e17f4198c7f9ff627a3e22bec0eb3972607828d60e5692d4f7fc1573:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDlkNGNjNTBhYjY0NDYyMzc5OGU3MzYyZjc1NmIyMjBmOTk1YmU2NmJjOTRiZmM0ZGQ4MzFkMDE3MmExZTllMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmU1ZjVmNTdlNGQ3ODhiMmQ2OTFlM2ExNTljN2IwZmFlNTE1MzgzODhlNDYyOWYwOTAwOWM4ZDE5MzIyODVhNSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTVmZjNjNGRjYWQ0NGE2YWM4NWI3YmFiNzM0MzZiMjFiZjYyYWEzZTYxZjQ1ZWM1OTQyYjM4NmU1NTcxMmE5YiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1d537b1e52d342ac9a94a494f400184d",
+      "statement": "questions.json is a JSON array of question objects with the schema {id (int), question (str), correct_answer (str)}; the current file contains five Brazilian-Portuguese questions about historical dental instruments.",
+      "evidence": [
+        {
+          "resource": "repo://questions.json",
+          "version": "repo-file-v1:sha256:ee3d2e0c76136168bbf437cea6e5e57fb8fe8a92ae40757ecb952d3cc24b2198"
+        }
+      ]
+    },
+    {
+      "id": "claim_d6a439cdfc004543b01a6ee5de6f4959",
+      "statement": "src/config.py loads .env via python-dotenv at import time; validate_config() checks the five required LiteLLM+OpenRouter env vars at startup (not at import), is bypassed by SKIP_CONFIG_VALIDATION=1, and raises ValueError naming each missing variable.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L5-L38",
+          "version": "repo-lines-v1:sha256:ea50cc6aeb4cec3f7447fa6c011eebed997156ab9f82d2eb680fb6c9564ec4d0:eyJzZWxlY3RlZExpbmVDb3VudCI6MzQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVhYjM5NjBlODhjNTBjNjdmMjNkY2EwZGQzMTBjZTJiMTU0MDBkZjdiZjE2NjMzMGRiMzEyZGE0OTIwYmU2NDQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQzOWRlOTg1YmJkN2Q4NzYyM2RkNGJkOGYwMTNhNmI0YjdkNzAyMjI0ZjNkYjhhNDdlMzM5YzFkOTBiZTFjZDIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0YjY1OTAwNjkxMzVlMDZkZTk4YzQ5NjYwOWRkZDcyMDcxZjZkNWE5OTFjMmM0MWIxMjgyZjkyMmNjNjY1ZDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_921a373c836449f4ac3180896c7b3593",
+      "statement": "src/config.py exports config constants with these defaults: OPENROUTER_BASE_URL=https://openrouter.ai/api/v1, MODERATION_ENABLED parsed from env as a bool (default true), APP_URL=https://lappquiz.ict.unesp.br, TTS_VOICE=pt-BR-FranciscaNeural, TEMP_AUDIO_DIR=tmp/audio.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L42-L58",
+          "version": "repo-lines-v1:sha256:3cbd6d44231ba1a4fde7b5609fda48b8e4f730e0fdd2f10f473b0c8acbfe1746:eyJzZWxlY3RlZExpbmVDb3VudCI6MTcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFmNDliMmRlZGI2NWU0NTI5OTlkY2RmY2YwNDMxOWY3YTJjOTM4YzFhNDEzMjgzMmVlNmVjYmNlN2Y1NmRiYjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVkOTIyNDQ3OTRjYmZmMTdmZTNmZjk2NTU4NjlhZGFhODY2NzQ1NjM1MjQ0MzUzNjM2OWUwMTNmZGE0ZmE4YmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0YjY1OTAwNjkxMzVlMDZkZTk4YzQ5NjYwOWRkZDcyMDcxZjZkNWE5OTFjMmM0MWIxMjgyZjkyMmNjNjY1ZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4af215fc8d8e4c3a9346db7bca7c0138",
+      "statement": "llm_service.get_litellm_llm() returns a ChatOpenAI pointed at the primary LiteLLM server (LITELLM_MODEL, LITELLM_API_KEY as SecretStr, LITELLM_API_BASE_URL, temperature=0.7), and get_openrouter_fallback_llm() returns a ChatOpenAI pointed at the OpenRouter fallback (OPENROUTER_FALLBACK_MODEL, OPENROUTER_API_KEY, OPENROUTER_BASE_URL, temperature=0.7).",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L37",
+          "version": "repo-lines-v1:sha256:625750c8da0c1d8d2982c67575acf834ee2b92d79e839b66aa524f7e41645c8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjYzA5NTRmMmY0ZjU4ZGUwMzUwODExNWUyZDQ1NTFiOWU0ZTY1MjdlYzU2OTNkMGY0YjU0YWU4ZWUwZTY5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyMDA5N2U0YWE1MDA2OGJhMTU3ZjlhMjczOWZhZDg2OTk1ZTFlMGNkY2NkYWRjNTg5N2MyMDM0Yzc0ZDNlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOWMzZTllNjExNTgwOWU4ODRjNzUwZTAzZmVmZDdhYThiNTllYTFhNzI2MjBhYTA5MmFkNDdiZTc2M2MwYWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6c6b1c5190244824846ac6df0d91faf0",
+      "statement": "llm_service.build_prompt builds a ChatPromptTemplate with a system persona (friendly quiz professor, ~500-char cap, no markdown, refuses improper content) and a human message carrying question/correct_answer/user_answer; a blank user_answer is rendered as '(sem resposta)' so the model never sees an empty field.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L40-L74",
+          "version": "repo-lines-v1:sha256:ecbce8be2185ca8f2b8be79d6a4f442404554c03dbec8fee06b37bc8516f5bb1:eyJzZWxlY3RlZExpbmVDb3VudCI6MzUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM2YzFjM2EyYjkxMDBjYTUzOTkxZGVjNzRkYmZkOTcyMmEwNjdjMzM0Mzg2OWY3NDAxZWNhODgxOTAzYTgzMzMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjhjYzRhN2QxY2M3OTZhYmEzZTQ2NzIzMzI3ZjUxN2U5ZjgxMTk4MmQyNTBmMDcwMjk4NmU0YjU3NjRhZDk1ODkiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjVhMzQxN2JjOTRjODU4YzgxYjk2NzhkOTFhMGFkZTI1MmRmNTNlYmVhM2Q2ZDQ2NzAwMzU3MTMzNGJhMmUwOTMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_0bd2e317944344b0ac65e2daa5f637ba",
+      "statement": "llm_service.clean_text_for_tts strips markdown emphasis, rewrites [text](url) to text, collapses repeated newlines to '. ' and other newlines to spaces, and trims, producing clean Portuguese for the TTS engine.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L77-L83",
+          "version": "repo-lines-v1:sha256:8d0ac2c6d02a5df833a4a7e0b5641b923a10a37e16399e2315dedbd699e114b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU2MmY0N2MwYmIxNjEzMzEyZTU3YjM4ZGM5YzI4NzViOGYzMjNmODliMTc5NTU0NTI1NjhkYTc2ZjcyY2Y2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFiOGY0ZjQxMzU5ZjZjMGJmN2FiYzA0N2Q0YzU3NzQ1NzIyMzM0ZjVkMmQ2ZTcyZTE2NmE1NWIzYTA5NzQ3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjE5MWQ5ZWNhM2E5NTFlYjJmN2M1NmE2N2ZlNDFmMGY1NGZhNDFkNDFmNDE2ZWFlYjI2Yjg1MzVhNDgwMmMwNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_de170134c16b4aa7afacff197ca73901",
+      "statement": "llm_service.evaluate_answer tries the primary LiteLLM LLM, and on any exception logs a warning and falls back to the OpenRouter LLM returning its cleaned response; if both providers fail it raises a RuntimeError whose message names the primary model/error and the fallback model/error.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_270892dc6a684d4ebd059e4e900ce4e9",
+      "statement": "content_filter moderation is data-driven: BLOCKED_KEYWORDS is a set of ~120 Portuguese and English sexual/violent terms, BLOCKED_PATTERNS are regex bypass patterns, and LEET_SPEAK_MAP is a str.maketrans table used to normalize leet-speak before matching.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L4-L132",
+          "version": "repo-lines-v1:sha256:981ba0e6424bc811aaa2c3b13d10cb357e19a9cb1c94203385140d60038ca095:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI5LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0NTVjMzU0NmEzNGE5YzJkODhlN2NmOWJmMDg3NTdkNDdmYTBiZGIwMDJhZTBkNWRjMGRmZWFhNWM3NTEyYTFmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI0YTZkMWExMDFlYjIyNmI5YjM2ZjhiODhkNzNhMWFhNzNhMjFjYzVkYzk3ZGZhMTUyNTRjMjhlZWY1MDFkMmVkIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkN2IwZWQ5Zjc5YWIxZmI3MjIwZjA4NTM3NWViODRkODI1MDE2OGVhNzQxNDcyZWI1M2MxYjgyNzE5N2JmMjFmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJkZDljOTI3MDllNzU4Y2QzYzdiYzRlNDkxMjgxMDczMWNkYTljNzE0MDQ2MTNiYzViOGYzZmNkNWY1NWY4OWQ1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_eff2dba24b8e4448abc8257696016cd0",
+      "statement": "content_filter.normalize_leet applies the leet translation table and lowercases; check_keywords returns (True, message) on the first keyword substring hit, and check_patterns runs each BLOCKED_PATTERNS regex (skipping a bad regex rather than raising) and returns a fixed pattern-block message on the first match.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L135-L155",
+          "version": "repo-lines-v1:sha256:ebbccf386480215899f7cfc516e3b41af81c84aa50f7ad78d44edde5ecba59c5:eyJzZWxlY3RlZExpbmVDb3VudCI6MjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjljMzBkODljMDEzODYyYTQ0YzE5NjU2NzA3NDUwZjI5OGUxY2U1OGFiODRmODlkMTk0YzUyM2FhY2ZlMzE1NDgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQ3YzczODhjNGRiMWRmYTQ3MWFiZDY0OGQ5ZjNlZjcwYWJiMzI4YWRjMWI3Njc5NTk0YTI1NmJkODAwZmYyMDQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBlZmFlMzgwNDU1NjliNjM1MDYwYzExMWZhZmZmYTFiMmQ3ZDk3NzZhNjNkMDYxYmU3OTVhZDUwMjM1ZWUxZWMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a8a7c9af14548a38115a34a6d2b883a",
+      "statement": "content_filter.check_text_local runs check_keywords then check_patterns and returns (True, msg) if either blocks; it is the deterministic local layer used before any LLM check.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L158-L165",
+          "version": "repo-lines-v1:sha256:4c08d2d0bee82bbe2224ea0acc3a6cffbb6930c0fca9e767196186920dac41b0:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNhNGJiNDNiZTY1MjIyNGM3MmFjYjMxZWQ1YTE4MDFkNzJkZjQ0NTFiMzc5NTRiOTNiZDY3Mjk5ZGM4OTAzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzlkYjFkNzk2YzNmNTUzNzZmZjZiNmIxMjNhNGYzNDE0MjdmZTM3YTMxZmFiYzFhNjkxNDYwMTc4YmE2YzY2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmY1ODcyNjJkN2M5MWM2ZTgzZmY5Y2NhYWY3NmVkZDk1NGFmZjhmZTYwNjA0ZDZlMWZkMmIzNmIyODU1MWNmZSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_df71deef65f14030b3143818d82a58c1",
+      "statement": "content_filter.check_text_llm prompts the given LLM as a medical/odontological-context-aware moderator (explicitly allowing procedure-related words) and blocks only when the lowercased response starts with 'bloquear'; otherwise it returns (False, None).",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L168-L194",
+          "version": "repo-lines-v1:sha256:0a58bd50dea046e58bcc0b5dcec9ee6c7f6ea8ab3607bcd9d27f545e847809b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhYjZmNjVkY2E5OWVhNDM2Y2FiOWY0ZWUyMWI0YjUxNWUxYjUzNzk0OTY1NTRkODcxMzJmMThlMjQ4NTIwZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQzMTA5NjA3YmQ4ZDc5NjVhYjYzNjMwMzE2MDdmMTFkMDNiZTI1YzNkOTYwYWNlMzU2MDE1NWU5M2M4ZDMxMTIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_005924fd925a49deb9edcaa8af28bae2",
+      "statement": "content_filter.check_text is the main entry used by app.py: it runs the local check first and returns immediately if blocked, then (when use_llm) lazily imports get_litellm_llm and runs the LLM check; if the LLM call raises it fails open and returns (False, None) because the local blocklist is the primary defense.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_d5be8f783f494efa94c55aa8b4b6bb82",
+      "statement": "content_filter.get_warning_level maps the warning count to an escalation level: 0→'none', 1→'first', 2→'second', and 3+→'blocked', which app.py uses to gate further submissions and set moderation_blocked.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d99f1e3207a740d2aae8aac6222f32d7",
+      "statement": "avatar.TransparentGifConverter converts RGBA frames to palette (P-mode) GIFs with transparency index 0, remapping pixels that previously used index 0 to a free index and setting info['transparency']/'background' so frames composite cleanly.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L17-L68",
+          "version": "repo-lines-v1:sha256:46720ae32869c387304b21e53c2c1153b8d10d0879e5b7ebbe9656380c41c522:eyJzZWxlY3RlZExpbmVDb3VudCI6NTIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZkNTYyNmJmY2NkZjcyN2U3NjViNjc2NWFhNmNmZDRmOTY0NjliNWM0YTI5MTU2YjA0YWRlMDE5YmE2NWJmMzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjJiYjU0MmE5MDcwY2FhNGM5OTg5ZmQxN2U0NGE5NmIwMmViNTBmY2JjZWQ2N2VhMGU0N2FjODgzZTg5NjgwZGUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImFhYzI5OTQ5Y2JlN2E4NTVhOTIyOThlYzU3MDAxOTVjMDYwOTEyOTg3YzlhNDMzNjFlZWJkMjhmYjM0MjkyYzUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjZmZGU3MGM5ZGU1YWFjMjYxNjA1MzhkNWE2ZWNiMjRkZTcxOGIyZDczMmE2MzNjMzBlMzMxYjUxY2Y3MjZmZmEifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_1e6a4e000ede433ca27901c247ff286e",
+      "statement": "avatar._draw_scientist_frame draws a single scientist frame (hair, face, eyes with blink/look-around, glasses, nose, mouth as closed smile or open talking ellipse, lab coat) at 200x220 with center x=100 and face y=95; generate_talking_gif_bytes produces an audio-duration-matched GIF (loop=1) or a 20-frame infinite loop, and generate_idle_gif_bytes produces 48 frames at 125ms (≈6s) with an infinite loop and blinks on frames 30/31.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L288-L331",
+          "version": "repo-lines-v1:sha256:3e8daca681eab8cb566ce9bd686a3306aa4fe2427ff794a94765be594cb6cf41:eyJzZWxlY3RlZExpbmVDb3VudCI6NDQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImFkNzNkYWY0NzVmZmU0MGZhZDk5ZjhlYWRlZjEwYzYwZmZiZmU0N2YyZGU4YWVkOTUxNjhlYWYyYzAxNDg4MmMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijg4NzFjODFiYzQxZDdlOGQzN2I5N2Q3OTkyZDAxZmIyY2JjNjY0ZjA3NzFmZDU1Yzk0MzdkMmM3ZGEzNjJhMmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjcwYTlkZmFkNTRiNzMzMWI2YmM1OWEwYzc1ODJmMWFlYjg1MjFmOWY0ZWM4MzgyNDhiNDk5NzlmNzFkZWY5YzEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI4OWQ2NmRhZWUyNWJhYWFhYTIzMzU2MjcwNGI3YTI3MWU3ZWFjN2JiYTVkYzI0NjQ2Njk3YzY0MDM3M2UwYTIifQ"
+        },
+        {
+          "resource": "repo://src/avatar.py#L71-L265",
+          "version": "repo-lines-v1:sha256:1e82277c799c192a28a08243b3ef2da65ba45b18a3cf16bbae8748cba6ac898e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTk1LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiIyOTE2ZGFkOGI1MThhZDRlYThkZDUxOGNkMDFhNDM5YTkyYWI4NWQ4N2RmODllYzQwOWMxNDZkYWM2YzJiM2U1IiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIzYjg0YTIwODQwM2VjY2Y1NGNkNTViZWVlZThiMjE4N2I3NWVkNmU0MDY0N2M4MGEwNWM1MzRiNWIzNTZhN2EzIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiI0MGRiZmVmODUxOTk4ODA3MTU0MDViNjU1MmU1MTI0ZDYwOWU3OTIzNTFlMGZjODVjY2M1ODkzMjU4MWM2NWFlIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3MTBjOTA4YTllOTJjMzdiY2JlZjQ4OGY0ZmI2MjU0ZWQxYWM2NDhhODEyMmY5YTM2YjZjZTA5ZTJmNjM2ODU4In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_8125ff855f5444a7ade6fd562b065371",
+      "statement": "avatar.get_talking_gif_base64 and get_idle_gif_base64 return base64 GIFs and cache them to assets/scientist.gif and assets/scientist_idle.gif respectively, generating and persisting each on first use; both files are build artifacts that the module regenerates on the next request if missing.",
+      "evidence": [
+        {
+          "resource": "repo://assets/scientist.gif",
+          "version": "repo-file-v1:sha256:addbc2a5ada61f83cb92f92282a47d0948f0963b9b89720e92842ef7b52eeaaf"
+        },
+        {
+          "resource": "repo://assets/scientist_idle.gif",
+          "version": "repo-file-v1:sha256:1988b0c977831a271481047b1590779da1c736830d8e40e212e28adea31e9ace"
+        },
+        {
+          "resource": "repo://src/avatar.py#L334-L364",
+          "version": "repo-lines-v1:sha256:2959d4131de74f6056cbe0de04ff386d058ce88041a515bc9228010cf2e796ee:eyJzZWxlY3RlZExpbmVDb3VudCI6MzEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjhmNWJjZjM4MTI2MTMwZTBjMThjYTgxNzQ3MGFmZWIwZmIwZjFjZWNlNzdjNDZiZTI0MjRhODUxMGIzOTA2ZmQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjNjNTYwMDE3ZWUzMGZmZTAxZTIzNTBmOGQyZDYxZDYwY2U0NThjMzY4Y2ZjNmIyNDViZTExMjYwNWRiMjAxOTkiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImM2Yjk4ODBlY2E4ODZkOTNlNjMzNzM0NWExNzJkOWUyOTdiM2JiZTMwNDU2YTk4Yzk2NzA5NzJiZDgxZDM0NDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_7e16030976f245089f0f2e2a71b60274",
+      "statement": "quiz_data.load_questions reads the JSON array from a file (default questions.json, raising json.JSONDecodeError on bad JSON); get_question returns the question at a 0<=index<len or None for negative/out-of-range; get_question_by_id linear-scans for the first question with matching id or returns None.",
+      "evidence": [
+        {
+          "resource": "repo://src/quiz_data.py#L4-L19",
+          "version": "repo-lines-v1:sha256:5e3e182ec73de6afab95ae7691731d5b36f2334bdaf6216591ac9518355afa1b:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjM2U1MTUwMTZlMjU4MTAwZDIzZDI5MjIwOGI4NWI3YTYzMzliOTdlMTcwOWVhYWQ5ZjQwZTdlNjEwNTQyOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ4OTYwMGE3M2QyZTAyZjM1MmI5MGZlZjFkOGQ2MzgxMWJhNGE4ZWUwYzFiZWFhN2FlNDY1OGYzNmFhMmUxOTgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4MWIyZWJmMmVmOTk2MDNiYmVhMDJlNDBlMjQxN2NkMGMwMGQ0MDJlNjg5NDBkNmJiZjJjZTAwOTQ4YThhMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b32008bb02c04d63843b1a1c801c6e2c",
+      "statement": "tts_service.generate_speech ensures TEMP_AUDIO_DIR exists, creates a temp .mp3 via tempfile.mkstemp, runs generate_speech_async through asyncio.run, and on any exception removes the temp file and raises RuntimeError('Falha ao gerar áudio TTS: ...'); on success it returns the MP3 path.",
+      "evidence": [
+        {
+          "resource": "repo://src/tts_service.py#L8-L25",
+          "version": "repo-lines-v1:sha256:2be32ce06225ff3a33f21c4b7f0dabfa6858a15356906fa1c0603000610209fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNWRiNGU2NzQxNWZiOWZlNzQ0OTU4NDljZTI5ODc5M2MxMWQ0YjZhMzg5OWExYWE0ODM3YmI3MjMyMDRkMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlYjU3ZTRhMDVmNGNhMWYzNTMzYjEzOTYwNjkzNmI5ZDQxZjdhNzE5Yzg4MDU0MDM2NTkzYjNlMmFiYmE0MWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_e540edd665da4c1289b03041aff5083f",
+      "statement": "The pytest suite under tests/ runs with pytest.ini (testpaths=tests, pythonpath=src, --strict-markers) so import src.* works without an install step; tests/conftest.py provides an autouse fixture that sets SKIP_CONFIG_VALIDATION=1 and fills the five required LLM env vars with test values, plus shared sample_questions and tmp_json_file fixtures.",
+      "evidence": [
+        {
+          "resource": "repo://pytest.ini",
+          "version": "repo-file-v1:sha256:6d30577beaa66ed875812038da59ab9de8afd6a6e127a606444c223a1ba45081"
+        },
+        {
+          "resource": "repo://tests/conftest.py#L7-L39",
+          "version": "repo-lines-v1:sha256:87d6186c4d7453c8bbe6b5ad4b280b10b7c1d932511208d434778ff26676ca75:eyJzZWxlY3RlZExpbmVDb3VudCI6MzMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZmMDg2NmY0MDExZTU4NWZmYzA5MDkyZWRmMDgzMmUxN2I1MmY0YzkwYzRjYTBiNDJkY2ZhMDUwZmEzNzViNWEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjVlMDZhMTU0YmI1ZDIyY2IzZGIxMDQ5ZDE1ZTAyNjFlYjM1NzYxYjNkZDdlNmNiYTAwMDJlMWNkZGFmNzk3NzgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImQ5N2Q1M2JhNmMxMzAxMDdmYTg5ZDk3Y2E0NTE4NjU2NWU0MGMzMzYwMWNkZWYzNmE0NzlkZGQ5NjVmODkyNjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_153342da52964ba1aaf4115777a5cb27",
+      "statement": "tests/test_app.py stubs Streamlit and the src.* modules via sys.modules and reloads app, then asserts the QR link uses the default public APP_URL (https://lappquiz.ict.unesp.br) when APP_URL is unset and a custom value when APP_URL is set.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L113-L128",
+          "version": "repo-lines-v1:sha256:1bd4bccb4ac410580bdb8148c880abba73c15acd208cdc0eae51cc83b919bead:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5YTVmZWU3OWRkNTI5ZGY2YTYxNTdhYzc2ZDVmZjYyZWFmOTgyMTg5NjRlMjQ3Y2UzYTFiMTg1ZWQ4YWMxYzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImE3ZWZjMDkwNzljZGI5YmY2NjNiMGY4YjU2ZWEwNjZmYTU2ZGJlOGY4ZmM4M2JhZmM2NWQ1MGVmMjAxOGI1ZTAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjMwOTlhZDhmYzE2OTNkYjQ3YTk5NTYzM2Q5MzE1OTZiOTBkZmUyODhkYzk3Zjk4YTJhNDEzYzk0MGUyOWM0MjAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_504490c50018408995f2989f947140ba",
+      "statement": "tests/test_llm_service.py covers evaluate_answer's three outcomes: primary succeeds (fallback not called), primary fails then fallback succeeds, and both fail raising a RuntimeError whose message names both providers; it also covers build_prompt (contains all three inputs; marks blank answers '(sem resposta)') and clean_text_for_tts.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_llm_service.py#L25-L119",
+          "version": "repo-lines-v1:sha256:f048401f94956346c039348b1c2719ab43af7c9ce7b851045ba4384421a69183:eyJzZWxlY3RlZExpbmVDb3VudCI6OTUsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwNGNlMTRlZDdkMDliMDNiYmJmZjI4Yjg3YTRmNzdiMzZlMWQxOWM4MDhkMzRmODRiMjMzZWU3YmI1NTdiNTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjM1Nzc5NjZjYTI1NzYyYmRjMDVkYWQ2Y2NhMTkxZDNhNjlkYmIyYTlkZTFlZGIxOTM4NGM4MjEzNDM2Mzk2ZmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxZTgwZTEwZTAxYzUwNzQ2ZGNkYzU4Njg2ZWU0ZWU0YTQ3NDhiYzU4YWU5NTM0NmQ2MzU4MzU2Y2FjYjliYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c28c42159c4a461398c3721935a63a2d",
+      "statement": "tests/test_content_filter.py covers check_keywords (per category), check_patterns, check_text_local, normalize_leet, the get_warning_level escalation ladder, the check_text_llm 'BLOQUEAR' classification, and check_text's local-block-skip-LLM, LLM-invoked-once, LLM-fails-open, and use_llm=False paths.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_content_filter.py",
+          "version": "repo-file-v1:sha256:ef463b9e5e835c9431f3cd3805c9484b358bce67cab3866a1ab6d2c95a133c25"
+        }
+      ]
+    },
+    {
+      "id": "claim_28791be39bb84d93899c1081a66d3c33",
+      "statement": "A GitHub Actions workflow at .github/workflows/test.yml runs pytest on pushes to main and on PRs against main using Python 3.10 and installing both requirements.txt and requirements-dev.txt.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/test.yml",
+          "version": "repo-file-v1:sha256:e015507f6a0abb26e6e8e05acda6ff13d33253c9aa05f215424d8cd53ba5ae0b"
+        }
+      ]
+    },
+    {
+      "id": "claim_8cc489d17ff44dbcb7a14bd2e73484f5",
+      "statement": "openspec/specs/ contains per-feature specs documenting intended behavior for nine implemented features: avatar, content-filter, independent-question-access, llm-evaluation, llm-fallback, question-link-qr-code, quiz-ui, readme-documentation, and tts; openspec/changes/archive/ holds archived change records.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/avatar/spec.md",
+          "version": "repo-file-v1:sha256:9fc30497ce2c209f48d7c83c7f65d14bc0291f27378a4aba4a3c12cc82f0e846"
+        },
+        {
+          "resource": "repo://openspec/specs/content-filter/spec.md",
+          "version": "repo-file-v1:sha256:84457a3696ce9599dfa974abab1941c3f0ba17dc44f235caf4a5b9b2debd3845"
+        },
+        {
+          "resource": "repo://openspec/specs/independent-question-access/spec.md",
+          "version": "repo-file-v1:sha256:75c3137a97d5b18451b16eb2f31f641871cffc114cc2265cf5fe1b7b7ac3931c"
+        },
+        {
+          "resource": "repo://openspec/specs/llm-evaluation/spec.md",
+          "version": "repo-file-v1:sha256:a7b7670d8609e622ddb29eef9e4149186e795339e69f0bb3ed3881cb653f9b04"
+        },
+        {
+          "resource": "repo://openspec/specs/llm-fallback/spec.md",
+          "version": "repo-file-v1:sha256:dee55d452be68426d1de5f14a112d13f1e2847080bd4f6f4c4e3e749f444b122"
+        },
+        {
+          "resource": "repo://openspec/specs/question-link-qr-code/spec.md",
+          "version": "repo-file-v1:sha256:2bce47488415980f2cc3c7b68f711a5cf1a61e8e913aa24b91ac7bd50e8ab915"
+        },
+        {
+          "resource": "repo://openspec/specs/quiz-ui/spec.md",
+          "version": "repo-file-v1:sha256:969081e4720bbd707467f9f477a8f6e5925354e15737a58ced230e9abbd17e6e"
+        },
+        {
+          "resource": "repo://openspec/specs/readme-documentation/spec.md",
+          "version": "repo-file-v1:sha256:5aa024a5c45abc6327da256fa5d9a669cbe3220f7b5cfa5386839025d587b5d7"
+        },
+        {
+          "resource": "repo://openspec/specs/tts/spec.md",
+          "version": "repo-file-v1:sha256:d9fbdd18eb3094bb80fd0d7a07d2d9e996a6e37e8a0ba6ba41746b3e9c9d685c"
+        }
+      ]
+    },
+    {
+      "id": "claim_58bba0850a5047cfbeb2ec7342618406",
+      "statement": "The llm-fallback spec requires a primary LiteLLM provider and a fallback OpenRouter provider with automatic retry on primary failure and a RuntimeError naming both failures on total failure, matching the evaluate_answer implementation.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/llm-fallback/spec.md#L1-L47",
+          "version": "repo-lines-v1:sha256:dee55d452be68426d1de5f14a112d13f1e2847080bd4f6f4c4e3e749f444b122:eyJzZWxlY3RlZExpbmVDb3VudCI6NDcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5NDQxMzI5N2EzZTk1YTliNzJmNWU0YzA0YWE5YzMwNmY5MDA5YWQ4OGZhMGY5OTQ1M2QxOTYzODM1NjY4YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjFkMDEyOGRkMWRkYjQxNmRjZDI4MmYwYzBjYzg0ZDA0NzhkNTFhZmIzMDI3ODg5ZTlhNzg1ZTNmN2Q1ZGJmZDMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8d40406674a747038dc4026192bcd3dd",
+      "statement": ".env.example documents the LiteLLM primary variables (LITELLM_API_BASE_URL, LITELLM_API_KEY, LITELLM_MODEL), the OpenRouter fallback variables (OPENROUTER_API_KEY, OPENROUTER_FALLBACK_MODEL, OPENROUTER_BASE_URL), MODERATION_ENABLED, and the deprecated migration path where the old LLM_MODEL was replaced by LITELLM_MODEL and OPENROUTER_BASE_URL is now only the fallback base URL.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example",
+          "version": "repo-file-v1:sha256:12283acf2b0c069ed16188de12e051aa659b71dc0ccf627c7c53ca67219e7281"
+        }
+      ]
+    },
+    {
+      "id": "claim_4b9965b57e24445cae7248f58f16549b",
+      "statement": "requirements.txt pins runtime dependencies streamlit, langchain, langchain-openai (>=0.2.0), openai, edge-tts, python-dotenv, and qrcode[pil]; requirements-dev.txt holds development-only tooling used by the test workflow.",
+      "evidence": [
+        {
+          "resource": "repo://requirements-dev.txt",
+          "version": "repo-file-v1:sha256:8554614dc459151d6b0134f441bef0856df306dc0f06515ddf4197d05adfe1be"
+        },
+        {
+          "resource": "repo://requirements.txt",
+          "version": "repo-file-v1:sha256:4e857202a323d235c4da642c132fabc6b005b2944c1c77c5f13066c5920e8ec9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8989e6980c3b48b3bc2c87efaf852ec8",
+      "statement": "openspec/config.yaml declares the spec-driven schema and per-artifact rules that route proposal/spec/design/tasks/archive work through the OpenSpec Plus skills before artifacts are written.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/config.yaml",
+          "version": "repo-file-v1:sha256:521acc6cd1eb74e391f634ae62cf614454d2aada69928288882b060668f15961"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

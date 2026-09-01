@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:4d9d9bc20ae67b2437902d5cd91e3f961b2a9c7bc32b4c4a4a6fbd0a0b0ce6b9",
+  "claims": [
+    {
+      "id": "claim_b406348a9ef64d4faf5bb3b8bbf3a40b",
+      "statement": "The app is an interactive dental/medical quiz whose UI, LLM prompts, and question content are entirely in Brazilian Portuguese (pt-BR).",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L78-L78",
+          "version": "repo-lines-v1:sha256:dcd92d9fff117ea155387ccaf178ff22daadfa571e92e6c0c748a736d7bcc3e0:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNkOTJkOWZmZjExN2VhMTU1Mzg3Y2NhZjE3OGZmMjJkYWFkZmE1NzFlOTJlNmMwYzc0OGE3MzZkN2JjYzNlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGNkOTJkOWZmZjExN2VhMTU1Mzg3Y2NhZjE3OGZmMjJkYWFkZmE1NzFlOTJlNmMwYzc0OGE3MzZkN2JjYzNlMCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2QwNmZlNGUzNmYyMGM4ZGU1MWZiMjQ5MDA1ZGU2YTUxN2E4ZTdlOTUxODMzMGU3MGZlMjBjOTdiODE0NWU4MSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODkzYmQ2NmUyYmI3MWYzYjhhOTI0MDY0YmJmN2IwN2M1OTAzYTc3M2ZhNGY4YzM1NDYwNjAzODY2NzFkM2E3MyJ9"
+        },
+        {
+          "resource": "repo://questions.json#L1-L27",
+          "version": "repo-lines-v1:sha256:ee3d2e0c76136168bbf437cea6e5e57fb8fe8a92ae40757ecb952d3cc24b2198:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZDJiMTkzNDkzMTY5MTY2OWNjMzVhODc2MTk1MTgwMTUzMzYyMTNkZGEwYTYwZmUxYjA5ZjliOGUzZTk5M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_8cd5de020e9b4bb1b452895181067e65",
+      "statement": "The frontend is a Streamlit single-page app that routes to a specific question via the `?q=<id>` query parameter, with the main flow orchestrated in app.py.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L105-L124",
+          "version": "repo-lines-v1:sha256:b89011f80fb9d71bd2e826d6e8e7c32e803f893e2e709c459fe4e8bf0fba2117:eyJzZWxlY3RlZExpbmVDb3VudCI6MjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhNjU5MDk3ZmQyNDg5ZjExNWUzNTdmZTMzMTllYzg5MTE2NDNhYTk5NTQ2MDA3ZTEzYjE5MmUwZDI3NTExZjgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImEyNGI5M2U2NGRmZmY1YTIwMGJlNzRhNzdjYjQ0MDM1MDQ2NDEwZWE2NTg5MzZmNTRlNTkxMGRkNWQ1ZTIwZWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjA0YTAzNzA1NTllNmM3OTRhNGM1MTY0YTFiZmUyOTEwNTdmMThhMjAyYzIyYTQ1ZDJlZmE5ODVjZTljMTIxMzAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjBiMTFkNmM1NjBhOWRiZjNkMDAxMGU3MjAwZDU4MzhiZjcwYjY4ODQ1YTMxOWY5NDk3MGIzNWE2NGVlOWI5MTQifQ"
+        },
+        {
+          "resource": "repo://app.py#L81-L88",
+          "version": "repo-lines-v1:sha256:0d0acd70df2d5f51796adfe9c741d64880b9c9a520ae6ae665d234e9418dcc14:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYzJlMzEyNTdkYzBhZTFkNTkzMDM3YzI4MGM5YWQ1MDgxOWI4YTZjOGNmNzI4YmUwNzE2ZDAwYTNlZWNjMDRiYiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzU4YWI2ODRlZTA3Y2M3YWI3NzcxM2FjM2I1NTQ5YTI1NDdjM2Y3NjY0ZWY3NzgxMDJiNTIyZGZlMjQ5ZTIwNCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNmU1MDFjOTMwZGMzYjdjNDMyMzlmNTc5MjAzNTVhYzM3NDRkOTJjYmRjYjQ2YmYzZjZkNzBlNjY5MWI3YzM1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_9a3627715e214ad3b2d9b63066acb404",
+      "statement": "LLM evaluation uses a two-tier provider architecture: a LiteLLM server (with Ollama backend) is the primary provider, and OpenRouter is the automatic fallback when the primary fails; if both fail evaluate_answer raises a RuntimeError describing both errors.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L10-L16",
+          "version": "repo-lines-v1:sha256:c76256f5efb52fa41f71e3f2aa02000fc0d4a293aaa6a474fd625b43fdc170de:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzY4MjQwZmIxMjU2ZmMyNzlmMGY1ODAxZDQ1NjE3YmFiNjBkY2VjMmJlNGUyYzkyMDkzZTJjMjEzOGJlZDdjNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDEyY2EzNDVjY2Y3NWJmOWMwODA2YmNlNjk1YmU4ZGU4MDhiNzk5ODQyNTFhN2E1NGQyMDJjZjYxMDFkZDQ1MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMTgzMjUyOWQ1Y2JiMzk4OTNjMzc4ZDQ3ZjM0ZGYxZjFhYzBmODUwNDk4YTg5ZTIzZTQxNmU4NmFiZjI4YzRkMyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTI3ZGZmNzg0NWM4MWZkMDExMmFmYWUxZDUxYzdhZmFlODcyN2YzZDU4M2RjZmI3YzAyNzQ2MmM1NGFjNjg0MSJ9"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L86-L111",
+          "version": "repo-lines-v1:sha256:e9de7117c628cb19209fabbab6176a09e74e59ff38d1e74cbf833e66ec86e8aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjdhOTBiOWQ0YTUwOWNmYTZmYjhkN2NjMjE2ZDk1NzQxNmEzZTZiMTZkZmI1NDc5Mjg5ZjlmNmJhNGY3MWRiNjYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ1NTNmMmMzODRkM2NjZTg0ZmMzMGUyYTBhOTczM2ZiOGZhODBjM2I3NDIwYzZhYTM0MjFhZmY4ZWI5M2YxNWQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjQyYjUyN2NkZTI1NTQ1ZWU5YTc3ODEwMDYzOWQ4ZWY2ZjI2NWNhZWQxYWYyYTMzNGUyY2IyMTIyMzI0M2VkNDciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9bcf31eed6fe4e92871fcad1b04fee87",
+      "statement": "Both LLM providers are constructed with LangChain ChatOpenAI, the primary keyed by LITELLM_* env vars and the fallback by OPENROUTER_* env vars, both at temperature 0.7.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L20-L37",
+          "version": "repo-lines-v1:sha256:625750c8da0c1d8d2982c67575acf834ee2b92d79e839b66aa524f7e41645c8c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImJjYzA5NTRmMmY0ZjU4ZGUwMzUwODExNWUyZDQ1NTFiOWU0ZTY1MjdlYzU2OTNkMGY0YjU0YWU4ZWUwZTY5MDMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjYyMDA5N2U0YWE1MDA2OGJhMTU3ZjlhMjczOWZhZDg2OTk1ZTFlMGNkY2NkYWRjNTg5N2MyMDM0Yzc0ZDNlZmEiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYzOWMzZTllNjExNTgwOWU4ODRjNzUwZTAzZmVmZDdhYThiNTllYTFhNzI2MjBhYTA5MmFkNDdiZTc2M2MwYWIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3684ba6de2c24f8c97d98cbbb7467af6",
+      "statement": "LLM responses are cleaned for TTS by clean_text_for_tts, which strips markdown emphasis/headers and link syntax and normalizes whitespace before the text is spoken.",
+      "evidence": [
+        {
+          "resource": "repo://src/llm_service.py#L77-L83",
+          "version": "repo-lines-v1:sha256:8d0ac2c6d02a5df833a4a7e0b5641b923a10a37e16399e2315dedbd699e114b1:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNWU2MmY0N2MwYmIxNjEzMzEyZTU3YjM4ZGM5YzI4NzViOGYzMjNmODliMTc5NTU0NTI1NjhkYTc2ZjcyY2Y2ZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZGFiOGY0ZjQxMzU5ZjZjMGJmN2FiYzA0N2Q0YzU3NzQ1NzIyMzM0ZjVkMmQ2ZTcyZTE2NmE1NWIzYTA5NzQ3MSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGNjNGE3ZDFjYzc5NmFiYTNlNDY3MjMzMjdmNTE3ZTlmODExOTgyZDI1MGYwNzAyOTg2ZTRiNTc2NGFkOTU4OSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjE5MWQ5ZWNhM2E5NTFlYjJmN2M1NmE2N2ZlNDFmMGY1NGZhNDFkNDFmNDE2ZWFlYjI2Yjg1MzVhNDgwMmMwNSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_61874299928c480bb28225d71547b7ff",
+      "statement": "The five LLM-related environment variables (LITELLM_API_BASE_URL, LITELLM_API_KEY, LITELLM_MODEL, OPENROUTER_API_KEY, OPENROUTER_FALLBACK_MODEL) are required and validated at startup by validate_config; SKIP_CONFIG_VALIDATION=1 bypasses validation so tooling and tests can import src.* without a complete .env.",
+      "evidence": [
+        {
+          "resource": "repo://src/config.py#L10-L38",
+          "version": "repo-lines-v1:sha256:19c2470c2828e2503b88d1dbefaad3578f7fad83f18175c22af6e9ba5ef2a492:eyJzZWxlY3RlZExpbmVDb3VudCI6MjksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc2ODI0MGZiMTI1NmZjMjc5ZjBmNTgwMWQ0NTYxN2JhYjYwZGNlYzJiZTRlMmM5MjA5M2UyYzIxMzhiZWQ3YzUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjU5MDlhNTNhNjE4ZDAyOGUxZDMwMDBjMGE3YWJjZWVjYmU1ZmIzN2Y0ZTUxMWVmZTQ2NjQzZmFkNmU2Njg3MmYiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjE4MzI1MjlkNWNiYjM5ODkzYzM3OGQ0N2YzNGRmMWYxYWMwZjg1MDQ5OGE4OWUyM2U0MTZlODZhYmYyOGM0ZDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImI0YjY1OTAwNjkxMzVlMDZkZTk4YzQ5NjYwOWRkZDcyMDcxZjZkNWE5OTFjMmM0MWIxMjgyZjkyMmNjNjY1ZDMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_96fa81ff8e1643558e41d6bea9946911",
+      "statement": "Run steps are: pip install -r requirements.txt, copy .env.example to .env and fill LITELLM_* (primary) and OPENROUTER_* (fallback), then `streamlit run app.py` opens at http://localhost:8501; APP_URL=http://localhost:8501 makes local QR links point at the local instance.",
+      "evidence": [
+        {
+          "resource": "repo://.env.example#L1-L37",
+          "version": "repo-lines-v1:sha256:12283acf2b0c069ed16188de12e051aa659b71dc0ccf627c7c53ca67219e7281:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI3MDg3M2VhMWNkMmQzZWUwMWNkZjk4ZmZlY2QxYTk3OTYwZGE0NDRmOTI0OWEzOWZkOWQxMzg4M2YxODcxNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE4ZGUwMmYzNDI5NDQ3ZTU5MmNjZmNhOTcyOTc4ZmEyN2M1M2VjMjE2MDJlZmRjNjIzOWJlYmM4ZmQzYTMwZDgiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L54-L54",
+          "version": "repo-lines-v1:sha256:fb30c58e8ea95f997c6d6a135ed9693edbc805fa8cd84e8c6aebc0ff25828bcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ4Yzc1ODgzZmE1NWEzYmZhYzFmOTY5ZTZjOWNiY2Q3MjM0NDRhNjJhOWY5M2ZiNDMzNGM3NzgwN2QyM2M1OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1aed3be182e1440c8c21a4ad568e001d",
+      "statement": "APP_URL defaults to the public deployment https://lappquiz.ict.unesp.br and is the base used to build shareable question links and QR Codes.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L251-L255",
+          "version": "repo-lines-v1:sha256:57e9d1a65615e19bb68e8040ddd63f9715977bae26511406d9436e45f9e27fb3:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMTM5OTg0M2IxYmE5N2JiZGQ1MWY2NDYxZjc1YWZjYTA1YTZkMTAyODQyNDNhMzg2ZDdhZGY3ODg1NDY2NmJmYyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNWE3OTVlYWUxYjYyMDYwZGZkZWRjYTU5MTcwMzg1M2VmMjkzNGNiYzdkYTUwMGI5ZTI2MDdhZWYzN2IwM2MwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMmIzOGM5MDU0ZTk4MTgzYTYzMWU2ZGNhNDMyMTQ2M2VmMGM3MjIwMjY1Y2Y5MTc1MDg0ZWYyMGI1MGZlMmExOSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiM2Q0MTM0MGNjMjM5YTE1OWNlOWI2MDIyZTlmNjMyMjgzMmUyZWFkNzZjYWU5ZTQ3NTRkMjEwZWI4ZmI2ZDVlOCJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L54-L54",
+          "version": "repo-lines-v1:sha256:fb30c58e8ea95f997c6d6a135ed9693edbc805fa8cd84e8c6aebc0ff25828bcf:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZmIzMGM1OGU4ZWE5NWY5OTdjNmQ2YTEzNWVkOTY5M2VkYmM4MDVmYThjZDg0ZThjNmFlYmMwZmYyNTgyOGJjZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDAxNjcxODA1NzhhNTk3M2RiYjA0OTE4NmRjNmUyNTk4Y2NkOTEzOTE3Y2JhZGZkZjE3OGYwZDc0YjI4NzY3NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYmQ4Yzc1ODgzZmE1NWEzYmZhYzFmOTY5ZTZjOWNiY2Q3MjM0NDRhNjJhOWY5M2ZiNDMzNGM3NzgwN2QyM2M1OSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_f4be24f03a0841bc9b3664500b3d78e2",
+      "statement": "Audio feedback is generated with edge-tts using the pt-BR-FranciscaNeural voice (TTS_VOICE) into TEMP_AUDIO_DIR (default tmp/audio), and the animated professor avatar is a PIL-drawn GIF cached to disk under assets/.",
+      "evidence": [
+        {
+          "resource": "repo://src/avatar.py#L8-L11",
+          "version": "repo-lines-v1:sha256:d4159d240d3a5a1898f56f3576a39dd9de8bc488fea2e2edef1ec9aeaf92f3d0:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZWRiMTc0NTJiYmMwYTIxM2RlYTc1NDZhZjY0MjMyMzNiY2Q2NDQ0YzgwM2UxNGM3ZTliMmEyYmQyMTJhZmMwYSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMjIyZTNhM2JiOTlhN2YwODA2ZTI4NjJmYzM2ZDU2ODFmMjVlZDgwOTcxYjRhZDViMTE3ODBiMzNkYmJkNWQ1YyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODQwYWNjODIyNzhkNzU1MzdjNzdiYzkwY2YzMTdlMmExMmY4ZWZiYTE4MjQ0MTFlOGVlY2RkYmU1NzlkYTllOSJ9"
+        },
+        {
+          "resource": "repo://src/config.py#L56-L58",
+          "version": "repo-lines-v1:sha256:788cf9ec5719b77309b7718660770bbca803fab6574c5157f7d14f5946f462a0:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZmJhODMyNmM5ODQ1YjIxM2ZjNTRkOWRlZTlmMDRjZGNlMTk3OTYzNjEyMGIzMjFhNTljMzZjMWY5ZDhkMjZhMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZWQ5MjI0NDc5NGNiZmYxN2ZlM2ZmOTY1NTg2OWFkYWE4NjY3NDU2MzUyNDQzNTM2MzY5ZTAxM2ZkYTRmYThiZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiOGYyNjgyMzBmYjlmMTU5ZTg0MjVhMzU3ODg1MzYwMjY2MDQ0OTkzMjNmZGJkYWRlZDM4ZjRhYjA2MjZiMzhmNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/tts_service.py#L8-L25",
+          "version": "repo-lines-v1:sha256:2be32ce06225ff3a33f21c4b7f0dabfa6858a15356906fa1c0603000610209fe:eyJzZWxlY3RlZExpbmVDb3VudCI6MTgsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjBkNWRiNGU2NzQxNWZiOWZlNzQ0OTU4NDljZTI5ODc5M2MxMWQ0YjZhMzg5OWExYWE0ODM3YmI3MjMyMDRkMDkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjFlYjU3ZTRhMDVmNGNhMWYzNTMzYjEzOTYwNjkzNmI5ZDQxZjdhNzE5Yzg4MDU0MDM2NTkzYjNlMmFiYmE0MWYiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_6de50dff0f1e498a9755fce5ae3d7ed0",
+      "statement": "Content moderation is a local keyword blocklist (Portuguese and English sexual/violent terms) plus regex patterns with leet-speak normalization, followed by an optional LLM semantic check; it is enabled by MODERATION_ENABLED (default true) and the app enforces a three-strike warning escalation to session block.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L177-L203",
+          "version": "repo-lines-v1:sha256:1672a6ebf5eeb3590441da173aa1934ff3a24602c2ef3a369c02bd34dc2b73ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGZlN2YwZDFiYzgwYjczODExMjM1ZjcxZGUxZjVkMjYxMDAxM2NhZmJlMjMxNTA4YjM0MTgyOTMxYzE1NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiY2RlM2IwNWZhZjRiNjZkNWJiODQ3NWNiNmY3YWM1MTlhMmYwMzUwNjkzOThmODNjNmIxZmQ5OTZmMDEwYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L4-L166",
+          "version": "repo-lines-v1:sha256:2373ccfcb7906277412c4f06670a8a0c1baf65e9de6ff5f5a37450d8c1f8488f:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0NTVjMzU0NmEzNGE5YzJkODhlN2NmOWJmMDg3NTdkNDdmYTBiZGIwMDJhZTBkNWRjMGRmZWFhNWM3NTEyYTFmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiIwMWJhNDcxOWM4MGI2ZmU5MTFiMDkxYTdjMDUxMjRiNjRlZWVjZTk2NGUwOWMwNThlZjhmOTgwNWRhY2E1NDZiIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkN2IwZWQ5Zjc5YWIxZmI3MjIwZjA4NTM3NWViODRkODI1MDE2OGVhNzQxNDcyZWI1M2MxYjgyNzE5N2JmMjFmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiJmNTU4YTdjNDM1ZjcyMjNhMWY5ODc2ODAwMWE0NDkwMjE2N2E5NmNkNTk1ODVhY2FkMGU0Y2EyOTcxOTA4ODQwIn0"
+        }
+      ]
+    },
+    {
+      "id": "claim_3040c774139f4b3fa809651f879be24a",
+      "statement": "Tests run via pytest; pytest.ini sets testpaths=tests and pythonpath=src so tests import src.* directly, and CI (.github/workflows/test.yml) runs the suite on Python 3.10 installing requirements.txt plus requirements-dev.txt (pytest).",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/test.yml#L1-L30",
+          "version": "repo-lines-v1:sha256:e015507f6a0abb26e6e8e05acda6ff13d33253c9aa05f215424d8cd53ba5ae0b:eyJzZWxlY3RlZExpbmVDb3VudCI6MzAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI0Yjc4NWVlNTE5Y2ViNmEyODRmOTljMWVjM2I3ODc0ZTc1YThhYTg2MzBiNzUxNmNiN2VhMWU0OWRiOTkwODciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjQ0NDQxMGQ2NjBkOWJlMzQ4NThhZDc5MjIwZjMxZGMyMzgyNGU0NTJkMjU2YWI5OTQ2NjY1ZjQ5YjU4MzU4OGMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://pytest.ini#L1-L3",
+          "version": "repo-lines-v1:sha256:4d5193eb36807e4622451417a9fe7bea71e7307137cd05cc214332e514fd9527:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODI1MGQyMGY0MmI0MTlhZjQwNzA2NDkwZWFkNzhhYWJhYjlmZWJhOTNlYWIwOWEzZjYyNmUzZGU1MjU2ZTFmNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOWU5ZWFlNzBjYTNmZmY1YWNkYTUzODg4YmFjNGUyM2YwZDY1OTMwNDUwODVhYjhkMDRiYzRiM2MxZmM0ZTQ4YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjEsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiNTk4NmM4MmNjMjNkNTVhYmNlMGY4YWU3ZGIwMGE3NDU5NzNiNDA5Yzg4NTdkM2FmNDUwMDg4MGQzZWFlODQyZSJ9"
+        },
+        {
+          "resource": "repo://requirements-dev.txt#L1-L1",
+          "version": "repo-lines-v1:sha256:8554614dc459151d6b0134f441bef0856df306dc0f06515ddf4197d05adfe1be:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODU1NDYxNGRjNDU5MTUxZDZiMDEzNGY0NDFiZWYwODU2ZGYzMDZkYzBmMDY1MTVkZGY0MTk3ZDA1YWRmZTFiZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiODU1NDYxNGRjNDU5MTUxZDZiMDEzNGY0NDFiZWYwODU2ZGYzMDZkYzBmMDY1MTVkZGY0MTk3ZDA1YWRmZTFiZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ec183fc69d54ac7963c2f2146bb95ad",
+      "statement": "Quiz questions are loaded from questions.json (5 items) by src/quiz_data.py (load_questions, get_question_by_id), and there is no admin interface or persistence layer beyond in-memory Streamlit session state.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L97-L103",
+          "version": "repo-lines-v1:sha256:df1403d1ae641d9fe643e4707523c3e495f58c77cef7bda11e37326e28dc5b1a:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNzM3OTk0NzU5NWRhMDhkMmUyZGE1NTU5Zjk2MTYxZjVjOTJkZmI3YjFmY2ZkYzQ2NmU5NmQzNmRjMjBjN2ZkNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q1YTIxMzI3MzUxODZmZGNmZmNlZTBjZTFhNTJhYTE4ODk4MGFjZTRmYWIxYWE3ODVhMzAxYzAyNzc5Y2VmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNDhkMWFjNzMxMjU1MTRmMzkzM2UyNTk2NzVlN2NmZWJmMzQ2ZWIyMzNhMzk2YjNjODg0Y2VjMDM3MjU4MmQyMCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA2YmIwNTQwZDVkZmFhODMxNTA1N2Q1NjA2MWQ5MTQxYzFhN2E5YWRkMGEwZjJhYzY1MTk5MjQ0ZTJiOGUzZCJ9"
+        },
+        {
+          "resource": "repo://questions.json#L1-L27",
+          "version": "repo-lines-v1:sha256:ee3d2e0c76136168bbf437cea6e5e57fb8fe8a92ae40757ecb952d3cc24b2198:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk1ZDJiMTkzNDkzMTY5MTY2OWNjMzVhODc2MTk1MTgwMTUzMzYyMTNkZGEwYTYwZmUxYjA5ZjliOGUzZTk5M2QiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImY5NDE2ZTA5Zjc4YmEzMTZjMDMyNTY4MjEzYjg1NWVlNzU2ZTQxNTY1ZDkxOGYwOTUxOWM4MWZkNjIwZjQwNjAiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        },
+        {
+          "resource": "repo://src/quiz_data.py#L4-L16",
+          "version": "repo-lines-v1:sha256:ff19b40be271f23b9cf5ed27202f01d87f7d7ba1b49074da8edbfbabdc2647e6:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZjM2U1MTUwMTZlMjU4MTAwZDIzZDI5MjIwOGI4NWI3YTYzMzliOTdlMTcwOWVhYWQ5ZjQwZTdlNjEwNTQyOTQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjY0YmYyZWQ0YWNiYmZlZjU0ZDQzODFjNThjYmI0OGZjNzZmNWViNWQ2MmE1ZThiYmQ3OTkxYzU1OGRmN2RmYmUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjM4MWIyZWJmMmVmOTk2MDNiYmVhMDJlNDBlMjQxN2NkMGMwMGQ0MDJlNjg5NDBkNmJiZjJjZTAwOTQ4YThhMDMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjI1ODA1MDNlOTZmZjM2YzllYWJlYWJiNDhjY2FjMDk5Njk2YjEyNGM4OWYyYWU0ZWQ5NmYxMzFjY2RhZmVhZjcifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_b24920b28e984fd6b2a131acebf62acf",
+      "statement": "Runtime dependencies are streamlit, langchain, langchain-openai, openai, edge-tts, python-dotenv, and qrcode[pil] as declared in requirements.txt.",
+      "evidence": [
+        {
+          "resource": "repo://requirements.txt#L1-L7",
+          "version": "repo-lines-v1:sha256:4e857202a323d235c4da642c132fabc6b005b2944c1c77c5f13066c5920e8ec9:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYjdmOTljZDIwYzQ4MzRiMzhmYzVjY2ZmMmU3YjdhNTVkYzIwY2JiY2NiN2Y0YzFhZjAwOGIyOTcxMTc2NDNlMCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzNiOGRjYWU5NzBhYmU0Mzc5ZWZjYjM4NjdkMTVmMWNhYjNmYTdhMzI1NzFlM2Q0Mjk2N2NmNWQ0ODY1Y2NlNyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjAsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

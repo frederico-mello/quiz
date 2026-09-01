@@ -1,0 +1,220 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:abf19e026ce555c8827fae3aac98b20d636637388a5cbb7f4e4b29a12c147a08",
+  "claims": [
+    {
+      "id": "claim_23fce5071a7244e99ba1fd590169b06c",
+      "statement": "check_text is the single public entry point for moderation and returns a (blocked, message) tuple; when the local check blocks, it returns immediately and never invokes the LLM.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_3770dcd38a204047b6166c7dc3ae24c3",
+      "statement": "check_text runs a layered order: check_text_local (keywords then patterns) is the primary defense and runs first; check_text_llm runs only when use_llm=True and the local check passed, and is best-effort.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L158-L166",
+          "version": "repo-lines-v1:sha256:fb7e0aacfc6c23b5152565d1af19b3f35f414ae864390211469dbb64011c56b9:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNhNGJiNDNiZTY1MjIyNGM3MmFjYjMxZWQ1YTE4MDFkNzJkZjQ0NTFiMzc5NTRiOTNiZDY3Mjk5ZGM4OTAzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjU1OGE3YzQzNWY3MjIzYTFmOTg3NjgwMDFhNDQ5MDIxNjdhOTZjZDU5NTg1YWNhZDBlNGNhMjk3MTkwODg0MCJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_5c53b78cb8d44951a804e1d15329c872",
+      "statement": "check_text_local composes check_keywords first and only runs check_patterns when keywords are clean; a keyword match returns a message naming the matched term and a pattern match returns the generic 'Conteúdo contém padrão bloqueado.' message.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L139-L147",
+          "version": "repo-lines-v1:sha256:7a71a188f84bcc5c8bde50256cfa98222b87b80e982091ffe348093da2e59322:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTY4NzZkMmVhMDhjYWQyYTdjZWQyY2Q5YTBhYmFiMmI4ZWZkNGRhNWQyMjZkYzcyM2E3MzlmYjA5NjA2N2RmNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5NjAwYTczZDJlMDJmMzUyYjkwZmVmMWQ4ZDYzODExYmE0YThlZTBjMWJlYWE3YWU0NjU4ZjM2YWEyZTE5OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzM0NzI2ZjVmNzA4NTUzZWY0Y2M4ZWM3NTc1YTI2ZTJmMWVjOTM3MjZmNDg4YmEyMDRkZDUwMjYxMzFmYjAzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjhhNzFmNDVkNDQ5NjZmNDA0YmNmZWIwOTMwNDVjYmU5Yjk4ZTRlNzJhOTAzZmYyMzg3NzY3Y2JlMTQ1Y2U4ZSJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L150-L155",
+          "version": "repo-lines-v1:sha256:67d7bbe5b58f894d27f93b154a8d3cd9c9c863e276ae3df9eb138c56ddf09a5e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQxZDU0NDM2YTJkZGIwN2M0ZmY0NjA1ODYxZTI4MDAzMmY2MzU3NmJkOTZmYmE1MWFhMDIzYjYxNDNjNWFlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzlkYjFkNzk2YzNmNTUzNzZmZjZiNmIxMjNhNGYzNDE0MjdmZTM3YTMxZmFiYzFhNjkxNDYwMTc4YmE2YzY2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDcwMTQ5ZTA2OWFkNjdlY2NmNDczNjQ2ZmYxYzc1MDA1MGQzMjlkMTEwMDE4ZGM1NzY2ODc4ZWFmYTFkNjA3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGVmYWUzODA0NTU2OWI2MzUwNjBjMTExZmFmZmZhMWIyZDdkOTc3NmE2M2QwNjFiZTc5NWFkNTAyMzVlZTFlYyJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L158-L166",
+          "version": "repo-lines-v1:sha256:fb7e0aacfc6c23b5152565d1af19b3f35f414ae864390211469dbb64011c56b9:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMGNhNGJiNDNiZTY1MjIyNGM3MmFjYjMxZWQ1YTE4MDFkNzJkZjQ0NTFiMzc5NTRiOTNiZDY3Mjk5ZGM4OTAzNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZjU1OGE3YzQzNWY3MjIzYTFmOTg3NjgwMDFhNDQ5MDIxNjdhOTZjZDU5NTg1YWNhZDBlNGNhMjk3MTkwODg0MCJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_d7d311a7ec58440f84801847148193a6",
+      "statement": "BLOCKED_KEYWORDS is a substring-match set covering Brazilian Portuguese and English sexual and violent terms; BLOCKED_PATTERNS is a list of regexes (including a spaced profanity pattern, porra, demerol, and a CJK glyph) each applied with re.IGNORECASE and wrapped in try/except re.error.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L4-L130",
+          "version": "repo-lines-v1:sha256:a5e907fe91463afec63dc26a3c545adbe09eeda95053e41e604252c7128f1f1e:eyJzZWxlY3RlZExpbmVDb3VudCI6MTI3LCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI0NTVjMzU0NmEzNGE5YzJkODhlN2NmOWJmMDg3NTdkNDdmYTBiZGIwMDJhZTBkNWRjMGRmZWFhNWM3NTEyYTFmIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiJmOTQxNmUwOWY3OGJhMzE2YzAzMjU2ODIxM2I4NTVlZTc1NmU0MTU2NWQ5MThmMDk1MTljODFmZDYyMGY0MDYwIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MywicHJlY2VkaW5nQ29udGV4dEhhc2giOiJkN2IwZWQ5Zjc5YWIxZmI3MjIwZjA4NTM3NWViODRkODI1MDE2OGVhNzQxNDcyZWI1M2MxYjgyNzE5N2JmMjFmIiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MywiZm9sbG93aW5nQ29udGV4dEhhc2giOiI3YjNmNDIyMjAxODcwNWEzZWM2NTJhMmYwYTU2MzI5OGUyYzFiODg2Y2U5Y2ViY2Q0NzE5MjU1NTdhNWJiMTI1In0"
+        }
+      ]
+    },
+    {
+      "id": "claim_ebd02dd350b44f2989d958dda2aab6c4",
+      "statement": "normalize_leet uses LEET_SPEAK_MAP = str.maketrans('aeiou43','aeiou38') which leaves vowels mapped to themselves and remaps digits 4->3 and 3->8, then lowercases; both check_keywords and check_patterns normalize via normalize_leet before matching.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L132-L136",
+          "version": "repo-lines-v1:sha256:5c305a138605ec892c5b4589934d2f5faec6fff414dde554c33c13a399855401:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiNGE2ZDFhMTAxZWIyMjZiOWIzNmY4Yjg4ZDczYTFhYTczYTIxY2M1ZGM5N2RmYTE1MjU0YzI4ZWVmNTAxZDJlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzZiMWI1MDEyYjRkMDViZGRiYTRlZGE4NjZiZTNhODg5YTY3OTg1YzkxN2NjNGE5ODk2ZDA0Y2U3YWQ5ZDI4ZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiMWJhOTFjNTg4MDhmMDA0MzEyY2NkNmZkMWJiODMzYWZkNjY5MTU4NzMzYjFhZTBhMzk1MDUwOTIwOTM2MmU3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjUzMDY3ZjY4ZDA4NGQ1ZGMzNWU2ZTFkYjk4MWJjMWIyMzYxOTRhYmQxM2IxNjAzNzg0OGMyYzRjZmQwNjdkZCJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L139-L147",
+          "version": "repo-lines-v1:sha256:7a71a188f84bcc5c8bde50256cfa98222b87b80e982091ffe348093da2e59322:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiOTY4NzZkMmVhMDhjYWQyYTdjZWQyY2Q5YTBhYmFiMmI4ZWZkNGRhNWQyMjZkYzcyM2E3MzlmYjA5NjA2N2RmNSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiNDg5NjAwYTczZDJlMDJmMzUyYjkwZmVmMWQ4ZDYzODExYmE0YThlZTBjMWJlYWE3YWU0NjU4ZjM2YWEyZTE5OCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYzM0NzI2ZjVmNzA4NTUzZWY0Y2M4ZWM3NTc1YTI2ZTJmMWVjOTM3MjZmNDg4YmEyMDRkZDUwMjYxMzFmYjAzOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjhhNzFmNDVkNDQ5NjZmNDA0YmNmZWIwOTMwNDVjYmU5Yjk4ZTRlNzJhOTAzZmYyMzg3NzY3Y2JlMTQ1Y2U4ZSJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L150-L155",
+          "version": "repo-lines-v1:sha256:67d7bbe5b58f894d27f93b154a8d3cd9c9c863e276ae3df9eb138c56ddf09a5e:eyJzZWxlY3RlZExpbmVDb3VudCI6NiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiODQxZDU0NDM2YTJkZGIwN2M0ZmY0NjA1ODYxZTI4MDAzMmY2MzU3NmJkOTZmYmE1MWFhMDIzYjYxNDNjNWFlZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYzlkYjFkNzk2YzNmNTUzNzZmZjZiNmIxMjNhNGYzNDE0MjdmZTM3YTMxZmFiYzFhNjkxNDYwMTc4YmE2YzY2NCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZDcwMTQ5ZTA2OWFkNjdlY2NmNDczNjQ2ZmYxYzc1MDA1MGQzMjlkMTEwMDE4ZGM1NzY2ODc4ZWFmYTFkNjA3ZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMGVmYWUzODA0NTU2OWI2MzUwNjBjMTExZmFmZmZhMWIyZDdkOTc3NmE2M2QwNjFiZTc5NWFkNTAyMzVlZTFlYyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_4bb79db126394d79a393c0594850d70b",
+      "statement": "check_text_llm uses the primary LiteLLM model obtained from src.llm_service.get_litellm_llm (LITELLM_MODEL/LITELLM_API_BASE_URL), not the OpenRouter fallback; it flattens list-or-string response content, lowercases it, and blocks only when the response starts with 'bloquear'.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L168-L194",
+          "version": "repo-lines-v1:sha256:0a58bd50dea046e58bcc0b5dcec9ee6c7f6ea8ab3607bcd9d27f545e847809b2:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhYjZmNjVkY2E5OWVhNDM2Y2FiOWY0ZWUyMWI0YjUxNWUxYjUzNzk0OTY1NTRkODcxMzJmMThlMjQ4NTIwZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjQzMTA5NjA3YmQ4ZDc5NjVhYjYzNjMwMzE2MDdmMTFkMDNiZTI1YzNkOTYwYWNlMzU2MDE1NWU5M2M4ZDMxMTIifQ"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        },
+        {
+          "resource": "repo://src/llm_service.py#L20-L27",
+          "version": "repo-lines-v1:sha256:52d3df44c397fb26db50f2d3dd0a7ae7bccf52e7c4c23f1c899a023d85235fed:eyJzZWxlY3RlZExpbmVDb3VudCI6OCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYmNjMDk1NGYyZjRmNThkZTAzNTA4MTE1ZTJkNDU1MWI5ZTRlNjUyN2VjNTY5M2QwZjRiNTRhZThlZTBlNjkwMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMzBjMWYxODhmMTQyZWQ3YTgyNDY4MGIyMDcxNzJjNTUxOWJjNjE0YTQ4ZmRhN2NmMTY3ZWRiOGRkZjc5OTU2YyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjIwMDk3ZTRhYTUwMDY4YmExNTdmOWEyNzM5ZmFkODY5OTVlMWUwY2RjY2RhZGM1ODk3YzIwMzRjNzRkM2VmYSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOTBmYmE3YTA0YTc0YWYyMGUyMzVlMzMyYWNlZmFhZDNlNjg3NWEyZTVjN2NkM2YyNDUyNGE0NzM2MWEzZTAzMyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_1a1f9d1d989843449a2a59ed6b0074f6",
+      "statement": "The LLM moderation prompt carries an explicit dental/medical context exception: because the quiz is about health/dental instruments, medically accurate answers containing terms like perfuração de crânio, cirurgia, or sangue must not be blocked.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/content-filter/spec.md#L39-L42",
+          "version": "repo-lines-v1:sha256:0efdc90b6df8c9f77774756e0dd71fc3e434fe3c9e8ddc1835aa62e075469795:eyJzZWxlY3RlZExpbmVDb3VudCI6NCwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiN2ZkNmM2NjZmZjkyYzZlNjc1ODM5M2UyMGIyZWFlODBmNzRjMTViYzlkYjdlYjI0OWMxNTllNWFkODg4NmFkNCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiMDFiYTQ3MTljODBiNmZlOTExYjA5MWE3YzA1MTI0YjY0ZWVlY2U5NjRlMDljMDU4ZWY4Zjk4MDVkYWNhNTQ2YiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYjdlNWM4NDYxODA5ZDc3MjI0N2E3ZGFiOGY3ODM0NTJjZWY0MWQwYTk1OWM5ZmExZmIxMTU2NTdiZDVlNjM3YSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYzNkNDBiZWIxMDNjMTdjZGM2Y2QwMWUyODQzZjE0OWI0ZTkwNDkwMThjYzIxNmExMjY0MjAzNjBiMWVlODI3YSJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L168-L180",
+          "version": "repo-lines-v1:sha256:464adf734f0ac3e7829ac8744e2ad696c529ad9fa8c18dcc9c9f973165a5ba17:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjZhYjZmNjVkY2E5OWVhNDM2Y2FiOWY0ZWUyMWI0YjUxNWUxYjUzNzk0OTY1NTRkODcxMzJmMThlMjQ4NTIwZWMiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwYzFmMTg4ZjE0MmVkN2E4MjQ2ODBiMjA3MTcyYzU1MTliYzYxNGE0OGZkYTdjZjE2N2VkYjhkZGY3OTk1NmMiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjFkMDBjZjVhODE0YjI0YzdkNDcyMTRjODU4N2ViMjkyOWY3OTYzNGY2NWM5YjQ1NWQ2MWM3MjE5YTZkNzVkYzQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_9f32e63e257c4273880b7f5226d46eeb",
+      "statement": "check_text wraps the LLM pass in try/except Exception and fails OPEN: on any LLM failure (timeout, 401, import failure) it returns (False, None) so a moderation-LLM outage does not block legitimate answers; the local check remains the primary defense.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_65b1aa62fa354686bf355f3c182dd0c6",
+      "statement": "get_warning_level maps violation count to a level: 0='none', 1='first', 2='second', and 3 or more='blocked'.",
+      "evidence": [
+        {
+          "resource": "repo://src/content_filter.py#L218-L226",
+          "version": "repo-lines-v1:sha256:136ea5579bf4812c79f044f1bc77d15e70c0d8adad4b399c7af219d3d3b75b6b:eyJzZWxlY3RlZExpbmVDb3VudCI6OSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZDM0NzA2YmZhNTQ1NTAzMzdlOTI5NmJkMDYwMDk3ODllYTllMDE4ZmE2OGU0NjQ5Yzk3NTQyOGU0ZDllMmQyMyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiM2U1MGZmZjBiNjEwNmI2Mjg3ZWQ5MzQwYzZlYjZiNWFkMmZiN2NlMmI3ZmZiYTUzMGIxMjhkZWYxYzY0NTUxZiIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNzc2Njg1NjMyZDI5OGI5ODM2NDRkMzM5NTY4ZmRjYTBjOTI1OGM2ZjMyZDNiNTNhZjJiMDEwMTgzNTgyNjYyOCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_e7c30a0a51944a1898ff5ee95723fc19",
+      "statement": "app.py gates the entire moderation call behind MODERATION_ENABLED; when enabled it calls check_text(user_answer), increments st.session_state.moderation_warnings on a block, and maps first/second to st.warning and blocked (>=3) to st.error plus st.session_state.moderation_blocked=True.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L102-L103",
+          "version": "repo-lines-v1:sha256:2e6071b486015ff49266ea1407eb683b7012a88b7a4ce8fb68265bb8742a8214:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGVjOGY4Y2U4NzA3NDY3MjI4YzIzYmY0MWM2Njk0OTA4NGQwYTk5OTIwYTNkMDg3YWU2MDdkMzQxZjlkNWY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q1YTIxMzI3MzUxODZmZGNmZmNlZTBjZTFhNTJhYTE4ODk4MGFjZTRmYWIxYWE3ODVhMzAxYzAyNzc5Y2VmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTA3NmJjNTdlMmQ0ZmM2NTVlZGYwNmMxN2VmNzgyYjlmMDIwYmJiZGFhNzlmNzAyOTUxZjNjNDhjZmQwZjViMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA2YmIwNTQwZDVkZmFhODMxNTA1N2Q1NjA2MWQ5MTQxYzFhN2E5YWRkMGEwZjJhYzY1MTk5MjQ0ZTJiOGUzZCJ9"
+        },
+        {
+          "resource": "repo://app.py#L172-L176",
+          "version": "repo-lines-v1:sha256:7ab9f1728a7bf0e3d8bcb673468f52075303b3526736cfb2d44c4859ef4a8f98:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJmZTMxMDE3ZmI0NThkZGZjODFjY2NlMWFhMjg2ZTQzODhlNzNiNjBiZDM5ZTM5NThkZjQ4ZDhjN2IwODZhZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTU3ZDJiZmRhYjVmMjVlNzllMjNlYjQyOWEyODU3YTBhNzE5Nzc1Mzc0MDQ3ZmI2NWJkYzUwNTQ4OTMzNDIwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmYxNjhkY2RmMjNkNmJiZTNkOGE0MjgwYzg4NTg2NDBlMmE2M2I4YjE5ZWMwODhlYzc1YzMwZmYzNGMyMWYwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRmMzk1NDQyNTFlNWI0Yjk3MzFmNTQ1NTRiYjdmN2NmZjg1MWNmMWY3NTkzZjY1MjY2MWRmYThiZjE1OGY0OCJ9"
+        },
+        {
+          "resource": "repo://app.py#L177-L203",
+          "version": "repo-lines-v1:sha256:1672a6ebf5eeb3590441da173aa1934ff3a24602c2ef3a369c02bd34dc2b73ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGZlN2YwZDFiYzgwYjczODExMjM1ZjcxZGUxZjVkMjYxMDAxM2NhZmJlMjMxNTA4YjM0MTgyOTMxYzE1NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiY2RlM2IwNWZhZjRiNjZkNWJiODQ3NWNiNmY3YWM1MTlhMmYwMzUwNjkzOThmODNjNmIxZmQ5OTZmMDEwYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L52-L52",
+          "version": "repo-lines-v1:sha256:f5fdce9ed764032fd9fee906023a6c9ceee4ab8146efd83fd0498cafbabb773d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWY0MjBlZGIxNzU5YTM2YzU1MTI1MGRlZWI0OTk4NWUyZTc0ZTgzM2IxYzk1OThhNjliMWYwYmIwZGExNGEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGYyNjgyMzBmYjlmMTU5ZTg0MjVhMzU3ODg1MzYwMjY2MDQ0OTkzMjNmZGJkYWRlZDM4ZjRhYjA2MjZiMzhmNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_8ad538b2d5204598a3f1d4d64186811b",
+      "statement": "Once st.session_state.moderation_blocked is true, the app submit handler short-circuits before any further checks and shows a permanent session-blocked error; the warning count lives only in session state and resets on a page reload / new browser session.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L102-L103",
+          "version": "repo-lines-v1:sha256:2e6071b486015ff49266ea1407eb683b7012a88b7a4ce8fb68265bb8742a8214:eyJzZWxlY3RlZExpbmVDb3VudCI6MiwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZGVjOGY4Y2U4NzA3NDY3MjI4YzIzYmY0MWM2Njk0OTA4NGQwYTk5OTIwYTNkMDg3YWU2MDdkMzQxZjlkNWY3NSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2Q1YTIxMzI3MzUxODZmZGNmZmNlZTBjZTFhNTJhYTE4ODk4MGFjZTRmYWIxYWE3ODVhMzAxYzAyNzc5Y2VmNCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZTA3NmJjNTdlMmQ0ZmM2NTVlZGYwNmMxN2VmNzgyYjlmMDIwYmJiZGFhNzlmNzAyOTUxZjNjNDhjZmQwZjViMSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiMTA2YmIwNTQwZDVkZmFhODMxNTA1N2Q1NjA2MWQ5MTQxYzFhN2E5YWRkMGEwZjJhYzY1MTk5MjQ0ZTJiOGUzZCJ9"
+        },
+        {
+          "resource": "repo://app.py#L172-L176",
+          "version": "repo-lines-v1:sha256:7ab9f1728a7bf0e3d8bcb673468f52075303b3526736cfb2d44c4859ef4a8f98:eyJzZWxlY3RlZExpbmVDb3VudCI6NSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiYTJmZTMxMDE3ZmI0NThkZGZjODFjY2NlMWFhMjg2ZTQzODhlNzNiNjBiZDM5ZTM5NThkZjQ4ZDhjN2IwODZhZSIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiYTU3ZDJiZmRhYjVmMjVlNzllMjNlYjQyOWEyODU3YTBhNzE5Nzc1Mzc0MDQ3ZmI2NWJkYzUwNTQ4OTMzNDIwOCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiZmYxNjhkY2RmMjNkNmJiZTNkOGE0MjgwYzg4NTg2NDBlMmE2M2I4YjE5ZWMwODhlYzc1YzMwZmYzNGMyMWYwZCIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiYjRmMzk1NDQyNTFlNWI0Yjk3MzFmNTQ1NTRiYjdmN2NmZjg1MWNmMWY3NTkzZjY1MjY2MWRmYThiZjE1OGY0OCJ9"
+        },
+        {
+          "resource": "repo://openspec/specs/content-filter/spec.md#L55-L61",
+          "version": "repo-lines-v1:sha256:e141b767e8e6cee415f4c3684717a8708089404ddee6f0d2e1345831ed20eb0d:eyJzZWxlY3RlZExpbmVDb3VudCI6NywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiMDAwYjk3ZDkwNWY4NjhmZTA0OWExMDY3OTVjNzYzZTU1YjNmNzBlNThhNTI2MzFkNGEwM2E3Yzg3YTY3MzJlNyIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiY2ZmOTBhOWFjNDY5ZjgxNjJjMjA2Yjg0M2M1ZGYwZmM3OGM2MjM1MDFkZTQ1M2VhNzFmOWQyNTcyZmYwMDExZSIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiNjExYTJiMDVkNWU5MmYyOGFiY2VmODNhOWQxNmE0MTQyNzNjN2ZhZThjNjg1YzM3NmNhOWU2NjUxOWQyZGEzZSIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjAsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiZTNiMGM0NDI5OGZjMWMxNDlhZmJmNGM4OTk2ZmI5MjQyN2FlNDFlNDY0OWI5MzRjYTQ5NTk5MWI3ODUyYjg1NSJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_bd0f75e13d6c449e9981df3c56036e36",
+      "statement": "MODERATION_ENABLED is an env var defaulting to 'true' parsed case-insensitively to a bool in src/config.py; when false, app.py skips the check_text call entirely so no moderation warnings appear and no LLM moderation cost is incurred.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L177-L203",
+          "version": "repo-lines-v1:sha256:1672a6ebf5eeb3590441da173aa1934ff3a24602c2ef3a369c02bd34dc2b73ba:eyJzZWxlY3RlZExpbmVDb3VudCI6MjcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImYzZGZlN2YwZDFiYzgwYjczODExMjM1ZjcxZGUxZjVkMjYxMDAxM2NhZmJlMjMxNTA4YjM0MTgyOTMxYzE1NzIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQ5YWY2NmVlZjZmN2UwNmIyMGY4NjA5MjcwZmUxODgzODI4ZDZjNGM3NmJlNjA0ZTQzZmIwNzVhNTI3YjBhOWEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjNiY2RlM2IwNWZhZjRiNjZkNWJiODQ3NWNiNmY3YWM1MTlhMmYwMzUwNjkzOThmODNjNmIxZmQ5OTZmMDEwYjciLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjYyNDVkZGU0Mjg1YzRhM2FjMGNiNjljYTYwOWM4NWU2NTE2ZDk4ZjAwOWVhMWUyY2M3NTk2ZDYzOTdkZjE1ZTQifQ"
+        },
+        {
+          "resource": "repo://src/config.py#L52-L52",
+          "version": "repo-lines-v1:sha256:f5fdce9ed764032fd9fee906023a6c9ceee4ab8146efd83fd0498cafbabb773d:eyJzZWxlY3RlZExpbmVDb3VudCI6MSwiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiZjVmZGNlOWVkNzY0MDMyZmQ5ZmVlOTA2MDIzYTZjOWNlZWU0YWI4MTQ2ZWZkODNmZDA0OThjYWZiYWJiNzczZCIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiYWY0MjBlZGIxNzU5YTM2YzU1MTI1MGRlZWI0OTk4NWUyZTc0ZTgzM2IxYzk1OThhNjliMWYwYmIwZGExNGEwNiIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiOGYyNjgyMzBmYjlmMTU5ZTg0MjVhMzU3ODg1MzYwMjY2MDQ0OTkzMjNmZGJkYWRlZDM4ZjRhYjA2MjZiMzhmNyJ9"
+        }
+      ]
+    },
+    {
+      "id": "claim_c950ec5eea7641a7af89dffe302bdfd8",
+      "statement": "use_llm (default True) controls the LLM semantic pass: when False, check_text_llm is never called while the local check still runs; app.py calls check_text with the default so the LLM pass is active whenever MODERATION_ENABLED is true.",
+      "evidence": [
+        {
+          "resource": "repo://app.py#L177-L179",
+          "version": "repo-lines-v1:sha256:b4f39544251e5b4b9731f54554bb7f7cff851cf1f7593f652661dfa8bf158f48:eyJzZWxlY3RlZExpbmVDb3VudCI6MywiZmlyc3RTZWxlY3RlZExpbmVIYXNoIjoiZjNkZmU3ZjBkMWJjODBiNzM4MTEyMzVmNzFkZTFmNWQyNjEwMDEzY2FmYmUyMzE1MDhiMzQxODI5MzFjMTU3MiIsImxhc3RTZWxlY3RlZExpbmVIYXNoIjoiOTRjYjhlODk3MjFmNmU3ZGIzZjA5M2E5YWI1N2VlMGUwYTE0YzBiMDAwNDQxMTllMWE5ZDNhZGFmZGU4OGEyYyIsInByZWNlZGluZ0NvbnRleHRMaW5lQ291bnQiOjMsInByZWNlZGluZ0NvbnRleHRIYXNoIjoiM2JjZGUzYjA1ZmFmNGI2NmQ1YmI4NDc1Y2I2ZjdhYzUxOWEyZjAzNTA2OTM5OGY4M2M2YjFmZDk5NmYwMTBiNyIsImZvbGxvd2luZ0NvbnRleHRMaW5lQ291bnQiOjMsImZvbGxvd2luZ0NvbnRleHRIYXNoIjoiODRmYTYxNGE1ODk0MGZmZjBmZTY2NjdjNDUwOTAwYjg0ZWIwZWNiODg5Y2Q1MDFiYjc1NDA4ZDAyZGQzYzllNSJ9"
+        },
+        {
+          "resource": "repo://src/content_filter.py#L197-L215",
+          "version": "repo-lines-v1:sha256:f8d431db34a8495f426ace90185ff7e0f9b46ca86b6e1c4ffec8a8bea3f188cb:eyJzZWxlY3RlZExpbmVDb3VudCI6MTksImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZiMTJiMDk2ZDJiNjlhNzVhY2JhZWRkMzM0YWY3MGY2MTIwYzI0NTU3ODRmMzBhY2FiMzJhODljZDc2MjJjNTkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM5ZGIxZDc5NmMzZjU1Mzc2ZmY2YjZiMTIzYTRmMzQxNDI3ZmUzN2EzMWZhYmMxYTY5MTQ2MDE3OGJhNmM2NjQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6Ijc3NjY4NTYzMmQyOThiOTgzNjQ0ZDMzOTU2OGZkY2EwYzkyNThjNmYzMmQzYjUzYWYyYjAxMDE4MzU4MjY2MjgiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImNiOWNiZWYzM2QzNmQ5YzcyYTZmZDUyOTg5OWU1YjdkMTdlZGI4NWY3MzE5ODVlNjE5NjQ1NzE0ZmU1ZGI1M2IifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4ab8bef0bbe84683b03b34f7a24726c7",
+      "statement": "The content-filter spec defines the contract: local keyword/pattern blocking with leet-speak normalization, optional LLM semantic moderation with a medical-context allowance, and the three-strike session warning escalation that resets on new session.",
+      "evidence": [
+        {
+          "resource": "repo://openspec/specs/content-filter/spec.md#L1-L61",
+          "version": "repo-lines-v1:sha256:84457a3696ce9599dfa974abab1941c3f0ba17dc44f235caf4a5b9b2debd3845:eyJzZWxlY3RlZExpbmVDb3VudCI6NjEsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijk5NDQxMzI5N2EzZTk1YTliNzJmNWU0YzA0YWE5YzMwNmY5MDA5YWQ4OGZhMGY5OTQ1M2QxOTYzODM1NjY4YjkiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImNmZjkwYTlhYzQ2OWY4MTYyYzIwNmI4NDNjNWRmMGZjNzhjNjIzNTAxZGU0NTNlYTcxZjlkMjU3MmZmMDAxMWUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjowLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4d7446a895de43ce9e5a11a2835b9727",
+      "statement": "tests/test_content_filter.py pins each layer: per-category keyword blocking, leet digit translation (4->3, 3->8) and lowercasing, local keyword-then-pattern ordering, get_warning_level escalation, LLM-block-on-BLOQUEAR, skip-LLM-when-local-blocked, invoke-LLM-once-for-clean-text, fail-open-on-exception, and skip-LLM-when-disabled.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_content_filter.py#L1-L163",
+          "version": "repo-lines-v1:sha256:ef463b9e5e835c9431f3cd3805c9484b358bce67cab3866a1ab6d2c95a133c25:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYzLCJmaXJzdFNlbGVjdGVkTGluZUhhc2giOiI5NWJkM2E5MDJlZTQxNDg4MGFjYTZkNzM0YTA5YmI1YjdiYjE1ZGI4YjU3MDM3ZmU1MjI2OWI1NDc4ODBjNDEyIiwibGFzdFNlbGVjdGVkTGluZUhhc2giOiI3NGMyMWYwMGYyY2NhNjNjOWU5NmJjM2YyNWUwZTAzNTk1ZDE2OWZhZDYyMTMxMzU2NTdkMmZiZDQ3MjRmMjNmIiwicHJlY2VkaW5nQ29udGV4dExpbmVDb3VudCI6MCwicHJlY2VkaW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1IiwiZm9sbG93aW5nQ29udGV4dExpbmVDb3VudCI6MCwiZm9sbG93aW5nQ29udGV4dEhhc2giOiJlM2IwYzQ0Mjk4ZmMxYzE0OWFmYmY0Yzg5OTZmYjkyNDI3YWU0MWU0NjQ5YjkzNGNhNDk1OTkxYjc4NTJiODU1In0"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}

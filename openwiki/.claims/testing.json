@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "pageVersion": "sha256:a630fe3d33f0482863ee34d74ee92846d1b4282d7452e00f7bfa3eb58753b69a",
+  "claims": [
+    {
+      "id": "claim_c3fba78765cd410795ef30f5f32c0775",
+      "statement": "pytest.ini configures the suite with testpaths=tests, pythonpath=src (so `import src.*` resolves without an install step), and addopts=-ra --strict-markers (which reports all non-passing outcomes and errors on unregistered markers).",
+      "evidence": [
+        {
+          "resource": "repo://pytest.ini",
+          "version": "repo-file-v1:sha256:6d30577beaa66ed875812038da59ab9de8afd6a6e127a606444c223a1ba45081"
+        }
+      ]
+    },
+    {
+      "id": "claim_609a7ab2a289444883e477f01bd449d6",
+      "statement": "The development dependency is pytest>=8.0 (requirements-dev.txt); the runtime deps in requirements.txt (streamlit, langchain, langchain-openai, openai, edge-tts, python-dotenv, qrcode[pil]) must also be installed because the tests import the modules under test.",
+      "evidence": [
+        {
+          "resource": "repo://requirements-dev.txt",
+          "version": "repo-file-v1:sha256:8554614dc459151d6b0134f441bef0856df306dc0f06515ddf4197d05adfe1be"
+        },
+        {
+          "resource": "repo://requirements.txt",
+          "version": "repo-file-v1:sha256:4e857202a323d235c4da642c132fabc6b005b2944c1c77c5f13066c5920e8ec9"
+        }
+      ]
+    },
+    {
+      "id": "claim_13b066b0c11e4aa5ae226f599862e4f7",
+      "statement": "The GitHub Actions test workflow (.github/workflows/test.yml) runs the suite on push to main and on PR against main, on ubuntu-latest with Python 3.10, installing both requirements.txt and requirements-dev.txt (with --only-binary=:all:) and running pytest.",
+      "evidence": [
+        {
+          "resource": "repo://.github/workflows/test.yml",
+          "version": "repo-file-v1:sha256:e015507f6a0abb26e6e8e05acda6ff13d33253c9aa05f215424d8cd53ba5ae0b"
+        }
+      ]
+    },
+    {
+      "id": "claim_1bacd22c2b05428e81729037906cf575",
+      "statement": "conftest.py provides an autouse _required_llm_env fixture that sets SKIP_CONFIG_VALIDATION=1 and fills in the five required LLM env vars with test values only when unset, plus shared sample_questions and tmp_json_file fixtures (a factory writing JSON to a tmp_path file).",
+      "evidence": [
+        {
+          "resource": "repo://tests/conftest.py",
+          "version": "repo-file-v1:sha256:e5f3ef83bb2125aaa4be366f3455fbaaa7c65eabfbbcc772d7ca8ea87666d252"
+        }
+      ]
+    },
+    {
+      "id": "claim_4d28ba2550f04e2c9e162726aab02087",
+      "statement": "test_app.py stubs the streamlit module and all src.* submodules (qrcode_service, avatar, content_filter, llm_service, quiz_data, tts_service) by replacing them in sys.modules via monkeypatch.setitem, then reloads app so the stubs take effect, and runs main() with a hand-rolled _Streamlit fake whose session_state holds a single id=7 question and query_params {\"q\": \"7\"}.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L57-L110",
+          "version": "repo-lines-v1:sha256:0e73a8c83bddb68da523107160492ded2de0dbdcc0998e8d65fd01ecda6f043a:eyJzZWxlY3RlZExpbmVDb3VudCI6NTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImQyZjg0YWY2NDgzYzBhNDc1YzhkNjNjY2YxODgwZjE2NzY3NWE2NjY4ZDFjOGRiMTRlOTUwMDQwMjQ4M2UyMzciLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImM3MmM4MjFjM2NmMjk5ZWI4MGI1Mjk0Njc3Zjc2Yzg2YjEzMjYzZTM4NDEyZjgyN2QwODkzYWIxNWI2Nzc4ZjUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjZhMjhmMzA0MGRmYmViNjhjYzk0NjA4NDdiODVkYjU5ZDNlMGFkNzA5Nzk5NzFhNzM0YzQ5NWEyMTBiOWViN2QiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAzMTQyMjgwNTljZTczYmMyMDQ4ZDU1MDJjMTVkNTgzMzk4NDY0OTZlNGYyY2E4YTRiNzY1YmQyZjFhNzhmZDYifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_4675b9510fd64877b0dd86ca34304394",
+      "statement": "test_app.py captures the QR share URLs by monkeypatching app.generate_qr_code with a spy that appends each URL and returns a BytesIO; it asserts main() builds https://lappquiz.ict.unesp.br?q=7 when APP_URL is unset (the config default) and https://quiz.example.com?q=7 when APP_URL is set.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L96-L127",
+          "version": "repo-lines-v1:sha256:e13a12577268a5e8f2dc9b36f3b4320599856b16c9528a086e0c919a0518b68d:eyJzZWxlY3RlZExpbmVDb3VudCI6MzIsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjRmNDE3MjYyYzcwMzAzYjcwMzk2YjgwMTE1NTlhNWE5MTRlZDcxN2UwNTFlNTA3MjM1Mzg4MDgwZTA4ZWIyMmEiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImI0YWZmZjNiYjk3NzA5MWZiYjJmNDQyNWQzMDQ0OWRjNWY0Y2EyMDMwMmU4NTNkZTRmNjIxZDM0MTA0NjZmODIiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImE3ZWZjMDkwNzljZGI5YmY2NjNiMGY4YjU2ZWEwNjZmYTU2ZGJlOGY4ZmM4M2JhZmM2NWQ1MGVmMjAxOGI1ZTAifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_ad73c03dd8564cf584a5d67998bf10b0",
+      "statement": "The test_app stubs short-circuit check_text, evaluate_answer, generate_speech, and the avatar GIF calls, so the two test_app tests validate only QR-link construction and do not exercise the real moderation, LLM, TTS, or avatar behavior (those are covered by the dedicated module tests).",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_app.py#L76-L91",
+          "version": "repo-lines-v1:sha256:0c605501138fe5630b0a1e0f538da1f4d7a630845cb43a217b44c9a36a985896:eyJzZWxlY3RlZExpbmVDb3VudCI6MTYsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImIzOWNjOWYzMjliNmQ0ZjMyYmUwMzkxYjE3NzY1ZjZkMGZiYTllN2NiNWI2MTk5MmVkMjI3N2IxMzljNzUxOGUiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5Njk1YmFjMjFhOWJmOWQ4Nzk3MTI3MTE4NzI4NWZjNGMzYTAxZWFkNGMwNjBmZTM3OGExOWQ3NTdhZDVmMmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImEyZGZiNWQ5ZWEzMDA4NjA2MDViMDI3NTU2NDI4YmJiM2VhNGMyOGY1MjBjMTZmZGE1MGI1ZTkxNGEwM2Q0MzMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NjYyMTQwOTA1ZTlmOTYwNmJmYjAxMmI2NjEzZmIwMWU3YmU0ZWU3MzdhZjA3ZGE5ZTE5MWVmNDU4MWVkZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_086b65e1c4bd40f9906493aaaa17bd25",
+      "statement": "test_content_filter.py exercises the real BLOCKED_KEYWORDS and BLOCKED_PATTERNS: it pins keyword blocking across the four PT/EN sexual/violent categories, leet normalization (4→3, 3→8, FODA→foda), pattern blocking, the keyword-then-pattern ordering in check_text_local, and the get_warning_level 0→none/1→first/2→second/3→blocked escalation ladder.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_content_filter.py#L16-L52",
+          "version": "repo-lines-v1:sha256:f24262d0a88cb6071e3b81b2c06fc7b804cac27227da3fda0a7cae7295af7991:eyJzZWxlY3RlZExpbmVDb3VudCI6MzcsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjgxMzZjODM0NDAzYmFjNTc2Yzk5NGI4NGI2OGFiNDYyOGZlYzk2MTFhMmZjM2NkYjBjY2EzOGM2ZDJlZDgxOWQiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImU2ZGRkZWY3ZjBiNTYzNGViNmNkNjNmOTAxODFhOGI5ZTg1N2U3N2ZiY2ExMmM5MGE0OTY4MmFhM2EwNTNhZjEiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImE5OGIwNjNkOWI0N2U2NTM3OTYyNTU3MmNjZTE5NzY2OWQ1NzY3ZTEyYzE4YmUwNzU2NTJiOGNkOTgxY2U4ZDUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjhlMTc0MDlhM2QwMGJlY2M3MWQ3MzhmZDFhOTFhMTc5NDhmMGU5YTFhZjllOTUzMzhhNjZiYTg4MGI2NTM4NmMifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c1887c81713e4619b2f36a8463dd2f07",
+      "statement": "test_content_filter.py pins the LLM-moderation contract: a 'BLOQUEAR' response blocks, the LLM is not called when the local check already blocked, the LLM is called once with the real get_litellm_llm for clean text, an LLM exception fails open returning (False, None), and use_llm=False never invokes the LLM.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_content_filter.py#L104-L163",
+          "version": "repo-lines-v1:sha256:ff46da81fdeea11d22ee882eaaab69b7f609ded17de78e9c4b33ad28bc04aab8:eyJzZWxlY3RlZExpbmVDb3VudCI6NjAsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjI5MmEwYTE4OTkxY2RjNjUxMDUyOTFkODBjMTFhNDZmYjQ2YTJjZjg1YjJmNGNkZWI3ZjM1NDk3NDIzYzkzYTYiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6Ijc0YzIxZjAwZjJjY2E2M2M5ZTk2YmMzZjI1ZTBlMDM1OTVkMTY5ZmFkNjIxMzEzNTY1N2QyZmJkNDcyNGYyM2YiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjgwYjVjZjkwYWViYTkzOGE5ZmE1MWQ3YWU2ZDYyZmU1MjZhZDc0Yjg3MmI4MjVlNzNkMDc4YmY0NDYwZTQ0YjMiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjowLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6ImUzYjBjNDQyOThmYzFjMTQ5YWZiZjRjODk5NmZiOTI0MjdhZTQxZTQ2NDliOTM0Y2E0OTU5OTFiNzg1MmI4NTUifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_746d6efcbbfc4683bc0f8e97d5984c78",
+      "statement": "test_llm_service.py mocks ChatOpenAI at the get_litellm_llm/get_openrouter_fallback_llm boundary (a fixture reloads src.llm_service with test env vars) and pins build_prompt (contains all three inputs; blank user answer becomes '(sem resposta)'), clean_text_for_tts (strips markdown, reduces links to labels, collapses newlines), and the three evaluate_answer outcomes: primary succeeds (fallback not called), primary fails → fallback succeeds, both fail → RuntimeError whose message contains 'ambos os provedores falharam' plus both error strings.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_llm_service.py#L25-L118",
+          "version": "repo-lines-v1:sha256:9886444b44606ac27ed839f94074eb675f986ebc3875903be68601ecf611b641:eyJzZWxlY3RlZExpbmVDb3VudCI6OTQsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6IjYwNGNlMTRlZDdkMDliMDNiYmJmZjI4Yjg3YTRmNzdiMzZlMWQxOWM4MDhkMzRmODRiMjMzZWU3YmI1NTdiNTgiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjMwMzFhMzI5YjUxN2ZjNzNlY2FmYjFkZDI2ZjhlNzAyZTUwNjNhZTFhOGUxNDdjMmFmOWZhYTZmNDZjOGY0YTIiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6IjAxZTgwZTEwZTAxYzUwNzQ2ZGNkYzU4Njg2ZWU0ZWU0YTQ3NDhiYzU4YWU5NTM0NmQ2MzU4MzU2Y2FjYjliYmUiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjM1Nzc5NjZjYTI1NzYyYmRjMDVkYWQ2Y2NhMTkxZDNhNjlkYmIyYTlkZTFlZGIxOTM4NGM4MjEzNDM2Mzk2ZmIifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_c17e9edb04af41289b4684561ab69756",
+      "statement": "test_qrcode_service.py asserts generate_qr_code returns an io.BytesIO whose first 8 bytes are the PNG signature, exercising the real qrcode library; test_quiz_data.py covers load_questions (valid JSON + JSONDecodeError on invalid), get_question (valid/negative/out-of-range), and get_question_by_id (existing/missing) using the sample_questions and tmp_json_file fixtures.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_qrcode_service.py",
+          "version": "repo-file-v1:sha256:5525d9ff4005182c1f7ea95abb9f44586495f85c3274908f714f49306ffcd240"
+        },
+        {
+          "resource": "repo://tests/test_quiz_data.py",
+          "version": "repo-file-v1:sha256:a453654f7f7b4fc9228bdd1b510ede5f9f2ff156fc260e97bb3621686efb5614"
+        }
+      ]
+    },
+    {
+      "id": "claim_b58181ade2b448458548bc17e0a00527",
+      "statement": "Known test gaps: there are no integration tests for tts_service.generate_speech (needs the edge-tts network API), the avatar GIF generation pipeline (PIL drawing + on-disk cache), or a full Streamlit render; test_app's stubs bypass the real moderation/LLM/TTS/avatar collaborators, so it exercises only QR-link construction.",
+      "evidence": [
+        {
+          "resource": "repo://src/tts_service.py#L13-L25",
+          "version": "repo-lines-v1:sha256:baa31347c35348730b156be3f18958ef5a1225133c875b6366dd2682d737e30c:eyJzZWxlY3RlZExpbmVDb3VudCI6MTMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImZhODVkZjY2ZTAxMzdlMmQ5MjE0YzNlNzkwOWNkZTU2MGJiODI5ZWJkNGU4NTNkNzQ4MDE3MzBiMzU1YzIwNzAiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6ImI3MjM5NzlhMDIxNGU3Zjk5NDQ2ZDk5YjdjYzZjMzhhMmIwOGRjZTFhYjcyNTBkYTZhODlmZWZkZjk5OWM5ZDUiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImExMTY2NTY1Y2RhYzI2NTAzZWQ1MWY5ZDJmN2E1YTE3M2M4ZWNkZjhkYzc4MTczNDkwNDQ5YmYyZGJiNDM0ZDAiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjoxLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6IjAxYmE0NzE5YzgwYjZmZTkxMWIwOTFhN2MwNTEyNGI2NGVlZWNlOTY0ZTA5YzA1OGVmOGY5ODA1ZGFjYTU0NmIifQ"
+        },
+        {
+          "resource": "repo://tests/test_app.py#L69-L91",
+          "version": "repo-lines-v1:sha256:91f297011a4d18bda53b70d4cb153eb6a8e4be609ccf65ffe44f10ce15b279aa:eyJzZWxlY3RlZExpbmVDb3VudCI6MjMsImZpcnN0U2VsZWN0ZWRMaW5lSGFzaCI6ImVjNDkzMGNhOTIyYTBhZWJhNjcxMjhkNTdiNTEwMzBiMjRjOWVjYWQ4ODAwMGI3ODZmZTRlOWJkMWRjNzVkODIiLCJsYXN0U2VsZWN0ZWRMaW5lSGFzaCI6IjE5Njk1YmFjMjFhOWJmOWQ4Nzk3MTI3MTE4NzI4NWZjNGMzYTAxZWFkNGMwNjBmZTM3OGExOWQ3NTdhZDVmMmQiLCJwcmVjZWRpbmdDb250ZXh0TGluZUNvdW50IjozLCJwcmVjZWRpbmdDb250ZXh0SGFzaCI6ImY2ODY2YzAxOTEzMjY5ODVjZGRlNmYyMmYxYzkwMjg5NjUwZmYwYmQzYzc1MjhjMzQ4OTQzYTQ5NzViNzQxMGQiLCJmb2xsb3dpbmdDb250ZXh0TGluZUNvdW50IjozLCJmb2xsb3dpbmdDb250ZXh0SGFzaCI6Ijc0NjYyMTQwOTA1ZTlmOTYwNmJmYjAxMmI2NjEzZmIwMWU3YmU0ZWU3MzdhZjA3ZGE5ZTE5MWVmNDU4MWVkZDQifQ"
+        }
+      ]
+    },
+    {
+      "id": "claim_eed5220a731e441f9e535f7ab695f8bc",
+      "statement": "test_config.py mirrors the test_app approach at the config level, reloading src.config under env overrides to assert APP_URL defaults to https://lappquiz.ict.unesp.br and honors an APP_URL override.",
+      "evidence": [
+        {
+          "resource": "repo://tests/test_config.py",
+          "version": "repo-file-v1:sha256:6b164a02299915bbb8c4e0ec0b932cb752432fa65e068e2d913db2f73a22cf09"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "by": "openwiki/0.4.3",
+    "at": "2026-09-01T12:56:02.391Z"
+  }
+}
