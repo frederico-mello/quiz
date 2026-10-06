@@ -2,8 +2,8 @@
 
 ## 1. Remover referências a contexto interno
 
-- [x] 1.1 Em `docs/06-metodologia.md`, trocar “Esta é a peça que o dono do repositório pediu com prioridade. A pergunta que ela responde é:” por “A pergunta que esta peça responde é:”, preservando o restante da frase.
-- [x] 1.2 Em `docs/README.md`, na seção Premissas, trocar “*(premissa)* Prioridade declarada pelo dono do repositório: a metodologia de desenvolvimento, tratada por isso com uma página inteira em 06-metodologia.md.” por “*(escolha editorial)* A metodologia de desenvolvimento ganhou uma página inteira em 06-metodologia.md, por ser a peça que melhor explica como o projeto evolui.”
+- [x] 1.1 Em `docs/06-metodologia.md`, remover a frase que citava um pedido e prioridade do dono, trocando-a por uma redação neutra sobre a pergunta que a peças responde, preservando o restante da frase.
+- [x] 1.2 Em `docs/README.md`, na seção Premissas, substituir a citação de prioridade declarada pelo dono por uma redação que a classifica como escolha editorial.
 - [x] 1.3 Em `docs/06-metodologia.md`, trocar “quem garante isso é o hábito do dono” por “quem garante isso é o hábito de quem trabalha no repositório”.
 - [x] 1.4 Em `docs/06-metodologia.md`, trocar “Se falhar, o dono vê o erro antes de mergear (unir) o código.” por “Se falhar, o erro aparece antes de a proposta ser mergeada (unida) ao código.”
 - [x] 1.5 Em `docs/06-metodologia.md`, trocar “Como o dono desse repositório trabalha muito com envio direto na branch principal, o push-review cobre o caminho que a revisão de proposta não vê.” por “O push-review cobre o caminho que a revisão de proposta não vê: mudanças enviadas direto para a branch principal.”
