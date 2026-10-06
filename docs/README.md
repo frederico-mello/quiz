@@ -19,7 +19,7 @@ Caminho sugerido: comece pela [visão geral](01-visao-geral.md), siga para [arqu
 
 ## De onde vem esta documentação
 
-Este texto foi escrito a partir de uma leitura do código real do repositório, não de uma descrição de terceiros. O estado lido é o `main` na revisão `2a1e7db` (3 de outubro de 2026), e a própria documentação é atualizada pelo mesmo ciclo de trabalho descrito em [06-metodologia.md](06-metodologia.md).
+Este texto foi escrito a partir de uma leitura do código real do repositório, não de uma descrição de terceiros. O estado lido é o `main` na revisão `d53b80e` (6 de outubro de 2026), e a própria documentação é atualizada pelo mesmo ciclo de trabalho descrito em [06-metodologia.md](06-metodologia.md).
 
 O que esta documentação **não** é:
 
@@ -30,7 +30,7 @@ O que esta documentação **não** é:
 ## Premissas
 
 - *(premissa)* Profundidade **curiosa**: narrativa em português simples, analogias, jargão explicado no mesmo parágrafo.
-- *(premissa)* Prioridade declarada pelo dono do repositório: **a metodologia de desenvolvimento**, tratada por isso com uma página inteira em [06-metodologia.md](06-metodologia.md).
+- *(escolha editorial)* A metodologia de desenvolvimento ganhou uma página inteira em [06-metodologia.md](06-metodologia.md), por ser a peça que melhor explica como o projeto evolui.
 - *(premissa)* A referência de estado é o `main` do repositório, por ser o que existe publicamente.
 
 ## Como separar fato de interpretação
