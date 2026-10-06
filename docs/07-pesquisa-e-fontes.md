@@ -63,12 +63,12 @@ O que a fonte afirma: a biblioteca usa o serviço online de texto para fala do M
 
 Fontes consultadas:
 
-- [repository-hygiene 0.2.0](https://pypi.org/project/repository-hygiene/0.2.0/) (a versão fixada no workflow)
-- [repository-hygiene 1.0.0](https://pypi.org/project/repository-hygiene/1.0.0/) (linha 1.x, indicada para o repin)
+- [repository-hygiene 0.2.0](https://pypi.org/project/repository-hygiene/0.2.0/) (a versão fixada no workflow até esta correção)
+- [repository-hygiene 1.0.0](https://pypi.org/project/repository-hygiene/1.0.0/) (linha 1.x, indicada para o repin; o pino foi aplicado em 1.1.0 nesta correção)
 
 O que a fonte afirma: a versão 0.2.0 lê o bloco `regras:` (em português) e a versão 1.0.0 lê `rules:` (em inglês).
 
-**O que isso mudou na leitura:** o diagnóstico de [06-metodologia.md](06-metodologia.md) deixa de ser hipótese e passa a ser causa verificada comparando a configuração do repositório com o código do pacote — o workflow fixa a 0.2.0, que procura `regras:`, enquanto o `auditoria.yaml` usa `rules:` desde 26 de julho de 2026, e a 1.0.0 confirma o diagnóstico lendo justamente a chave que o arquivo tem. Sem regra alguma carregada, a auditoria termina com sucesso sem examinar um único arquivo; repinar o pacote na linha 1.x devolve a auditoria ao funcionamento.
+**O que isso mudou na leitura:** o diagnóstico de [06-metodologia.md](06-metodologia.md) deixa de ser hipótese e passa a ser causa verificada comparando a configuração do repositório com o código do pacote — o workflow fixava a 0.2.0, que procura `regras:`, enquanto o `auditoria.yaml` usa `rules:` desde 26 de julho de 2026, e a 1.0.0 confirma o diagnóstico lendo justamente a chave que o arquivo tem. Sem regra alguma carregada, a auditoria termina com sucesso sem examinar um único arquivo; o repin foi aplicado nesta correção, com o pino subido para 1.1.0, devolvendo a auditoria ao funcionamento.
 
 ## 6. O que não foi possível checar
 

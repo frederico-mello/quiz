@@ -99,13 +99,13 @@ Quem quiser repetir a revisão, comenta `@mira-review` na proposta.
 
 O `auditoria.yaml` que regula esse pacote é explícito sobre links: a regra `broken_internal_links` está `enabled: true` com `severity: error` — exatamente o tipo de problema que o README tinha (próxima seção).
 
-Esse mecanismo existe, mas os links mortos do README permaneceram no ar até esta mudança, e a causa foi verificada comparando a configuração do repositório com o código do pacote: o workflow fixa `repository-hygiene==0.2.0`, e a versão publicada [`0.2.0` no PyPI](https://pypi.org/project/repository-hygiene/0.2.0/) lê o bloco `regras:` (em português), enquanto o `auditoria.yaml` usa `rules:` (em inglês) desde a alteração registrada em 26 de julho de 2026 — a versão [`1.0.0` no PyPI](https://pypi.org/project/repository-hygiene/1.0.0/) já lê `rules:`, confirmando o diagnóstico. Sem nenhuma regra carregada, a auditoria termina com sucesso sem examinar um único arquivo — por isso os links mortos do README nunca geraram alerta. Repinar o pacote na linha 1.x devolve a auditoria ao funcionamento.
+Esse mecanismo existe, mas os links mortos do README permaneceram no ar até esta mudança, e a causa foi verificada comparando a configuração do repositório com o código do pacote: o workflow fixava `repository-hygiene==0.2.0` até esta correção, que subiu o pino para `1.1.0`, e a versão publicada [`0.2.0` no PyPI](https://pypi.org/project/repository-hygiene/0.2.0/) lê o bloco `regras:` (em português), enquanto o `auditoria.yaml` usa `rules:` (em inglês) desde a alteração registrada em 26 de julho de 2026 — a versão [`1.0.0` no PyPI](https://pypi.org/project/repository-hygiene/1.0.0/) já lê `rules:`, confirmando o diagnóstico. Sem nenhuma regra carregada, a auditoria termina com sucesso sem examinar um único arquivo — por isso os links mortos do README nunca geraram alerta. O repin para 1.1.0 devolve a auditoria ao funcionamento.
 
 ## Extras que completam o método
 
 - **Commits convencionais.** As mensagens seguem o padrão `tipo: descrição` (`fix:`, `chore:`, `ci:`, `docs:`, `test:`), o que permite filtrar o histórico por natureza da mudança.
 - **Propostas de merge com histórico.** O git tem 135 commits entre 20 de maio e 6 de outubro de 2026, com merges no padrão `Merge pull request #N`.
-- **Atualização automática de ações.** O `.github/dependabot.yml` pede atualização semanal das ações do GitHub Actions (inclui os workflows reutilizáveis) em PRs revisáveis. Detalhe de segurança: os pacotes usados em CI são fixados por versão (`pip==25.1.1`, `repository-hygiene==0.2.0`) e os reutilizáveis de revisão estão fixados por SHA.
+- **Atualização automática de ações.** O `.github/dependabot.yml` pede atualização semanal das ações do GitHub Actions (inclui os workflows reutilizáveis) em PRs revisáveis. Detalhe de segurança: os pacotes usados em CI são fixados por versão (`pip==25.1.1`, `repository-hygiene==1.1.0`) e os reutilizáveis de revisão estão fixados por SHA.
 
 ## Onde o README estava fora do próprio spec
 
@@ -128,7 +128,7 @@ A correção acontece dentro do próprio ciclo: a change `documentacao-permanent
 | Contar as specs e mudanças | 10 specs (439 linhas), 8 mudanças arquivadas |
 | Contar o histórico | 135 commits, de 2026-05-20 a 2026-10-06 |
 | Conferir o horário da vistoria semanal | `cron: "0 6 * * 1"` = 6h UTC, ou 3h da manhã em Brasília |
-| Conferir por que a auditoria não alertou | causa verificada comparando a configuração do repositório com o código do pacote: [`0.2.0`](https://pypi.org/project/repository-hygiene/0.2.0/) lê `regras:` e [`1.0.0`](https://pypi.org/project/repository-hygiene/1.0.0/) lê `rules:`, enquanto o `auditoria.yaml` usa `rules:` desde 2026-07-26 — sem regras carregadas, a execução termina sem examinar nada |
+| Conferir por que a auditoria não alertou | causa verificada comparando a configuração do repositório com o código do pacote: [`0.2.0`](https://pypi.org/project/repository-hygiene/0.2.0/) lê `regras:` e [`1.0.0`](https://pypi.org/project/repository-hygiene/1.0.0/) lê `rules:`, enquanto o `auditoria.yaml` usa `rules:` desde 2026-07-26 — sem regras carregadas, a execução termina sem examinar nada; o pino foi subido para `1.1.0` nesta correção |
 | Conferir o endereço público | `lappquiz.ict.unesp.br` respondeu HTTP 200 com a página do Streamlit (conteúdo não inspecionado em navegador) |
 | Conferir os links do README e desta documentação | todos os destinos existem no repositório |
 
