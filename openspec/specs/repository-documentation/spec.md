@@ -40,3 +40,13 @@ A documentação SHALL descrever a avaliação de respostas com LangChain `ChatO
 - **WHEN** o leitor consulta as páginas de dados e arquitetura
 - **THEN** entende que `questions.json` contém o banco de perguntas, que estado transitório fica em `st.session_state` e que o projeto não persiste respostas em banco de dados
 - **AND** entende por que o aplicativo usa `st.rerun()` no modelo de execução do Streamlit
+
+### Requirement: A documentação não expõe contexto interno
+
+O texto publicado em `docs/` SHALL NOT expor pedidos, prioridades declaradas, conversas entre mantenedores e colaboradores ou preferências pessoais de quem mantém o repositório; afirmações sobre o projeto SHALL decorrer do código, do histórico ou de fonte citada, ou estar marcadas como inferência.
+
+#### Scenario: Leitor encontra documentação fundamentada e sem contexto interno
+
+- **WHEN** uma pessoa lê as páginas publicadas em `docs/`
+- **THEN** não encontra referência a pedidos, prioridades declaradas ou conversas internas
+- **AND** as afirmações decorrem do repositório, de fonte citada ou estão marcadas como `(inferência)`
