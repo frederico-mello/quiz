@@ -19,11 +19,11 @@ A analogia mais próxima é a de uma obra bem dirigida: existe a planta antes da
 
 Três conceitos, com analogia:
 
-- **Spec** (especificação) é a planta da obra: descreve como o sistema é **hoje**, não como ele será. Fica em `openspec/specs/`. O repositório tem **10 specs** (439 linhas no total): `quiz-ui`, `llm-evaluation`, `llm-fallback`, `content-filter`, `tts`, `avatar`, `question-link-qr-code`, `independent-question-access`, `readme-documentation`, `repository-documentation`.
+- **Spec** (especificação) é a planta da obra: descreve como o sistema é **hoje**, não como ele será. Fica em `openspec/specs/`. O repositório tem **10 specs** (449 linhas no total): `quiz-ui`, `llm-evaluation`, `llm-fallback`, `content-filter`, `tts`, `avatar`, `question-link-qr-code`, `independent-question-access`, `readme-documentation`, `repository-documentation`.
 - **Change** (mudança) é a ficha da obra que está começando: uma pasta com `proposal.md` (o que e por quê), `design.md` (as decisões técnicas), `tasks.md` (a lista de tarefas com caixinhas) e o **delta**, a alteração proposta para a spec, escrita como diferença em relação ao que já vale. Fica em `openspec/changes/<nome-da-mudanca>/`.
 - **Archive** (arquivo) é o fim da obra: as caixinhas foram todas marcadas, o delta é aplicado sobre a spec principal, e a pasta vira histórico em `openspec/changes/archive/`, com a data no nome.
 
-O repositório tem **8 mudanças já arquivadas**, todas legíveis como diário do projeto:
+O repositório tem **9 mudanças já arquivadas**, todas legíveis como diário do projeto:
 
 | Pasta arquivada | O que registra |
 | --- | --- |
@@ -35,6 +35,7 @@ O repositório tem **8 mudanças já arquivadas**, todas legíveis como diário 
 | `2026-08-03-fix-qr-code-redirect` | Correção do redirecionamento do QR Code |
 | `2026-08-24-migrate-to-litellm` | Migração para o LiteLLM com reserva no OpenRouter |
 | `2026-10-06-documentacao-permanente` | Documentação permanente em `docs/` e links do README corrigidos |
+| `2026-10-06-remover-contexto-interno` | Remoção de contexto interno da documentação publicada e requisito de fundamentação nas specs |
 
 Uma regra importante está escrita em `openspec/config.yaml`:
 
@@ -104,7 +105,7 @@ Esse mecanismo existe, mas os links mortos do README permaneceram no ar até est
 ## Extras que completam o método
 
 - **Commits convencionais.** As mensagens seguem o padrão `tipo: descrição` (`fix:`, `chore:`, `ci:`, `docs:`, `test:`), o que permite filtrar o histórico por natureza da mudança.
-- **Propostas de merge com histórico.** O git tem 135 commits entre 20 de maio e 6 de outubro de 2026, com merges no padrão `Merge pull request #N`.
+- **Propostas de merge com histórico.** O git tem 138 commits entre 20 de maio e 6 de outubro de 2026, com merges no padrão `Merge pull request #N`.
 - **Atualização automática de ações.** O `.github/dependabot.yml` pede atualização semanal das ações do GitHub Actions (inclui os workflows reutilizáveis) em PRs revisáveis. Detalhe de segurança: os pacotes usados em CI são fixados por versão (`pip==25.1.1`, `repository-hygiene==1.1.0`) e os reutilizáveis de revisão estão fixados por SHA.
 
 ## Onde o README estava fora do próprio spec
@@ -125,8 +126,8 @@ A correção acontece dentro do próprio ciclo: a change `documentacao-permanent
 | Verificação | Resultado |
 | --- | --- |
 | Rodar a suíte de testes do zero | `50 passed` com `pytest` local, usando a mesma configuração da CI (`pythonpath = src`); 8 arquivos em `tests/`, sendo 6 módulos de teste |
-| Contar as specs e mudanças | 10 specs (439 linhas), 8 mudanças arquivadas |
-| Contar o histórico | 135 commits, de 2026-05-20 a 2026-10-06 |
+| Contar as specs e mudanças (`69e214e`) | 10 specs (449 linhas), 9 mudanças arquivadas |
+| Contar o histórico (`69e214e`) | 138 commits, de 2026-05-20 a 2026-10-06 |
 | Conferir o horário da vistoria semanal | `cron: "0 6 * * 1"` = 6h UTC, ou 3h da manhã em Brasília |
 | Conferir por que a auditoria não alertou | causa verificada comparando a configuração do repositório com o código do pacote: [`0.2.0`](https://pypi.org/project/repository-hygiene/0.2.0/) lê `regras:` e [`1.0.0`](https://pypi.org/project/repository-hygiene/1.0.0/) lê `rules:`, enquanto o `auditoria.yaml` usa `rules:` desde 2026-07-26 — sem regras carregadas, a execução termina sem examinar nada; o pino foi subido para `1.1.0` nesta correção |
 | Conferir o endereço público | `lappquiz.ict.unesp.br` respondeu HTTP 200 com a página do Streamlit (conteúdo não inspecionado em navegador) |
