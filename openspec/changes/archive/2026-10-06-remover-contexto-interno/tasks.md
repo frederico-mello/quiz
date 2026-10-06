@@ -2,12 +2,12 @@
 
 ## 1. Remover referências a contexto interno
 
-- [x] 1.1 Em `docs/06-metodologia.md`, trocar “Esta é a peça que o dono do repositório pediu com prioridade. A pergunta que ela responde é:” por “A pergunta que esta peça responde é:”, preservando o restante da frase.
-- [x] 1.2 Em `docs/README.md`, na seção Premissas, trocar “*(premissa)* Prioridade declarada pelo dono do repositório: a metodologia de desenvolvimento, tratada por isso com uma página inteira em 06-metodologia.md.” por “*(escolha editorial)* A metodologia de desenvolvimento ganhou uma página inteira em 06-metodologia.md, por ser a peça que melhor explica como o projeto evolui.”
-- [x] 1.3 Em `docs/06-metodologia.md`, trocar “quem garante isso é o hábito do dono” por “quem garante isso é o hábito de quem trabalha no repositório”.
-- [x] 1.4 Em `docs/06-metodologia.md`, trocar “Se falhar, o dono vê o erro antes de mergear (unir) o código.” por “Se falhar, o erro aparece antes de a proposta ser mergeada (unida) ao código.”
-- [x] 1.5 Em `docs/06-metodologia.md`, trocar “Como o dono desse repositório trabalha muito com envio direto na branch principal, o push-review cobre o caminho que a revisão de proposta não vê.” por “O push-review cobre o caminho que a revisão de proposta não vê: mudanças enviadas direto para a branch principal.”
-- [x] 1.6 Em `docs/01-visao-geral.md`, nas inferências, trocar “o perfil do público vem do contexto do projeto, não do repositório.” por “o perfil do público é suposição sem registro no repositório.”
+- [x] 1.1 Em `docs/06-metodologia.md`, trocar a abertura que atribuía a escolha da página a contexto interno por "A pergunta que esta peça responde é:", preservando o restante da frase.
+- [x] 1.2 Em `docs/README.md`, na seção Premissas, trocar a justificativa por atribuição pessoal pela escolha editorial "*(escolha editorial)* A metodologia de desenvolvimento ganhou uma página inteira em 06-metodologia.md, por ser a peça que melhor explica como o projeto evolui."
+- [x] 1.3 Em `docs/06-metodologia.md`, trocar a menção a hábito pessoal por "quem garante isso é o hábito de quem trabalha no repositório".
+- [x] 1.4 Em `docs/06-metodologia.md`, trocar a menção a quem vê o erro antes do merge por "Se falhar, o erro aparece antes de a proposta ser mergeada (unida) ao código."
+- [x] 1.5 Em `docs/06-metodologia.md`, trocar a menção a envio direto na branch principal por "O push-review cobre o caminho que a revisão de proposta não vê: mudanças enviadas direto para a branch principal."
+- [x] 1.6 Em `docs/01-visao-geral.md`, nas inferências, trocar a fundamentação do perfil do público em contexto não registrado no repositório por "o perfil do público é suposição sem registro no repositório."
 - [x] 1.7 Varrer todo `docs/` e `README.md` da raiz por dono, pediu/pedido interno (mantendo pedidos ao modelo/LLM que sejam técnicos), prioridade declarada, colega, insumo, conversa interna, contexto do projeto, mantenedor pessoal e hábitos pessoais; corrigir com edição mínima, preservando o sentido técnico e distinguindo fato de inferência.
 
 ## 2. Atualizar afirmações documentais verificáveis
@@ -20,3 +20,9 @@
 ## 3. Conferir aderência ao requisito
 
 - [x] 3.1 Revisar `docs/` e o README da raiz para confirmar que o texto publicado não expõe pedidos, prioridades declaradas, conversas internas ou preferências pessoais, e que afirmações sobre o projeto decorrem do código, histórico, fonte citada ou estão marcadas como `(inferência)`.
+
+## 4. Manutenção da superfície pública (2026-10-06)
+
+- [x] 4.1 Reescrever as tarefas 1.1 a 1.6 deste arquivo sem citar na íntegra as frases removidas, para que o próprio registro da limpeza não reintroduza o conteúdo que ela remove.
+- [x] 4.2 Em `docs/README.md`, atualizar a revisão lida de `d53b80e` para `69e214e`.
+- [x] 4.3 Em `docs/06-metodologia.md`, atualizar as contagens para o estado de `69e214e`: 10 specs (449 linhas) e 9 mudanças arquivadas; manter a tabela de verificações coerente (138 commits, 135 até a revisão anterior).
