@@ -82,6 +82,6 @@ Sem o arquivo `.env` preenchido, o programa abre e avisa quais variáveis faltam
 ## Inferências desta página
 
 1. *(inferência)* Uso ao vivo em sala com QR Code projetado ou impresso. Base: link público + QR Code por pergunta + avatar falando; não há registro de uso no repositório.
-2. *(inferência)* Público jovem, daí a moderação com duas advertências e depois o bloqueio da sessão. Base: a regra de bloqueio existe no código (`app.py`); o perfil do público vem do contexto do projeto, não do repositório.
+2. *(inferência)* Público jovem, daí a moderação com duas advertências e depois o bloqueio da sessão. Base: a regra de bloqueio existe no código (`app.py`); o perfil do público é suposição sem registro no repositório.
 3. *(inferência)* O pedido de no máximo 500 caracteres, escrito no prompt, existe por causa da leitura em voz alta (frase curta soa melhor falada). Base: o prompt manda "MANTENHA A RESPOSTA CURTA: no máximo 500 caracteres" e logo em seguida o mesmo texto vira áudio — o código, porém, não valida nem corta o texto nesse tamanho (ver [03-fluxo-principal.md](03-fluxo-principal.md)).
 4. *(inferência)* A ausência de banco de dados é decisão de simplicidade, não limitação técnica. Base: o projeto já usa testes, CI e especificações, então manter tudo em um arquivo de texto parece escolha consciente.

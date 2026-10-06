@@ -32,7 +32,7 @@ O que a fonte afirma: o LiteLLM proxy (a porta padrão é a 4000) faz, nesta ord
 **O que isso mudou na leitura:** duas correções e uma confirmação.
 
 - *Correção:* o nome `LITELLM_API_KEY` soaria como "senha do servidor". A fonte mostra que o nome correto é **chave virtual**: o proxy tem seu próprio sistema de contas e orçamento, então a chave não abre o modelo, abre a conta local.
-- *Correção:* há um mecanismo de reserva pronto dentro do LiteLLM, e outro no próprio OpenRouter. O que o código do quiz mostra é a reserva escrita à mão em `evaluate_answer()`, com `try/except`. Se os mecanismos externos também estão ativos depende da configuração do proxy e do OpenRouter, que fica fora do repositório e não foi inspecionada — a mesma lacuna registrada na seção 5. *(inferência)* A razão prática de ter escrito a reserva no código é cobrir também o caso de o proxy estar fora do ar, algo que só a aplicação enxerga.
+- *Correção:* há um mecanismo de reserva pronto dentro do LiteLLM, e outro no próprio OpenRouter. O que o código do quiz mostra é a reserva escrita à mão em `evaluate_answer()`, com `try/except`. Se os mecanismos externos também estão ativos depende da configuração do proxy e do OpenRouter, que fica fora do repositório e não foi inspecionada — a mesma lacuna registrada na seção 6. *(inferência)* A razão prática de ter escrito a reserva no código é cobrir também o caso de o proxy estar fora do ar, algo que só a aplicação enxerga.
 - *Confirmação:* o endereço `http://localhost:4000` do `.env.example` bate com a porta padrão da ferramenta, e o formato de chave virtual explica por que a aplicação pode falar com o proxy usando a biblioteca de cliente OpenAI (`ChatOpenAI`, da LangChain) sem que o provedor real seja a OpenAI.
 
 ## 3. Streamlit: por que a tela é remontada o tempo todo
@@ -59,12 +59,23 @@ O que a fonte afirma: a biblioteca usa o serviço online de texto para fala do M
 
 **O que isso mudou na leitura:** responde duas perguntas do `.env.example`. Primeiro, por que não existe nenhuma variável de voz ou credencial de áudio: não há chave a guardar. Segundo, por que o README insiste em "acesso à internet" mesmo para um app cujo modelo pode estar atrás de um proxy local: a voz não vem da máquina do professor. *(inferência)* É também o motivo de `TTS_VOICE` ter padrão e de o texto passar pela limpeza em `clean_text_for_tts()`, porque serviço de voz é sensível a formatação.
 
-## 5. O que não foi possível checar
+## 5. repository-hygiene: por que a auditoria semanal não alertou
+
+Fontes consultadas:
+
+- [repository-hygiene 0.2.0](https://pypi.org/project/repository-hygiene/0.2.0/) (a versão fixada no workflow)
+- [repository-hygiene 1.0.0](https://pypi.org/project/repository-hygiene/1.0.0/) (linha 1.x, indicada para o repin)
+
+O que a fonte afirma: a versão 0.2.0 lê o bloco `regras:` (em português) e a versão 1.0.0 lê `rules:` (em inglês).
+
+**O que isso mudou na leitura:** o diagnóstico de [06-metodologia.md](06-metodologia.md) deixa de ser hipótese e passa a ser causa verificada comparando a configuração do repositório com o código do pacote — o workflow fixa a 0.2.0, que procura `regras:`, enquanto o `auditoria.yaml` usa `rules:` desde 26 de julho de 2026, e a 1.0.0 confirma o diagnóstico lendo justamente a chave que o arquivo tem. Sem regra alguma carregada, a auditoria termina com sucesso sem examinar um único arquivo; repinar o pacote na linha 1.x devolve a auditoria ao funcionamento.
+
+## 6. O que não foi possível checar
 
 | Item | Situação |
 | --- | --- |
 | Configuração real do proxy LiteLLM | Fica fora do repositório, em um arquivo `config.yaml` do proxy; a localização da máquina não foi verificada. Só foi visto o `.env.example` do lado do cliente. |
-| Endereço `lappquiz.ict.unesp.br` em produção | O site não foi aberto; a URL vem do código (`APP_URL`), não de uma verificação de que está no ar. |
+| Endereço `lappquiz.ict.unesp.br` em produção | O endereço respondeu HTTP 200 com a página do Streamlit; o conteúdo exibido não foi inspecionado em navegador. A URL vem do código (`APP_URL`). |
 | Pasta `openwiki/` antes da remoção | O conteúdo antigo não foi recuperado. Sei que existia pelo histórico do git e pelas referências que o README ainda fazia. |
 | Perfil real dos alunos | Não há dados de uso no repositório. A leitura de sala de aula é inferência. |
 | Arquivos locais da cópia de trabalho | `.env` e `.venv/` existem só na máquina de quem roda o projeto e são ignorados pelo git, então não fazem parte do repositório documentado aqui. Já o `AGENTS.md`/`CLAUDE.md` mencionados em versões anteriores desta leitura não existem na base `2a1e7db` — foram removidos no mesmo commit que apagou o OpenWiki. |
