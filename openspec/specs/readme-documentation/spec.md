@@ -40,17 +40,11 @@ BUT the README does not introduce undocumented application behavior
 
 ### Requirement: README links resolve to maintained documentation
 
-The README SHALL link only to files or documentation pages that exist in the repository at their referenced paths.
+The README SHALL link only to files or documentation pages that exist in the repository at their referenced paths. Links to detailed project documentation SHALL target the maintained documentation in `docs/` rather than the removed `openwiki/` directory.
 
 #### Scenario: Contributor opens documentation links
 
-GIVEN a contributor follows a link from the README
+GIVEN a contributor follows a documentation link from the README
 WHEN the linked target is resolved
 THEN the target exists at the referenced repository path
-
-#### Scenario: Documentation target is maintained in OpenWiki
-
-GIVEN detailed guidance is maintained in an existing OpenWiki page
-WHEN the README references that guidance
-THEN the README links to the existing OpenWiki path
-AND the README does not duplicate the detailed operational content
+AND detailed project documentation links lead to maintained pages in `docs/`

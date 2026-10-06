@@ -139,18 +139,22 @@ src/
   tts_service.py    # Geração de áudio
 assets/             # GIFs do avatar
 tests/              # Testes automatizados
-openwiki/           # Documentação detalhada do projeto
+docs/               # Documentação permanente do projeto
 ```
 
 ## Documentação adicional
 
-- [Quickstart](openwiki/quickstart.md): visão técnica e mapa inicial.
-- [Arquitetura](openwiki/architecture.md): componentes e fluxo de dados.
-- [Workflows](openwiki/workflows.md): fluxos do quiz e da moderação.
-- [Operações](openwiki/operations.md): configuração e operação detalhadas.
-- [Testes](openwiki/testing.md): orientação e limitações conhecidas.
-- [Mapa de fontes](openwiki/source-map.md): referência dos arquivos e símbolos.
-- [Integrações](openwiki/integrations.md): serviços externos e ferramentas.
+A documentação permanente do projeto fica em `docs/`:
+
+- [Índice da documentação](docs/README.md): por onde começar a leitura.
+- [Visão geral](docs/01-visao-geral.md): o que é o quiz, para quem e a viagem de um clique.
+- [Arquitetura](docs/02-arquitetura.md): as peças do sistema e como elas se conversam.
+- [Fluxo principal](docs/03-fluxo-principal.md): do clique do aluno até o áudio.
+- [Dados](docs/04-dados.md): onde as informações ficam guardadas e como se ligam.
+- [Componentes](docs/05-componentes.md): os módulos do código e a função de cada um.
+- [Metodologia](docs/06-metodologia.md): como o projeto é especificado, testado e revisado.
+- [Pesquisa e fontes](docs/07-pesquisa-e-fontes.md): o que foi checado fora do repositório, com fontes.
+- [Glossário](docs/glossario.md): termos técnicos traduzidos para o dia a dia.
 
 ## Licença
 
