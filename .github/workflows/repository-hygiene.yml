@@ -35,10 +35,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.10"
 
@@ -69,7 +69,7 @@ jobs:
 
       - name: Create or update issue
         if: github.event_name != 'pull_request' && steps.audit.outputs.exit_code != '0'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const marker = '<!-- repository-hygiene-audit -->';
@@ -108,7 +108,7 @@ jobs:
 
       - name: Close issue if clean
         if: github.event_name != 'pull_request' && steps.audit.outputs.exit_code == '0'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             const marker = '<!-- repository-hygiene-audit -->';
